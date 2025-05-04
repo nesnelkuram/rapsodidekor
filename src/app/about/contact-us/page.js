@@ -15,7 +15,7 @@ export default function ContactUsPage() {
           <h1 className="text-3xl md:text-5xl font-bold text-gray-800" style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}>
             Contact Us
           </h1>
-          <p className="mt-2 text-lg text-gray-600">We'd love to hear from you</p>
+          <p className="mt-2 text-lg text-gray-600">We&apos;d love to hear from you</p>
         </div>
       </section>
 
