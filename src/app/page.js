@@ -40,11 +40,12 @@ export default function Home() {
     offset: ["start end", "end start"] // Section enters viewport bottom, leaves viewport top
   });
 
-  // Move background up as section scrolls (-600px offset for stronger parallax, pixel-based for consistency)
-  const parallaxOffset = useTransform(traditionScrollYProgress, [0, 0.5], [0, -600]);
+  // Move background up as section scrolls (-80% offset for stronger parallax)
+  // Using multiplier values (0.8 = 80%) instead of strings for better cross-environment compatibility
+  const parallaxOffset = useTransform(traditionScrollYProgress, [0, 0.5], [0, -0.8]);
 
-  // Animate small glass bottle more noticeably as section scrolls (-200px)
-  const glassBottleTranslateY = useTransform(traditionScrollYProgress, [0, 0.5], [0, -200]);
+  // Animate small glass bottle more noticeably as section scrolls (-40%)
+  const glassBottleTranslateY = useTransform(traditionScrollYProgress, [0, 0.5], [0, -0.4]);
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
   const { scrollYProgress: elevateScrollYProgress } = useScroll({
@@ -52,8 +53,8 @@ export default function Home() {
     offset: ["start end", "end start"] // Section enters viewport bottom, leaves viewport top
   });
 
-  // Move Elevate section content up more as section scrolls (-150px)
-  const elevateContentTranslateY = useTransform(elevateScrollYProgress, [0, 0.5], [0, -150]);
+  // Move Elevate section content up more as section scrolls (-30%)
+  const elevateContentTranslateY = useTransform(elevateScrollYProgress, [0, 0.5], [0, -0.3]);
 
   const handleWatchVideoClick = () => {
     setShowVideo(true); 
