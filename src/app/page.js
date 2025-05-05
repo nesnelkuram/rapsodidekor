@@ -68,7 +68,7 @@ export default function Home() {
                 Since the 1950s, RAPSODİ DEKOR has been shaping the future of glass and plastic packaging with cutting-edge printing and decorative solutions. Where expertise meets creativity, brands shine brighter.
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
               <div className="fact-item">
                 <Counter targetValue={10000} className="block text-5xl font-bold text-gray-800 mb-2" />
                 <span className="block text-base text-gray-600 uppercase tracking-wider">m² Production Area</span>
@@ -80,8 +80,18 @@ export default function Home() {
                 <span className="block text-base text-gray-600 uppercase tracking-wider">Specialist Team</span>
               </div>
               <div className="fact-item">
-                <Counter targetValue={3} className="block text-5xl font-bold text-gray-800 mb-2" />
-                <span className="block text-base text-gray-600 uppercase tracking-wider">Generations of Expertise</span>
+                <div>
+                  <Counter targetValue={120} className="inline text-5xl font-bold text-gray-800" />
+                  <span className="text-5xl font-bold text-gray-800">,000</span>
+                </div>
+                <span className="block text-base text-gray-600 uppercase tracking-wider">Daily Printing</span>
+              </div>
+              <div className="fact-item">
+                <div>
+                  <Counter targetValue={150} className="inline text-5xl font-bold text-gray-800" />
+                  <span className="text-5xl font-bold text-gray-800">,000</span>
+                </div>
+                <span className="block text-base text-gray-600 uppercase tracking-wider">Daily Painting</span>
               </div>
               <div className="fact-item">
                 <Counter targetValue={1950} className="block text-5xl font-bold text-gray-800 mb-2" />

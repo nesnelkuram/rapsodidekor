@@ -6,9 +6,9 @@
 @font-face {
   font-family: 'HaboroContrastNormRegular';
   /* Prioritize WOFF2 and WOFF for modern browsers */
-  src: url('/fonts/HaboroContrastNormRegular.woff2') format('woff2'),
-       url('/fonts/HaboroContrastNormRegular.woff') format('woff'),
-       url('/fonts/HaboroContrastNormRegular.ttf') format('truetype');
+  src: url('/fonts/haborocontrastnormregular.woff2') format('woff2'),
+       url('/fonts/haborocontrastnormregular.woff') format('woff'),
+       url('/fonts/haborocontrastnormregular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
