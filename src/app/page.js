@@ -115,7 +115,7 @@ export default function Home() {
       </AnimatedElement>
 
       {/* === About Us / Tradition Section (Parallax) === */}
-      <AnimatedElement>
+      <AnimatedElement disableTranslate>
         <motion.div 
           ref={traditionRef} 
           className="relative h-[300vh] text-white tradition-section bg-gray-900"
