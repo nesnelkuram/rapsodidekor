@@ -129,8 +129,7 @@ export default function Home() {
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              y: parallaxOffset,
-              rotate: '30deg', 
+              transform: `translateY(${parallaxOffset}) rotate(30deg)`,
               transition: 'transform 0.1s ease-out', 
               opacity: 1, 
             }}
@@ -146,8 +145,7 @@ export default function Home() {
               backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              y: parallaxOffset, 
-              rotate: '-30deg', 
+              transform: `translateY(${parallaxOffset}) rotate(-30deg)`,
               transition: 'transform 0.1s ease-out', 
               opacity: 1, 
             }}
@@ -162,8 +160,7 @@ export default function Home() {
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               opacity: 0.9,
-              rotate: '15deg', 
-              y: glassBottleTranslateY
+              transform: `translateY(${glassBottleTranslateY}) rotate(15deg)`
             }}
           />
           
@@ -230,7 +227,7 @@ export default function Home() {
         ref={elevateRef} 
         className="pt-32 pb-24 bg-[#2563eb]"
       >
-        <motion.div style={{ y: elevateContentTranslateY }}> 
+        <motion.div style={{ transform: `translateY(${elevateContentTranslateY})` }}> 
           <div className="container mx-auto px-6 md:px-16">
             <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
               <div>
