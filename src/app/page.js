@@ -516,7 +516,7 @@ export default function Home() {
       {/* === Elevate Your Packaging Section === */}
       <motion.section 
         ref={elevateRef} 
-        className="pt-32 pb-24 bg-[#2563eb]"
+        className="pt-32 pb-0 bg-gray-900"
       >
         <motion.div style={{ y: elevateContentTranslateY }}> 
           <div className="container mx-auto px-6 md:px-16">
@@ -535,7 +535,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="block"
+                    className="block text-[#E9C883]"
                   >
                     ELEVATE
                   </motion.span>
@@ -544,7 +544,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="block"
+                    className="block text-[#E9C883]"
                   >
                     YOUR PACKAGING
                   </motion.span>
@@ -556,7 +556,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="text-xl mb-8"
+                  className="text-xl mb-8 text-gray-300"
                 >
                   Bring your packaging to life with our premium decoration solutions. Get in touch today for a personalized consultation.
                 </motion.p>
@@ -568,7 +568,7 @@ export default function Home() {
                 >
                   <Link
                     href="/contact-us"
-                    className="inline-block px-10 py-3 border border-white text-white font-semibold tracking-wider hover:bg-white hover:text-[#2563eb] transition duration-300"
+                    className="inline-block px-10 py-3 border border-white text-white font-semibold tracking-wider hover:bg-white hover:text-gray-900 transition duration-300"
                   >
                     REQUEST A QUOTE
                   </Link>
@@ -581,7 +581,7 @@ export default function Home() {
 
       {/* === Services Showcase Grid Section === */}
       <AnimatedElement>
-        <section id="services-section" className="py-6 bg-white">
+        <section id="services-section" className="pt-0 bg-white">
           {isMobile ? (
             <div className="container mx-auto px-2">
               <div className="grid grid-cols-1 gap-6 max-w-7xl mx-auto">
