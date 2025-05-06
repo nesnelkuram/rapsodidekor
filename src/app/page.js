@@ -10,6 +10,7 @@ import FactsCounter from '@/components/FactsCounter';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import FloatingObjects from '@/components/FloatingObjects';
 import StickyScrollSection from '@/components/StickyScrollSection';
+import Lenis from '@studio-freight/lenis';
 
 // Placeholder Play Icon SVG
 const PlayIcon = () => (
@@ -18,20 +19,98 @@ const PlayIcon = () => (
   </svg>
 );
 
+// Hook to get window dimensions
+const useDimensions = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    // Function to update dimensions
+    const updateDimensions = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    // Set dimensions on mount
+    updateDimensions();
+
+    // Add resize listener
+    window.addEventListener('resize', updateDimensions);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
+  return dimensions;
+};
+
 export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
   const traditionRef = useRef(null);
   const objectsRef = useRef(null);
   const titleRef = useRef(null);
   const elevateRef = useRef(null); // Ref for Elevate section
+  const [isMobile, setIsMobile] = useState(false);
+  const { height } = useDimensions();
+  
+  // Initialize Lenis smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
+    
+    // Make lenis available globally for scroll functionality
+    window.lenis = lenis;
+    
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+  
+  // Check for mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+  
+  // Function to handle smooth scroll to services section
+  const handleScrollToServices = () => {
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection && window.lenis) {
+      window.lenis.scrollTo(servicesSection, {
+        offset: -50,
+        duration: 1.5
+      });
+    }
+  };
   
   // Kaydırma pozisyonuna göre başlık boyutu değişimi için
   const { scrollYProgress } = useScroll({
     target: titleRef,
-    offset: ["-0.2 1", "1.2 1"] // Başlık görünür olmadan biraz önce başla, tamamen görünmez olana kadar devam et
+    offset: ["-0.2 1", "1.2 1"]
   });
   
-  // Kaydırma ilerledikçe başlık boyutu azalır (1.3'ten 0.8'e kadar)
+  // Kaydırma ilerledikçe başlık boyutu azalır
   const titleScale = useTransform(scrollYProgress, [0, 1], [1.3, 0.8]);
 
   // Framer Motion scroll effect for tradition section background
@@ -40,12 +119,23 @@ export default function Home() {
     offset: ["start end", "end start"] // Section enters viewport bottom, leaves viewport top
   });
 
-  // Move background up as section scrolls (-80% offset for stronger parallax)
-  // Using multiplier values (0.8 = 80%) instead of strings for better cross-environment compatibility
-  const parallaxOffset = useTransform(traditionScrollYProgress, [0, 0.5], [0, -0.8]);
+  // Calculate dynamic parallax values based on viewport height
+  const parallaxValue = height ? -(height * 0.8) : -400; // Increased for stronger parallax effect
+  const glassBottleValue = height ? -(height * 0.6) : -200; // Increased for stronger parallax effect
 
-  // Animate small glass bottle more noticeably as section scrolls (-40%)
-  const glassBottleTranslateY = useTransform(traditionScrollYProgress, [0, 0.5], [0, -0.4]);
+  // Use dynamic values for parallax effect
+  const parallaxOffset = useTransform(
+    traditionScrollYProgress, 
+    [0, 1], 
+    [0, isMobile ? parallaxValue * 1.5 : parallaxValue]
+  );
+
+  // Use dynamic values for glass bottle animation
+  const glassBottleTranslateY = useTransform(
+    traditionScrollYProgress, 
+    [0, 1], 
+    [0, isMobile ? glassBottleValue * 1.8 : glassBottleValue]
+  );
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
   const { scrollYProgress: elevateScrollYProgress } = useScroll({
@@ -103,12 +193,12 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Link 
-                href="/services"
-                className="border border-white text-white font-bold py-3 px-6 rounded transition duration-300 no-underline hover:bg-white hover:text-black"
+              <button 
+                onClick={handleScrollToServices}
+                className="border border-white text-white font-bold py-3 px-6 rounded transition duration-300 no-underline hover:bg-white hover:text-black cursor-pointer"
               >
                 Discover Our Services
-              </Link>
+              </button>
             </motion.div>
           </div>
         </section>
@@ -118,14 +208,20 @@ export default function Home() {
       <AnimatedElement disableTranslate>
         <motion.div 
           ref={traditionRef} 
-          className="relative h-[300vh] text-white tradition-section bg-gray-900"
+          className="relative h-[300vh] sm:h-[300vh] md:h-[300vh] text-white tradition-section bg-gray-900"
+          style={{
+            willChange: 'transform',
+            transformStyle: 'preserve-3d',
+            perspective: 1000,
+            backfaceVisibility: 'hidden'
+          }}
         >
           {/* Silver.png floating element (Parallax) */}
           <motion.div 
-            className="absolute -left-[25%] top-1/3 z-5" 
+            className="absolute -left-[25%] sm:-left-[15%] md:-left-[25%] top-[70%] sm:top-1/2 md:top-1/3 z-5" 
             style={{ 
-              width: '900px',
-              height: '720px',
+              width: isMobile ? '100%' : '900px',
+              height: isMobile ? '100vw' : '720px',
               backgroundImage: `url(/images/silver.png)`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
@@ -134,15 +230,18 @@ export default function Home() {
               rotate: 30, 
               transition: 'transform 0.1s ease-out', 
               opacity: 1, 
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden'
             }}
           />
           
           {/* Yeni Raki image (Parallax) */}
           <motion.div 
-            className="absolute -right-[25%] top-2/3 z-5" 
+            className="absolute -right-[25%] sm:-right-[15%] md:-right-[25%] top-[90%] sm:top-3/4 md:top-2/3 z-5" 
             style={{ 
-              width: '900px',
-              height: '720px',
+              width: isMobile ? '100%' : '900px',
+              height: isMobile ? '100vw' : '720px',
               backgroundImage: `url(/images/yeni-raki-taste-of-turkey.webp)`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
@@ -151,12 +250,15 @@ export default function Home() {
               rotate: -30, 
               transition: 'transform 0.1s ease-out', 
               opacity: 1, 
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden'
             }}
           />
           
           {/* Small fixed glass object on left side (Animated) */}
           <motion.div 
-            className="absolute left-[10%] top-1/3 z-10 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48"
+            className="absolute left-[10%] top-[80%] sm:top-1/2 md:top-1/3 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48"
             style={{
               backgroundImage: `url(/images/floating-objects/glass-bottle-3.png)`,
               backgroundSize: 'contain',
@@ -164,7 +266,10 @@ export default function Home() {
               backgroundRepeat: 'no-repeat',
               opacity: 0.9,
               y: glassBottleTranslateY,
-              rotate: 15
+              rotate: 15,
+              willChange: 'transform',
+              transformStyle: 'preserve-3d',
+              backfaceVisibility: 'hidden'
             }}
           />
           
@@ -224,6 +329,188 @@ export default function Home() {
           </div>
         </div>
       </motion.div> 
+      </AnimatedElement>
+
+      {/* === Our Clients Section === */}
+      <AnimatedElement>
+        <section className="py-20 bg-[#f8f8f8]">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-14">
+              <motion.h2 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-3xl md:text-5xl font-bold mb-4" 
+                style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+              >
+                Trusted by Leading Brands
+              </motion.h2>
+              <motion.div 
+                initial={{ width: 0, opacity: 0 }}
+                whileInView={{ width: "5rem", opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="h-1 bg-[#E9C883] mx-auto"
+              ></motion.div>
+            </div>
+            
+            <div className="clients-slider overflow-hidden">
+              <motion.div 
+                className="grid grid-cols-4 md:grid-cols-4 gap-5 md:gap-10 mx-auto"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.1
+                    }
+                  },
+                  hidden: {}
+                }}
+              >
+                {/* Logos - First row (4 logos) */}
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/next.png" 
+                    alt="Next" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/atelier rebul.png" 
+                    alt="Atelier Rebul" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/defacto.png" 
+                    alt="Defacto" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/lc waikiki.png" 
+                    alt="LCW" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                {/* Second row (4 logos) */}
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/river island.png" 
+                    alt="River Island" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/mey.png" 
+                    alt="Diageo (Mey Alkol)" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/nishane.png" 
+                    alt="Nishane" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+                
+                <motion.div 
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  variants={{
+                    visible: { opacity: 1, y: 0, scale: 1 },
+                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Image 
+                    src="/images/clients/mad.png" 
+                    alt="Mad Parfum" 
+                    width={280} 
+                    height={140} 
+                    style={{objectFit: "contain"}} 
+                  />
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
       </AnimatedElement>
 
       {/* === Elevate Your Packaging Section === */}
@@ -292,305 +579,561 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* === Silk Screen Showcase Section === */}
+      {/* === Services Showcase Grid Section === */}
       <AnimatedElement>
-        <section
-          className="relative min-h-screen flex items-center bg-cover bg-center overflow-hidden" 
-          style={!showVideo ? { backgroundImage: 'url(/images/silksscreen.jpg)' } : { backgroundColor: '#000' }} 
-        >
-          {showVideo && (
-            <video
-              className="absolute top-0 left-0 w-full h-full object-cover z-0" 
-              src="/videos/silk_screen_promo.mp4" 
-              autoPlay
-              loop
-              muted
-              playsInline 
-            />
+        <section id="services-section" className="py-6 bg-white">
+          {isMobile ? (
+            <div className="container mx-auto px-2">
+              <div className="grid grid-cols-1 gap-6 max-w-7xl mx-auto">
+                {/* Silk Screen Card */}
+                <div 
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/silksscreen.jpg)' }}
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  {/* İçerik sağda sınırlı bir alanda */}
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right"> 
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Silk Screen
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Precision techniques for vibrant designs.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link 
+                        href="/services/silk-screen-printing"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+                
+                {/* Hot Foil Stamping Card */}
+                <div 
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/hotfoil.jpg)' }} 
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right"> 
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Hot-Foil Stamping
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Adding metallic or colored foils for premium looks.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link 
+                        href="/services/hot-foil-stamping"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Precious Metals Card */}
+                <div 
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/precious.jpg)' }} 
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right"> 
+                    <motion.h3
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Precious Metals
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Gold and platinum details for ultimate luxury.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link 
+                        href="/services/precious-metals"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Organic Painting Card */}
+                <div
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/organicpaint.jpg)' }}
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Organic Painting
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Eco-friendly vibrant finishes.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link
+                        href="/services/organic-painting"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Metalized Printing Card */}
+                <div
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/metalize.jpg)' }}
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Metalized Printing
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Stunning metallic effects.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link
+                        href="/services/metalized-printing"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Masking Card */}
+                <div
+                  className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                  style={{ backgroundImage: 'url(/images/mask.jpg)' }}
+                >
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                  
+                  <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      className="text-2xl font-bold mb-2" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Masking
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      className="mb-4 text-gray-200 text-sm"
+                    >
+                      Precision multi-color designs.
+                    </motion.p>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <Link
+                        href="/services/masking"
+                        className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              {/* Desktop View - Original Layout */}
+              <section
+                className="relative min-h-screen flex items-center bg-cover bg-center overflow-hidden"
+                style={{ backgroundImage: 'url(/images/silksscreen.jpg)' }}
+              >
+                <div className="absolute inset-y-0 right-0 w-1/2 flex items-center p-10 mr-16 z-10"> 
+                  <div> 
+                    <motion.h2 
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="text-5xl font-bold mb-4 text-white" 
+                      style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                    >
+                      Mastering the Art of Silk Screen
+                    </motion.h2>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="text-lg text-white"
+                    >
+                      Discover the precision and vibrancy of silk screen printing. Our advanced techniques bring your designs to life on a variety of surfaces including glass, plastic, and metal, offering durability and unparalleled visual appeal for every product. Elevate your brand with bespoke decoration that stands out.
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      className="mt-6 flex items-center"
+                    >
+                      <Link
+                        href="/services/silk-screen-printing"
+                        className="inline-block px-6 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                      >
+                        Learn More
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="py-10 bg-white">
+                <div className="container mx-auto px-2"> 
+                  <div className="grid grid-cols-2 gap-8 max-w-7xl mx-auto"> 
+                    
+                    {/* Mini Showcase 1: Hot Foil Stamping */}
+                    <div 
+                      className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                      style={{ backgroundImage: 'url(/images/hotfoil.jpg)' }} 
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                      
+                      <div className="relative z-10 text-white ml-auto w-1/2 text-right"> 
+                        <motion.h3
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5 }}
+                          className="text-3xl font-bold mb-3" 
+                          style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                        >
+                          Hot-Foil Stamping
+                        </motion.h3>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                          className="mb-5 text-gray-200"
+                        >
+                          Adding metallic or colored foils for premium looks.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          <Link 
+                            href="/services/hot-foil-stamping"
+                            className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                          >
+                            Learn More
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Mini Showcase 2: Precious Metals Application */}
+                    <div 
+                      className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                      style={{ backgroundImage: 'url(/images/precious.jpg)' }} 
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                      
+                      <div className="relative z-10 text-white ml-auto w-1/2 text-right"> 
+                        <motion.h3
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5 }}
+                          className="text-3xl font-bold mb-3" 
+                          style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                        >
+                          Precious Metals
+                        </motion.h3>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                          className="mb-5 text-gray-200"
+                        >
+                          Gold and platinum details for ultimate luxury.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          <Link 
+                            href="/services/precious-metals"
+                            className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                          >
+                            Learn More
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="py-10 bg-white -mt-16">
+                <div className="container mx-auto px-2">
+                  <div className="grid grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    {/* Showcase 1: Organic Painting */}
+                    <div
+                      className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                      style={{ backgroundImage: 'url(/images/organicpaint.jpg)' }}
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                      
+                      <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                        <motion.h3 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5 }}
+                          className="text-3xl font-bold mb-3" 
+                          style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                        >
+                          Organic Painting
+                        </motion.h3>
+                        <motion.p 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                          className="mb-5 text-gray-200"
+                        >
+                          Eco-friendly vibrant finishes.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          <Link
+                            href="/services/organic-painting"
+                            className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                          >
+                            Learn More
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Showcase 2: Metalized Printing */}
+                     <div
+                      className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                      style={{ backgroundImage: 'url(/images/metalize.jpg)' }}
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                      
+                      <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                        <motion.h3 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5 }}
+                          className="text-3xl font-bold mb-3" 
+                          style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                        >
+                          Metalized Printing
+                        </motion.h3>
+                        <motion.p 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                          className="mb-5 text-gray-200"
+                        >
+                          Stunning metallic effects.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          <Link
+                            href="/services/metalized-printing"
+                            className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                          >
+                            Learn More
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+
+                    {/* Showcase 3: Masking */}
+                     <div
+                      className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
+                      style={{ backgroundImage: 'url(/images/mask.jpg)' }}
+                    >
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
+                      
+                      <div className="relative z-10 text-white ml-auto w-1/2 text-right">
+                        <motion.h3 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5 }}
+                          className="text-3xl font-bold mb-3" 
+                          style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                        >
+                          Masking
+                        </motion.h3>
+                        <motion.p 
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                          className="mb-5 text-gray-200"
+                        >
+                          Precision multi-color designs.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          <Link
+                            href="/services/masking"
+                            className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
+                          >
+                            Learn More
+                          </Link>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </>
           )}
-
-          <div className="absolute inset-y-0 right-0 w-1/2 flex items-center p-10 mr-16 z-10"> 
-             <div> 
-               <motion.h2 
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6 }}
-                 className="text-5xl font-bold mb-4 text-white" 
-                 style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-               >
-                 Mastering the Art of Silk Screen
-               </motion.h2>
-               <motion.p 
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6, delay: 0.2 }}
-                 className="text-lg text-white"
-               >
-                 Discover the precision and vibrancy of silk screen printing. Our advanced techniques bring your designs to life on a variety of surfaces including glass, plastic, and metal, offering durability and unparalleled visual appeal for every product. Elevate your brand with bespoke decoration that stands out.
-               </motion.p>
-
-               <motion.div
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 0.6, delay: 0.4 }}
-                 className="mt-6 flex items-center space-x-4"
-               >
-                 <Link
-                   href="/services/silk-screen-printing"
-                   className="inline-block px-6 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                 >
-                   Learn More
-                 </Link>
-                 <button
-                   onClick={handleWatchVideoClick}
-                   className="flex items-center justify-center w-12 h-12 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full text-white transition-colors duration-300"
-                   aria-label="Watch video"
-                 >
-                   <PlayIcon /> 
-                 </button>
-               </motion.div>
-             </div>
-           </div>
         </section>
       </AnimatedElement>
-
-      {/* === Mini Showcases Section (Replaces Featured Services) === */}
-      <AnimatedElement>
-        <section className="py-10 bg-white">
-          <div className="container mx-auto px-2"> 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto"> 
-              
-              {/* Mini Showcase 1: Hot Foil Stamping */}
-              <div 
-                className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
-                style={{ backgroundImage: 'url(/images/hotfoil.jpg)' }} 
-              >
-                <div className="relative z-10 text-white ml-auto md:w-1/2 text-right"> 
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-3xl font-bold mb-3" 
-                    style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-                  >
-                    Hot-Foil Stamping
-                  </motion.h3>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-5 text-gray-200"
-                  >
-                    Adding metallic or colored foils for a premium, eye-catching look.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <Link 
-                      href="/services/hot-foil-stamping"
-                      className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                    >
-                      Learn More
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Mini Showcase 2: Precious Metals Application */}
-              <div 
-                className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 
-                style={{ backgroundImage: 'url(/images/precious.jpg)' }} 
-              >
-                <div className="relative z-10 text-white ml-auto md:w-1/2 text-right"> 
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-3xl font-bold mb-3" 
-                    style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-                  >
-                    Precious Metals
-                  </motion.h3>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-5 text-gray-200"
-                  >
-                    Enhance your products with genuine gold or platinum details for ultimate luxury.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <Link 
-                      href="/services/precious-metals"
-                      className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                    >
-                      Learn More
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-      </AnimatedElement>
-
-      {/* === Additional Techniques Showcase Section === */}
-      <AnimatedElement>
-        <section className="py-10 bg-white -mt-16">
-          <div className="container mx-auto px-2">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-
-              {/* Showcase 1: Organic Painting */}
-              <div
-                className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group"
-                style={{ backgroundImage: 'url(/images/organicpaint.jpg)' }} // Updated image
-              >
-                {/* Sağdan sola siyah gradyan */}
-                <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
-                <div className="relative z-10 text-white ml-auto md:w-1/2 text-right">
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-2xl font-bold mb-3" 
-                    style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-                  >
-                    Organic Painting
-                  </motion.h3>
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-4 text-gray-200 text-sm"
-                  >
-                    Eco-friendly painting solutions for vibrant finishes.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <Link
-                      href="/services/organic-painting"
-                      className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                    >
-                      Learn More
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Showcase 2: Metalized Printing */}
-               <div
-                className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group"
-                style={{ backgroundImage: 'url(/images/metalize.jpg)' }} // Corrected filename
-              >
-                {/* Sağdan sola siyah gradyan */}
-                <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
-                <div className="relative z-10 text-white ml-auto md:w-1/2 text-right">
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-2xl font-bold mb-3" 
-                    style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-                  >
-                    Metalized Printing
-                  </motion.h3>
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-4 text-gray-200 text-sm"
-                  >
-                    Achieve stunning metallic effects on various surfaces.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <Link
-                      href="/services/metalized-printing"
-                      className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                    >
-                      Learn More
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Showcase 3: Masking */}
-               <div
-                className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group"
-                style={{ backgroundImage: 'url(/images/mask.jpg)' }} // Updated image
-              >
-                {/* Sağdan sola siyah gradyan */}
-                <div className="absolute inset-0 bg-gradient-to-l from-black via-black/50 to-transparent z-0"></div>
-                <div className="relative z-10 text-white ml-auto md:w-1/2 text-right">
-                  <motion.h3 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="text-2xl font-bold mb-3" 
-                    style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
-                  >
-                    Masking
-                  </motion.h3>
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="mb-4 text-gray-200 text-sm"
-                  >
-                    Precision techniques for multi-color or textured designs.
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <Link
-                      href="/services/masking"
-                      className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
-                    >
-                      Learn More
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
-      </AnimatedElement>
-
-      
     </>
   );
 }

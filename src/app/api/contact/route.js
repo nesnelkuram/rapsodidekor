@@ -1,33 +1,50 @@
 import { NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
-// Your target email address
-// const targetEmail = 'rapsodi@rapsodidekor.com'; 
-// The 'from' address needs to be a verified domain in Resend 
-// or use 'onboarding@resend.dev' for testing/initial setup.
-// const fromEmail = 'Contact Form <onboarding@resend.dev>'; 
+// Initialize Resend with the API key from environment variables
+const resend = new Resend(process.env.RESEND_API_KEY);
+const targetEmail = 'nesnelkuram@gmail.com'; // Target email address
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const { name, email, subject, message } = body;
+    // Parse the request body to get form data
+    const { name, email, subject, message } = await request.json();
 
     // Basic validation
     if (!name || !email || !subject || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // --- Simulate Success --- 
-    console.log('Contact form submitted (Email sending disabled):', body);
-    // Return a success response even though no email was sent
-    return NextResponse.json({ message: 'Form submitted successfully (email sending disabled)' }, { status: 200 });
+    // Send the email using Resend
+    const { data, error } = await resend.emails.send({
+      from: 'Rapsodi Dekor <onboarding@resend.dev>', // Replace with your verified domain later
+      to: [targetEmail], // Send to the specified target email
+      reply_to: email, // Set the reply-to address to the sender's email
+      subject: `Yeni İletişim Formu Mesajı: ${subject}`,
+      html: `
+        <h1>Yeni İletişim Formu Mesajı</h1>
+        <p><strong>Gönderen Adı:</strong> ${name}</p>
+        <p><strong>Gönderen E-posta:</strong> ${email}</p>
+        <p><strong>Konu:</strong> ${subject}</p>
+        <hr>
+        <p><strong>Mesaj:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p> // Preserve line breaks
+      `,
+    });
+
+    // Check if there was an error sending the email
+    if (error) {
+      console.error('Resend API Error:', error);
+      return NextResponse.json({ error: 'Failed to send email', details: error.message }, { status: 500 });
+    }
+
+    // If email sent successfully
+    console.log('Email sent successfully:', data);
+    return NextResponse.json({ success: true, message: 'Email sent successfully!' }, { status: 200 });
 
   } catch (err) {
+    // Catch any other errors during processing
     console.error('API Route Error:', err);
-    // Handle potential JSON parsing errors or other unexpected errors
-    let errorMessage = 'An unexpected error occurred.';
-    if (err instanceof Error) {
-        errorMessage = err.message;
-    }
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
