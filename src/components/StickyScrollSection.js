@@ -1,8 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-
-'use client';
+// StickyScrollSection.js - A reusable section that animates content as it scrolls
 
 import { useRef, useEffect } from 'react';
 

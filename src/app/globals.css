@@ -5,12 +5,36 @@
 /* Define Custom Fonts */
 @font-face {
   font-family: 'HaboroContrastNormRegular';
-  /* Prioritize WOFF2 and WOFF for modern browsers */
   src: url('/fonts/haborocontrastnormregular.woff2') format('woff2'),
        url('/fonts/haborocontrastnormregular.woff') format('woff'),
-       url('/fonts/haborocontrastnormregular.ttf') format('truetype');
+       url('/fonts/haborocontrastnormregular.ttf') format('truetype'),
+       url('/fonts/haborocontrastnormregular.eot') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+
+/* Sticky section styles */
+.sticky-section {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+.sticky-section.is-sticky {
+  position: sticky;
+  top: 0;
+}
+
+/* Ensure z-index stacking context is correct */
+.sticky-section.is-sticky::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 :root {
@@ -36,4 +60,126 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Roboto', sans-serif;
+}
+
+/* FloatingObjects responsive tweaks */
+@media (max-width: 768px) {
+  .floating-object {
+    opacity: 0.35 !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 64px;
+    max-height: 64px;
+    transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  .floating-object > div {
+    border-radius: 50%;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Custom scroll behavior for Lenis */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Tradition section responsive tweaks */
+.tradition-section {
+  position: relative;
+  will-change: transform;
+}
+
+.tradition-section [style*="y:"] {
+  will-change: transform;
+  transition: transform 0.05s linear;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.tradition-section > div.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .tradition-section {
+    height: 150vh !important;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Targeting the sticky container and ensuring it stays fixed */
+  .tradition-section > div[class*="sticky"] {
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    z-index: 10;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  
+  /* Ensure content stays in place */
+  .tradition-section > div[class*="sticky"] > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Making parallax movement more exaggerated on mobile */
+  .tradition-section [style*="parallaxOffset"],
+  .tradition-section [style*="glassBottleTranslateY"] {
+    transform: translate3d(0, 0, 0) !important;
+    will-change: transform !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    transition: transform 0.01s linear !important;
+  }
+  
+  /* Floating objects responsive tweaks */
+  .floating-object {
+    opacity: 0.35 !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 32px;
+    min-height: 32px;
+    max-width: 64px;
+    max-height: 64px;
+    transition: all 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  
+  .floating-object > div {
+    border-radius: 50%;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

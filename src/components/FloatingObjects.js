@@ -1,11 +1,9 @@
 'use client';
 
+// FloatingObjects.js - Provides animated floating objects that move based on scroll
+
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-
-'use client';
-
-import { useState, useEffect } from 'react';
 
 // Main floating objects component with scroll-based animation
 export default function FloatingObjects() {

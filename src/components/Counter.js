@@ -3,24 +3,30 @@
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion';
 
-// Sayıları formatlamak için (örneğin 10000 -> 10,000)
+// Format numbers (e.g., 10000 -> 10,000)
 const formatter = new Intl.NumberFormat('en-US');
 
-export default function Counter({ targetValue, duration = 1.5, className }) {
+export default function Counter({ targetValue, end, prefix = '', suffix = '', duration = 1.5, className }) {
+  // Support both 'targetValue' (original) and 'end' (new) prop for flexibility
+  const finalValue = end !== undefined ? end : targetValue;
+  
   const count = useMotionValue(0);
-  // Sayacı yuvarla ve formatla
-  const roundedAndFormatted = useTransform(count, (latest) => formatter.format(Math.round(latest)));
+  // Round and format the counter
+  const roundedAndFormatted = useTransform(count, (latest) => {
+    return `${prefix}${formatter.format(Math.round(latest))}${suffix}`;
+  });
+  
   const ref = useRef(null);
-  // Elementin %50'si göründüğünde tetikle, sadece bir kez
+  // Trigger when 50% of element is in view, only once
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   useEffect(() => {
-    if (isInView) {
-      // Ekrana girdiğinde sayacı başlat
-      animate(count, targetValue, { duration: duration, ease: "easeOut" });
+    if (isInView && finalValue !== undefined) {
+      // Start counter when element enters viewport
+      animate(count, finalValue, { duration: duration, ease: "easeOut" });
     }
-  }, [isInView, count, targetValue, duration]);
+  }, [isInView, count, finalValue, duration]);
 
-  // Stilleri ve referansı motion.span'a uygula
+  // Apply styles and reference to motion.span
   return <motion.span ref={ref} className={className}>{roundedAndFormatted}</motion.span>;
 }

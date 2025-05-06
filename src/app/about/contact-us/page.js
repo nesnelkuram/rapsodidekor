@@ -1,21 +1,50 @@
-import ContactForm from '@/components/ContactForm'; // Adjust path if needed
+"use client";
 
-// Define metadata for SEO
-export const metadata = {
-  title: 'Contact Us | Rapsodi Dekor',
-  description: 'Get in touch with Rapsodi Dekor. Find our contact details, send us a message via our contact form, or locate us on the map.',
-};
+import ContactForm from '@/components/ContactForm';
+import './styles.css';
 
 export default function ContactUsPage() {
   return (
     <>
-      {/* Header Section */}
-      <section className="bg-gray-100 py-12 md:py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-800" style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}>
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute top-0 left-0 w-full h-full z-0 overflow-hidden">
+          <video 
+            className="absolute top-0 left-0 min-w-full min-h-full object-cover"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            style={{ 
+              width: '100%', 
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          >
+            <source src="/videos/rapfab.webm" type="video/webm" />
+            <source src="/videos/rapfab.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Dark overlay for better text visibility */}
+        <div 
+          className="absolute inset-0 z-1"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          }}
+        />
+
+        
+        {/* Content */}
+        <div className="container relative mx-auto px-4 text-center" style={{ zIndex: 10, position: 'relative' }}>
+          <h1 
+            className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg" 
+            style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+          >
             Contact Us
           </h1>
-          <p className="mt-2 text-lg text-gray-600">We&apos;d love to hear from you</p>
+          <p className="mt-2 text-xl text-white max-w-xl mx-auto drop-shadow-lg">We&apos;d love to hear from you</p>
         </div>
       </section>
 
