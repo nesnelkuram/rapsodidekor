@@ -116,25 +116,30 @@ export default function Home() {
   // Framer Motion scroll effect for tradition section background
   const { scrollYProgress: traditionScrollYProgress } = useScroll({
     target: traditionRef,
-    offset: ["start end", "end start"] // Section enters viewport bottom, leaves viewport top
+    offset: ["start start", "end start"] // Changed to start start (when section reaches top of viewport)
   });
 
   // Calculate dynamic parallax values based on viewport height
-  const parallaxValue = height ? -(height * 0.8) : -400; // Increased for stronger parallax effect
-  const glassBottleValue = height ? -(height * 0.6) : -200; // Increased for stronger parallax effect
+  const parallaxValue = height ? -(height * 0.3) : -150; 
+  const glassBottleValue = height ? -(height * 0.2) : -100;
 
-  // Use dynamic values for parallax effect
-  const parallaxOffset = useTransform(
+  // Use dynamic values for parallax effect - start objects off-screen
+  const silverImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 1], 
-    [0, isMobile ? parallaxValue * 1.5 : parallaxValue]
+    [0, 0.5, 1], 
+    [height || 500, 0, parallaxValue]
   );
-
-  // Use dynamic values for glass bottle animation
-  const glassBottleTranslateY = useTransform(
+  
+  const rakiImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 1], 
-    [0, isMobile ? glassBottleValue * 1.8 : glassBottleValue]
+    [0, 0.5, 1], 
+    [height || 500, 0, parallaxValue]
+  );
+  
+  const glassBottleY = useTransform(
+    traditionScrollYProgress, 
+    [0, 0.5, 1], 
+    [height || 300, 0, glassBottleValue]
   );
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
@@ -206,129 +211,114 @@ export default function Home() {
 
       {/* === About Us / Tradition Section (Parallax) === */}
       <AnimatedElement disableTranslate>
-        <motion.div 
+        <div 
           ref={traditionRef} 
-          className="relative h-[300vh] sm:h-[300vh] md:h-[300vh] text-white tradition-section bg-gray-900"
-          style={{
-            willChange: 'transform',
-            transformStyle: 'preserve-3d',
-            perspective: 1000,
-            backfaceVisibility: 'hidden'
-          }}
+          className="relative h-[300vh] text-white bg-gray-900 overflow-hidden"
         >
-          {/* Silver.png floating element (Parallax) */}
-          <motion.div 
-            className="absolute -left-[25%] sm:-left-[15%] md:-left-[25%] top-[70%] sm:top-1/2 md:top-1/3 z-5" 
-            style={{ 
-              width: isMobile ? '100%' : '900px',
-              height: isMobile ? '100vw' : '720px',
-              backgroundImage: `url(/images/silver.png)`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              y: parallaxOffset,
-              rotate: 30, 
-              transition: 'transform 0.1s ease-out', 
-              opacity: 1, 
-              willChange: 'transform',
-              transformStyle: 'preserve-3d',
-              backfaceVisibility: 'hidden'
-            }}
-          />
-          
-          {/* Yeni Raki image (Parallax) */}
-          <motion.div 
-            className="absolute -right-[25%] sm:-right-[15%] md:-right-[25%] top-[90%] sm:top-3/4 md:top-2/3 z-5" 
-            style={{ 
-              width: isMobile ? '100%' : '900px',
-              height: isMobile ? '100vw' : '720px',
-              backgroundImage: `url(/images/yeni-raki-taste-of-turkey.webp)`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              y: parallaxOffset, 
-              rotate: -30, 
-              transition: 'transform 0.1s ease-out', 
-              opacity: 1, 
-              willChange: 'transform',
-              transformStyle: 'preserve-3d',
-              backfaceVisibility: 'hidden'
-            }}
-          />
-          
-          {/* Small fixed glass object on left side (Animated) */}
-          <motion.div 
-            className="absolute left-[10%] top-[80%] sm:top-1/2 md:top-1/3 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48"
-            style={{
-              backgroundImage: `url(/images/floating-objects/glass-bottle-3.png)`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: 0.9,
-              y: glassBottleTranslateY,
-              rotate: 15,
-              willChange: 'transform',
-              transformStyle: 'preserve-3d',
-              backfaceVisibility: 'hidden'
-            }}
-          />
-          
-          {/* Sticky container */}
-          <div className="sticky top-0 h-screen">
-            {/* Content container */}
-            <div className="relative z-10 flex flex-col justify-center items-center text-center h-full p-8 md:p-16">
-              <div className="container mx-auto px-4 text-center relative z-10">
+          {/* Sticky content container */}
+          <div className="sticky top-0 h-screen overflow-hidden">
+            {/* Main content */}
+            <div className="relative z-30 flex flex-col justify-center items-center h-full p-8 md:p-16">
+              <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto mb-12">
                   <RotatingIcon />
-                <motion.h2 
-                  ref={titleRef}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-habor text-[#E9C883]"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  style={{ scale: titleScale }}
-                >
-                  A Tradition of Innovation in Glass Decoration
-                </motion.h2>
-                <motion.p 
-                  className="text-gray-300 mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                  Since 1950, RAPSODİ DEKOR has been at the forefront of glass decoration techniques, combining traditional craftsmanship with cutting-edge technology to create stunning packaging solutions for premium brands across diverse industries.
-                </motion.p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-                <div className="fact-item">
-                  <Counter targetValue={10000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
-                  <span className="block text-base text-gray-300 uppercase tracking-wider">m² Production Area</span>
+                  <motion.h2 
+                    ref={titleRef}
+                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-habor text-[#E9C883]"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    style={{ scale: titleScale }}
+                  >
+                    A Tradition of Innovation in Glass Decoration
+                  </motion.h2>
+                  <motion.p 
+                    className="text-gray-300 mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                  >
+                    Since 1950, RAPSODİ DEKOR has been at the forefront of glass decoration techniques, combining traditional craftsmanship with cutting-edge technology to create stunning packaging solutions for premium brands across diverse industries.
+                  </motion.p>
                 </div>
-                <div className="fact-item">
-                  <span className="block text-5xl font-bold text-[#E9C883] mb-2">
-                    <Counter targetValue={450} className="inline" />+
-                  </span>
-                  <span className="block text-base text-gray-300 uppercase tracking-wider">Specialist Team</span>
-                </div>
-                <div className="fact-item">
-                  <Counter targetValue={120000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
-                  <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Printing</span>
-                </div>
-                <div className="fact-item">
-                  <Counter targetValue={150000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
-                  <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Painting</span>
-                </div>
-                <div className="fact-item">
-                  <span className="block text-5xl font-bold text-[#E9C883] mb-2">1950</span>
-                  <span className="block text-base text-gray-300 uppercase tracking-wider">Since</span>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+                  <div className="fact-item">
+                    <Counter targetValue={10000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">m² Production Area</span>
+                  </div>
+                  <div className="fact-item">
+                    <span className="block text-5xl font-bold text-[#E9C883] mb-2">
+                      <Counter targetValue={450} className="inline" />+
+                    </span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">Specialist Team</span>
+                  </div>
+                  <div className="fact-item">
+                    <Counter targetValue={120000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Printing</span>
+                  </div>
+                  <div className="fact-item">
+                    <Counter targetValue={150000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Painting</span>
+                  </div>
+                  <div className="fact-item">
+                    <span className="block text-5xl font-bold text-[#E9C883] mb-2">1950</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">Since</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Background overlay for better visibility */}
+            <div className="absolute inset-0 bg-black/20 z-10"></div>
+
+            {/* Parallax elements */}
+            <motion.div 
+              className="absolute -left-[25%] sm:-left-[15%] md:-left-[25%] top-[70%] sm:top-1/2 md:top-1/3 z-20" 
+              style={{ 
+                width: isMobile ? '100%' : '900px',
+                height: isMobile ? '100vw' : '720px',
+                backgroundImage: `url(/images/silver.png)`,
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                y: silverImageY,
+                rotate: 30, 
+                opacity: 1
+              }}
+            />
+            
+            <motion.div 
+              className="absolute -right-[25%] sm:-right-[15%] md:-right-[25%] top-[90%] sm:top-3/4 md:top-2/3 z-20" 
+              style={{ 
+                width: isMobile ? '100%' : '900px',
+                height: isMobile ? '100vw' : '720px',
+                backgroundImage: `url(/images/yeni-raki-taste-of-turkey.webp)`,
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                y: rakiImageY, 
+                rotate: -30, 
+                opacity: 1
+              }}
+            />
+            
+            <motion.div 
+              className="absolute left-[10%] top-[80%] sm:top-1/2 md:top-1/3 z-25 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48"
+              style={{
+                backgroundImage: `url(/images/floating-objects/glass-bottle-3.png)`,
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.9,
+                y: glassBottleY,
+                rotate: 15
+              }}
+            />
           </div>
         </div>
-      </motion.div> 
       </AnimatedElement>
 
       {/* === Our Clients Section === */}
