@@ -116,30 +116,30 @@ export default function Home() {
   // Framer Motion scroll effect for tradition section background
   const { scrollYProgress: traditionScrollYProgress } = useScroll({
     target: traditionRef,
-    offset: ["start start", "end start"] // Changed to start start (when section reaches top of viewport)
+    offset: ["start end", "end start"] // Değiştirildi - section viewport altından girmeye başlayınca
   });
 
   // Calculate dynamic parallax values based on viewport height
-  const parallaxValue = height ? -(height * 0.3) : -150; 
-  const glassBottleValue = height ? -(height * 0.2) : -100;
+  const parallaxValue = height ? -(height * 0.5) : -300; 
+  const glassBottleValue = height ? -(height * 0.4) : -200;
 
   // Use dynamic values for parallax effect - start objects off-screen
   const silverImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.5, 1], 
-    [height || 500, 0, parallaxValue]
+    [0, 0.3, 0.7, 1], 
+    [height || 500, height * 0.2 || 100, 0, parallaxValue]
   );
   
   const rakiImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.5, 1], 
-    [height || 500, 0, parallaxValue]
+    [0, 0.3, 0.7, 1], 
+    [height || 500, height * 0.1 || 50, -height * 0.1 || -50, parallaxValue]
   );
   
   const glassBottleY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.5, 1], 
-    [height || 300, 0, glassBottleValue]
+    [0, 0.3, 0.7, 1], 
+    [height || 300, height * 0.1 || 50, -height * 0.2 || -100, glassBottleValue]
   );
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
@@ -211,9 +211,14 @@ export default function Home() {
 
       {/* === About Us / Tradition Section (Parallax) === */}
       <AnimatedElement disableTranslate>
-        <div 
+        <motion.div 
           ref={traditionRef} 
           className="relative h-[300vh] text-white bg-gray-900 overflow-hidden"
+          style={{
+            willChange: 'transform',
+            transformStyle: 'preserve-3d',
+            perspective: 1000
+          }}
         >
           {/* Sticky content container */}
           <div className="sticky top-0 h-screen overflow-hidden">
@@ -286,7 +291,9 @@ export default function Home() {
                 backgroundRepeat: 'no-repeat',
                 y: silverImageY,
                 rotate: 30, 
-                opacity: 1
+                opacity: 1,
+                willChange: 'transform',
+                transformStyle: 'preserve-3d'
               }}
             />
             
@@ -301,7 +308,9 @@ export default function Home() {
                 backgroundRepeat: 'no-repeat',
                 y: rakiImageY, 
                 rotate: -30, 
-                opacity: 1
+                opacity: 1,
+                willChange: 'transform',
+                transformStyle: 'preserve-3d'
               }}
             />
             
@@ -314,11 +323,13 @@ export default function Home() {
                 backgroundRepeat: 'no-repeat',
                 opacity: 0.9,
                 y: glassBottleY,
-                rotate: 15
+                rotate: 15,
+                willChange: 'transform',
+                transformStyle: 'preserve-3d'
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </AnimatedElement>
 
       {/* === Our Clients Section === */}
