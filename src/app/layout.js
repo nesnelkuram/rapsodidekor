@@ -21,7 +21,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <body>
+      <body suppressHydrationWarning={true}>
         <Header />
         <main>{children}</main>
         <Footer />
