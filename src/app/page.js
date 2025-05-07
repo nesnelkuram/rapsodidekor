@@ -49,7 +49,6 @@ export default function Home() {
   const [showVideo, setShowVideo] = useState(false);
   const traditionRef = useRef(null);
   const objectsRef = useRef(null);
-  const titleRef = useRef(null);
   const elevateRef = useRef(null); // Ref for Elevate section
   const [isMobile, setIsMobile] = useState(false);
   const { height } = useDimensions();
@@ -104,42 +103,33 @@ export default function Home() {
     }
   };
   
-  // Kaydırma pozisyonuna göre başlık boyutu değişimi için
-  const { scrollYProgress } = useScroll({
-    target: titleRef,
-    offset: ["-0.2 1", "1.2 1"]
-  });
-  
-  // Kaydırma ilerledikçe başlık boyutu azalır
-  const titleScale = useTransform(scrollYProgress, [0, 1], [1.3, 0.8]);
-
   // Framer Motion scroll effect for tradition section background
   const { scrollYProgress: traditionScrollYProgress } = useScroll({
     target: traditionRef,
-    offset: ["start end", "end start"] // Değiştirildi - section viewport altından girmeye başlayınca
+    offset: ["start end", "end start"] // Section viewport altından girmeye başlayınca
   });
 
   // Calculate dynamic parallax values based on viewport height
-  const parallaxValue = height ? -(height * 0.5) : -300; 
-  const glassBottleValue = height ? -(height * 0.4) : -200;
+  const parallaxValue = height ? -(height * 1.5) : -900; // Much stronger movement for bottles
+  const glassBottleValue = height ? -(height * 1.2) : -700; // Bottles go far up and disappear
 
-  // Use dynamic values for parallax effect - start objects off-screen
+  // Use dynamic values for parallax effect - objects move from normal position to far up
   const silverImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.3, 0.7, 1], 
-    [height || 500, height * 0.2 || 100, 0, parallaxValue]
+    [0, 0.4, 0.6, 0.8], 
+    [0, 0, parallaxValue * 0.5, parallaxValue]
   );
   
   const rakiImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.3, 0.7, 1], 
-    [height || 500, height * 0.1 || 50, -height * 0.1 || -50, parallaxValue]
+    [0, 0.3, 0.5, 0.8], 
+    [0, 0, parallaxValue * 0.4, parallaxValue]
   );
   
   const glassBottleY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.3, 0.7, 1], 
-    [height || 300, height * 0.1 || 50, -height * 0.2 || -100, glassBottleValue]
+    [0, 0.2, 0.4, 0.8], 
+    [0, 0, parallaxValue * 0.3, glassBottleValue]
   );
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
@@ -213,28 +203,26 @@ export default function Home() {
       <AnimatedElement disableTranslate>
         <motion.div 
           ref={traditionRef} 
-          className="relative h-[300vh] text-white bg-gray-900 overflow-hidden"
+          className="relative h-[200vh] text-white bg-gray-900"
           style={{
             willChange: 'transform',
             transformStyle: 'preserve-3d',
             perspective: 1000
           }}
         >
-          {/* Sticky content container */}
-          <div className="sticky top-0 h-screen overflow-hidden">
-            {/* Main content */}
-            <div className="relative z-30 flex flex-col justify-center items-center h-full p-8 md:p-16">
+          {/* Sticky content container - stays fixed until section is scrolled past */}
+          <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
+            {/* Main content - always centered */}
+            <div className="relative z-30 py-16">
               <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto mb-12">
                   <RotatingIcon />
                   <motion.h2 
-                    ref={titleRef}
                     className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-habor text-[#E9C883]"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    style={{ scale: titleScale }}
                   >
                     A Tradition of Innovation in Glass Decoration
                   </motion.h2>
@@ -277,9 +265,9 @@ export default function Home() {
             </div>
 
             {/* Background overlay for better visibility */}
-            <div className="absolute inset-0 bg-black/20 z-10"></div>
+            <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-            {/* Parallax elements */}
+            {/* Parallax elements - only these move */}
             <motion.div 
               className="absolute -left-[25%] sm:-left-[15%] md:-left-[25%] top-[70%] sm:top-1/2 md:top-1/3 z-20" 
               style={{ 
