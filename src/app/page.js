@@ -149,13 +149,14 @@ export default function Home() {
     <>
       {/* === Hero Section === */}
       <AnimatedElement>
-        <section className="relative h-[95vh] flex items-center overflow-hidden">
+        <section className="relative h-screen flex items-center overflow-hidden" style={{marginTop: 0, paddingTop: 0}}>
           <video
             autoPlay
             loop
             muted
             playsInline
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
+            style={{objectFit: 'cover', marginTop: 0, paddingTop: 0}}
           >
             <source src="/videos/bg2.webm" type="video/webm" />
             <source src="/videos/bg2.mp4" type="video/mp4" />
@@ -203,7 +204,7 @@ export default function Home() {
       <AnimatedElement disableTranslate>
         <motion.div 
           ref={traditionRef} 
-          className="relative h-[200vh] text-white bg-gray-900"
+          className="relative h-[225vh] sm:h-[200vh] text-white bg-gray-900"
           style={{
             willChange: 'transform',
             transformStyle: 'preserve-3d',
@@ -213,7 +214,7 @@ export default function Home() {
           {/* Sticky content container - stays fixed until section is scrolled past */}
           <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
             {/* Main content - always centered */}
-            <div className="relative z-30 py-16">
+            <div className="relative z-30 py-16 mb-8 sm:mb-0">
               <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto mb-12">
                   <RotatingIcon />
@@ -237,27 +238,27 @@ export default function Home() {
                   </motion.p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 max-w-5xl mx-auto">
                   <div className="fact-item">
-                    <Counter targetValue={10000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <Counter targetValue={10000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">m² Production Area</span>
                   </div>
                   <div className="fact-item">
-                    <span className="block text-5xl font-bold text-[#E9C883] mb-2">
-                      <Counter targetValue={450} className="inline" />+
+                    <span className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2">
+                      <Counter targetValue={450} className="inline !text-[#E9C883]" />+
                     </span>
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Specialist Team</span>
                   </div>
                   <div className="fact-item">
-                    <Counter targetValue={120000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <Counter targetValue={120000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Printing</span>
                   </div>
                   <div className="fact-item">
-                    <Counter targetValue={150000} className="block text-5xl font-bold text-[#E9C883] mb-2" />
+                    <Counter targetValue={150000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Painting</span>
                   </div>
                   <div className="fact-item">
-                    <span className="block text-5xl font-bold text-[#E9C883] mb-2">1950</span>
+                    <span className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2 text-amber-300">1950</span>
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Since</span>
                   </div>
                 </div>
@@ -269,8 +270,10 @@ export default function Home() {
 
             {/* Parallax elements - only these move */}
             <motion.div 
-              className="absolute -left-[25%] sm:-left-[15%] md:-left-[25%] top-[70%] sm:top-1/2 md:top-1/3 z-20" 
+              className="absolute z-20" 
               style={{ 
+                left: isMobile ? '-50%' : '-25%',
+                top: isMobile ? '70%' : '33%',
                 width: isMobile ? '100%' : '900px',
                 height: isMobile ? '100vw' : '720px',
                 backgroundImage: `url(/images/silver.png)`,
@@ -286,8 +289,10 @@ export default function Home() {
             />
             
             <motion.div 
-              className="absolute -right-[25%] sm:-right-[15%] md:-right-[25%] top-[90%] sm:top-3/4 md:top-2/3 z-20" 
+              className="absolute z-20" 
               style={{ 
+                right: isMobile ? '-50%' : '-25%',
+                top: isMobile ? '90%' : '67%',
                 width: isMobile ? '100%' : '900px',
                 height: isMobile ? '100vw' : '720px',
                 backgroundImage: `url(/images/yeni-raki-taste-of-turkey.webp)`,
@@ -303,8 +308,12 @@ export default function Home() {
             />
             
             <motion.div 
-              className="absolute left-[10%] top-[80%] sm:top-1/2 md:top-1/3 z-25 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48"
+              className="absolute z-25"
               style={{
+                left: isMobile ? '-20%' : '10%',
+                top: isMobile ? '85%' : '33%',
+                width: isMobile ? '8rem' : '12rem',
+                height: isMobile ? '8rem' : '12rem',
                 backgroundImage: `url(/images/floating-objects/glass-bottle-3.png)`,
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
@@ -346,7 +355,7 @@ export default function Home() {
             
             <div className="clients-slider overflow-hidden">
               <motion.div 
-                className="grid grid-cols-4 md:grid-cols-4 gap-5 md:gap-10 mx-auto"
+                className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-5 md:gap-10 mx-auto max-w-4xl"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
@@ -505,7 +514,7 @@ export default function Home() {
       {/* === Elevate Your Packaging Section === */}
       <motion.section 
         ref={elevateRef} 
-        className="pt-32 pb-0 bg-gray-900"
+        className="pt-32 pb-16 sm:pb-0 bg-gray-900"
       >
         <motion.div style={{ y: elevateContentTranslateY }}> 
           <div className="container mx-auto px-6 md:px-16">
@@ -570,10 +579,10 @@ export default function Home() {
 
       {/* === Services Showcase Grid Section === */}
       <AnimatedElement>
-        <section id="services-section" className="pt-0 bg-white">
+        <section id="services-section" className="pt-0 pb-20 bg-white">
           {isMobile ? (
             <div className="container mx-auto px-2">
-              <div className="grid grid-cols-1 gap-6 max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 gap-12 max-w-7xl mx-auto">
                 {/* Silk Screen Card */}
                 <div 
                   className="relative aspect-[25/14] shadow-lg overflow-hidden bg-cover bg-center flex items-center p-8 group" 

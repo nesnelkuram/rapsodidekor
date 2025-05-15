@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -11,10 +12,48 @@ const ChevronDownIcon = () => (
   </svg>
 );
 
+// Hamburguer Icon (SVG)
+const HamburgerIcon = ({ isOpen }) => (
+  <svg
+    width="24"
+    height="18"
+    viewBox="0 0 24 18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    className="transition-transform duration-300 ease-in-out"
+  >
+    {/* Top line */}
+    <line
+      x1="2"
+      y1="3"
+      x2="22"
+      y2="3"
+      className={isOpen ? 'translate-y-[6px] rotate-45 origin-center' : ''}
+    />
+    {/* Middle line */}
+    <line
+      x1="2"
+      y1="9"
+      x2="22"
+      y2="9"
+      className={isOpen ? 'opacity-0' : ''}
+    />
+    {/* Bottom line */}
+    <line
+      x1="2"
+      y1="15"
+      x2="22"
+      y2="15"
+      className={isOpen ? '-translate-y-[6px] -rotate-45 origin-center' : ''}
+    />
+  </svg>
+);
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
   // Toggle mobile menu
@@ -41,18 +80,16 @@ export default function Header() {
       if (window.innerWidth > 768) {
         setIsMenuOpen(false);
         document.body.style.overflow = 'auto';
-        setIsMobile(false);
-      } else {
-        setIsMobile(true);
       }
     };
 
-    // Handle scroll for header background
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
+        document.querySelector('header').classList.add('scrolled-header');
       } else {
         setIsScrolled(false);
+        document.querySelector('header').classList.remove('scrolled-header');
       }
     };
 
@@ -70,43 +107,59 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled || isMenuOpen ? 'bg-black' : 'bg-gradient-to-b from-black/70 to-transparent'} text-white p-4`}>
-      <nav className="container mx-auto flex justify-between items-center">
-        <div className="logo z-50">
-          <Link href="/" className="text-xl font-bold no-underline hover:text-gray-300 transition-colors">
-            RapsodiDekor
+    <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 9999999,
+        background: 'transparent',
+        color: 'white',
+        padding: '0',
+        transition: 'all 0.3s ease',
+        display: 'block',
+        width: '100%',
+        margin: 0
+      }}
+      className="w-full header-main"
+    >
+      <nav className="w-full flex justify-between items-center" style={{position: 'relative', zIndex: 999999, background: (isScrolled || isMenuOpen) ? 'rgba(0, 0, 0, 0.95)' : 'transparent', borderRadius: '0px', padding: '20px 0px', margin: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+        <div className="logo z-50 ml-4 md:ml-[5%]">
+          <Link href="/" className="flex items-center" aria-label="Rapsodi Dekor Homepage">
+            <Image
+              src="/rapsodi_logobeyaz.svg"
+              alt="Rapsodi Dekor Logo"
+              width={200}
+              height={50}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
         </div>
         
         {/* Hamburger Menu Button */}
-        <div className="md:hidden z-50">
+        <div className="block md:hidden z-50 mr-0 pr-6 md:pr-12" style={{paddingRight: '24px', marginRight: 0}}>
+
           <button 
             onClick={toggleMenu} 
-            className="w-10 h-10 flex flex-col justify-center items-center focus:outline-none"
+            className="w-10 h-10 flex items-center justify-center focus:outline-none text-white"
             aria-label="Toggle menu"
           >
-            <div className="relative w-7 h-6">
-              <span 
-                className={`absolute h-0.5 w-7 bg-white transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'rotate-45 top-3' : 'rotate-0 top-0'}`}
-              />
-              <span 
-                className={`absolute h-0.5 w-7 bg-white transform transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-0' : 'opacity-100'} top-3`}
-              />
-              <span 
-                className={`absolute h-0.5 w-7 bg-white transform transition-all duration-300 ease-in-out ${isMenuOpen ? '-rotate-45 top-3' : 'rotate-0 top-6'}`}
-              />
-            </div>
+            {/* SVG tabanlı ikon */}
+            <HamburgerIcon isOpen={isMenuOpen} />
           </button>
         </div>
         
         {/* Desktop Navigation */}
-        <div className="nav-right hidden md:flex items-center gap-8">
-          <ul className="flex gap-8 list-none p-0 items-center">
-            <li><Link href="/" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white">Homepage</Link></li>
-            <li><Link href="/about" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white">About</Link></li>
+        <div className="nav-right hidden lg:flex items-center gap-8 mr-0 pr-6 xl:pr-12" style={{visibility: 'visible', opacity: 1}}>
+
+          <ul className="flex list-none p-0 items-center gap-8 xl:gap-10" style={{gap: '2rem', display: 'flex', visibility: 'visible'}}>
+
+            <li style={{display: 'block'}}><Link href="/" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>Homepage</Link></li>
+            <li style={{display: 'block'}}><Link href="/about" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>About</Link></li>
             {/* Services Dropdown */}
-            <li className="relative group">
-              <Link href="/services" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white flex items-center">
+            <li className="relative group" style={{display: 'block'}}>
+              <Link href="/services" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white flex items-center" style={{color: 'white', textDecoration: 'none', display: 'flex'}}>
                 Services <ChevronDownIcon />
               </Link>
               {/* Improved Dropdown Styling */}
@@ -119,7 +172,7 @@ export default function Header() {
                 <li><Link href="/services/masking" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Masking</Link></li>
               </ul>
             </li>
-            <li><Link href="/about/contact-us" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white">Contact Us</Link></li>
+            <li style={{display: 'block'}}><Link href="/contact-us" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>Contact Us</Link></li>
           </ul>
         </div>
       </nav>
@@ -202,7 +255,7 @@ export default function Header() {
               
               <li>
                 <Link 
-                  href="/about/contact-us" 
+                  href="/contact-us" 
                   className="text-2xl font-bold hover:text-[#E9C883] transition-colors"
                   onClick={toggleMenu}
                 >
@@ -212,7 +265,7 @@ export default function Header() {
             </ul>
             
             <div className="absolute bottom-8 left-0 right-0 text-center">
-              <p className="text-sm text-gray-400">© 2023 RapsodiDekor. All rights reserved.</p>
+              <p className="text-sm text-gray-400"> 2023 RapsodiDekor. All rights reserved.</p>
             </div>
           </div>
         </div>

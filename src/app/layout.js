@@ -21,9 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className="has-menu" style={{margin: 0, padding: 0}}>
         <Header />
-        <main>{children}</main>
+        <main style={{margin: 0, padding: 0}}>{children}</main>
         <Footer />
       </body>
     </html>
