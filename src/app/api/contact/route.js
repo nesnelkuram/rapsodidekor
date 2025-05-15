@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Initialize Resend with the API key from environment variables
-const resend = new Resend(process.env.RESEND_API_KEY);
-const targetEmail = 'nesnelkuram@gmail.com'; // Target email address
+// Hedef e-posta adresini tanımla
+const targetEmail = 'nesnelkuram@gmail.com';
 
 export async function POST(request) {
   try {
@@ -15,6 +14,18 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    // API anahtarını kontrol et
+    if (!process.env.RESEND_API_KEY) {
+      console.error('Resend API anahtarı eksik. Environment değişkenlerini kontrol edin.');
+      return NextResponse.json(
+        { error: 'E-posta gönderilemedi: Sunucu yapılandırma hatası' },
+        { status: 500 }
+      );
+    }
+
+    // Resend'i sadece API anahtarı olduğunda ve gerçek bir istek sırasında başlat
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
     // Send the email using Resend
     const { data, error } = await resend.emails.send({
       from: 'Rapsodi Dekor <onboarding@resend.dev>', // Replace with your verified domain later
