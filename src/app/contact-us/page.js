@@ -90,23 +90,57 @@ export default function ContactUsPage() {
       </section>
 
       {/* Google Map Section */}
-      <section className="pb-16 md:pb-24 w-screen overflow-hidden">
-         <div className="w-full">
-            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-gray-800">Find Us Here</h2>
-             <div className="w-full h-[600px] md:h-[800px] lg:h-[900px]"> {/* Increased height for better visibility */}
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.600164476501!2d28.47097317658642!3d41.20921010705741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b510f798c42751%3A0xc3f4f5b3b8e762f4!2sRapsodi%20Dekorasyon%20Ambalaj%20Sanayi%20A.%C5%9E.!5e0!3m2!1sen!2str!4v1714848877509!5m2!1sen!2str"
-                    width="100%" 
-                    height="100%" 
-                    style={{border:0}} 
-                    allowFullScreen="" 
-                    loading="lazy" 
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Rapsodi Dekor Location Map"
-                    className="w-full h-full"
-                ></iframe>
-             </div>
-         </div>
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-gray-800">Find Us Here</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Google Map Square - Takes 1/3 of the width on larger screens */}
+            <div className="md:col-span-1 w-full aspect-square"> {/* Aspect-square ensures a 1:1 ratio (square) */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.600164476501!2d28.47097317658642!3d41.20921010705741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b510f798c42751%3A0xc3f4f5b3b8e762f4!2sRapsodi%20Dekorasyon%20Ambalaj%20Sanayi%20A.%C5%9E.!5e0!3m2!1sen!2str!4v1714848877509!5m2!1sen!2str"
+                width="100%"
+                height="100%"
+                style={{border:0}}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Rapsodi Dekor Location Map"
+                className="w-full h-full rounded-lg shadow-lg"
+              ></iframe>
+            </div>
+            
+            {/* Additional location information - Takes 2/3 of the width on larger screens */}
+            <div className="md:col-span-2 flex flex-col justify-center">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">How to Reach Us</h3>
+              <p className="text-gray-600 mb-6">
+                We are conveniently located in Çatalca, Istanbul. Our facility is easily accessible by both public transportation and car.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-medium text-gray-800 mb-2">By Car</h4>
+                  <p className="text-gray-600">Follow the E80 highway and take the Çatalca exit. Our facility is located 5 minutes from the exit.</p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-medium text-gray-800 mb-2">Public Transportation</h4>
+                  <p className="text-gray-600">Take the metro line to Yenibosna, then bus 448 to Çatalca city center.</p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-medium text-gray-800 mb-2">Working Hours</h4>
+                  <p className="text-gray-600">Monday to Friday: 9:00 AM - 6:00 PM<br />Saturday: 9:00 AM - 1:00 PM</p>
+                </div>
+                
+                <div className="bg-white p-4 rounded-lg shadow">
+                  <h4 className="font-medium text-gray-800 mb-2">Parking</h4>
+                  <p className="text-gray-600">Free parking is available for visitors in our dedicated parking area.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
