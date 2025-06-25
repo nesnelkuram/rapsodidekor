@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="tr">
       <body suppressHydrationWarning={true} className="has-menu" style={{margin: 0, padding: 0}}>
         <Header />
-        <main style={{margin: 0, padding: 0}}>{children}</main>
+        <main style={{margin: 0, padding: 0, overflow: 'visible'}}>{children}</main>
         <Footer />
       </body>
     </html>

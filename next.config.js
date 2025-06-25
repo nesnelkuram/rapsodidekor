@@ -7,6 +7,20 @@ const nextConfig = {
     domains: [], // Harici görüntülere ihtiyacınız varsa buraya domain ekleyebilirsiniz
     formats: ['image/webp'], // WebP formatını destekle
   },
+  // Font dosyalarının doğru şekilde sunulması için headers
+  async headers() {
+    return [
+      {
+        source: '/fonts/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -18,9 +18,22 @@ export default {
     'lg:pr-12',
     'lg:pl-24',
     'xl:pr-12',
+    'text-[#E9C883]',
+    '!text-[#E9C883]',
+    'font-habor',
+    'has-menu',
+    'scrolled-header',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'habor': ['HaboroContrastNormRegular', 'sans-serif'],
+        'sans': ['Roboto', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        'gold': '#E9C883',
+      },
+    },
   },
   plugins: [],
 };

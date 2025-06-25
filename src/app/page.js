@@ -50,6 +50,7 @@ export default function Home() {
   const traditionRef = useRef(null);
   const objectsRef = useRef(null);
   const elevateRef = useRef(null); // Ref for Elevate section
+  const clientsRef = useRef(null); // Ref for Clients section
   const [isMobile, setIsMobile] = useState(false);
   const { height } = useDimensions();
   
@@ -103,34 +104,58 @@ export default function Home() {
     }
   };
   
-  // Framer Motion scroll effect for tradition section background
+  // Framer Motion scroll effect for tradition section
   const { scrollYProgress: traditionScrollYProgress } = useScroll({
     target: traditionRef,
-    offset: ["start end", "end start"] // Section viewport altından girmeye başlayınca
+    offset: ["start end", "end start"] // Starts when section enters viewport
   });
 
-  // Calculate dynamic parallax values based on viewport height
-  const parallaxValue = height ? -(height * 1.5) : -900; // Much stronger movement for bottles
-  const glassBottleValue = height ? -(height * 1.2) : -700; // Bottles go far up and disappear
-
-  // Use dynamic values for parallax effect - objects move from normal position to far up
+  // Parallax values - smooth continuous movement till the end
   const silverImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.4, 0.6, 0.8], 
-    [0, 0, parallaxValue * 0.5, parallaxValue]
+    [0.2, 0.95], 
+    isMobile ? [0, -400] : [0, -700]  // Adjusted for mobile viewport
   );
   
   const rakiImageY = useTransform(
     traditionScrollYProgress, 
-    [0, 0.3, 0.5, 0.8], 
-    [0, 0, parallaxValue * 0.4, parallaxValue]
+    [0.2, 0.95], 
+    isMobile ? [150, -350] : [200, -600]  // Adjusted for mobile viewport
   );
   
-  const glassBottleY = useTransform(
-    traditionScrollYProgress, 
-    [0, 0.2, 0.4, 0.8], 
-    [0, 0, parallaxValue * 0.3, glassBottleValue]
+  // Add opacity fade for bottles near the end for smoother transition
+  const bottlesOpacity = useTransform(
+    traditionScrollYProgress,
+    [0.8, 0.95],
+    [1, 0]  // Fade out bottles as section becomes unsticky
   );
+  
+  // Parallax effects for text content - more dramatic for title
+  const titleOpacity = useTransform(traditionScrollYProgress, [0.05, 0.25], [0, 1]);
+  const titleY = useTransform(traditionScrollYProgress, [0.05, 0.25], [100, 0]);
+  const titleScale = useTransform(traditionScrollYProgress, [0.05, 0.3], [0.5, 1.1]); // Grows from 50% to 110%
+  const titleLetterSpacing = useTransform(traditionScrollYProgress, [0.05, 0.3], ['-0.1em', '0.02em']); // Letter spacing effect
+  const titleBlur = useTransform(traditionScrollYProgress, [0.05, 0.2], ['8px', '0px']); // Blur effect
+  
+  const descriptionOpacity = useTransform(traditionScrollYProgress, [0.15, 0.25], [0, 1]);
+  const descriptionY = useTransform(traditionScrollYProgress, [0.15, 0.25], [50, 0]);
+  
+  // Sequential reveal for counter items
+  const counter1Opacity = useTransform(traditionScrollYProgress, [0.15, 0.25], [0, 1]);
+  const counter1Y = useTransform(traditionScrollYProgress, [0.15, 0.25], [40, 0]);
+  
+  const counter2Opacity = useTransform(traditionScrollYProgress, [0.18, 0.28], [0, 1]);
+  const counter2Y = useTransform(traditionScrollYProgress, [0.18, 0.28], [40, 0]);
+  
+  const counter3Opacity = useTransform(traditionScrollYProgress, [0.21, 0.31], [0, 1]);
+  const counter3Y = useTransform(traditionScrollYProgress, [0.21, 0.31], [40, 0]);
+  
+  const counter4Opacity = useTransform(traditionScrollYProgress, [0.24, 0.34], [0, 1]);
+  const counter4Y = useTransform(traditionScrollYProgress, [0.24, 0.34], [40, 0]);
+  
+  const counter5Opacity = useTransform(traditionScrollYProgress, [0.27, 0.37], [0, 1]);
+  const counter5Y = useTransform(traditionScrollYProgress, [0.27, 0.37], [40, 0]);
+  
 
   // Framer Motion scroll effect for Elevate Your Packaging section content
   const { scrollYProgress: elevateScrollYProgress } = useScroll({
@@ -140,6 +165,26 @@ export default function Home() {
 
   // Move Elevate section content up more as section scrolls (-30%)
   const elevateContentTranslateY = useTransform(elevateScrollYProgress, [0, 0.5], [0, -0.3]);
+
+  // Framer Motion scroll effect for Clients section
+  const { scrollYProgress: clientsScrollYProgress } = useScroll({
+    target: clientsRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax effects for clients section
+  const clientsTitleOpacity = useTransform(clientsScrollYProgress, [0.1, 0.3], [0, 1]);
+  const clientsTitleY = useTransform(clientsScrollYProgress, [0.1, 0.8], [100, -50]); // Continuous movement
+  const clientsTitleScale = useTransform(clientsScrollYProgress, [0.1, 0.4], [0.6, 1.1]);
+  
+  // Staggered reveal for client logos with continuous parallax
+  const clientsRow1Opacity = useTransform(clientsScrollYProgress, [0.05, 0.25], [0.3, 1]);
+  const clientsRow1Y = useTransform(clientsScrollYProgress, [0.05, 0.9], [60, -30]); // Continuous upward movement
+  const clientsRow1Scale = useTransform(clientsScrollYProgress, [0.05, 0.5], [0.9, 1.05]);
+  
+  const clientsRow2Opacity = useTransform(clientsScrollYProgress, [0.1, 0.3], [0.3, 1]);
+  const clientsRow2Y = useTransform(clientsScrollYProgress, [0.1, 0.95], [60, -40]); // Continuous upward movement
+  const clientsRow2Scale = useTransform(clientsScrollYProgress, [0.1, 0.6], [0.9, 1.05]);
 
   const handleWatchVideoClick = () => {
     setShowVideo(true); 
@@ -201,181 +246,179 @@ export default function Home() {
       </AnimatedElement>
 
       {/* === About Us / Tradition Section (Parallax) === */}
-      <AnimatedElement disableTranslate>
-        <motion.div 
-          ref={traditionRef} 
-          className="relative h-[225vh] sm:h-[200vh] text-white bg-gray-900"
-          style={{
-            willChange: 'transform',
-            transformStyle: 'preserve-3d',
-            perspective: 1000
-          }}
-        >
-          {/* Sticky content container - stays fixed until section is scrolled past */}
-          <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
-            {/* Main content - always centered */}
-            <div className="relative z-30 py-16 mb-8 sm:mb-0">
-              <div className="container mx-auto px-4 text-center">
+      <section ref={traditionRef} className="relative tradition-section" style={{ height: '300vh', backgroundColor: '#111827' }}>
+        <div className="sticky top-0 w-full h-screen bg-gray-900">
+          <div className="relative h-full w-full flex items-center justify-center overflow-hidden">
+              <div className="container mx-auto px-4 text-center relative z-30">
                 <div className="max-w-3xl mx-auto mb-12">
                   <RotatingIcon />
-                  <motion.h2 
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-habor text-[#E9C883]"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    A Tradition of Innovation in Glass Decoration
-                  </motion.h2>
+                  <div className="relative overflow-hidden" style={{ paddingBottom: '20px' }}>
+                    <motion.h2 
+                      className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gold leading-tight"
+                      style={{ 
+                        fontFamily: 'HaboroContrastNormRegular, sans-serif',
+                        opacity: titleOpacity,
+                        y: titleY,
+                        scale: titleScale,
+                        letterSpacing: titleLetterSpacing,
+                        filter: `blur(${titleBlur})`,
+                        transformOrigin: 'center bottom',
+                        willChange: 'transform, opacity, filter',
+                        backfaceVisibility: 'hidden',
+                        perspective: '1000px'
+                      }}
+                    >
+                      A Tradition of Innovation<br className="hidden lg:block" />
+                      in Glass Decoration
+                    </motion.h2>
+                  </div>
                   <motion.p 
                     className="text-gray-300 mb-8"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
+                    style={{
+                      opacity: descriptionOpacity,
+                      y: descriptionY
+                    }}
                   >
                     Since 1950, RAPSODİ DEKOR has been at the forefront of glass decoration techniques, combining traditional craftsmanship with cutting-edge technology to create stunning packaging solutions for premium brands across diverse industries.
                   </motion.p>
                 </div>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 max-w-5xl mx-auto">
-                  <div className="fact-item">
-                    <Counter targetValue={10000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
+                  <motion.div 
+                    className="fact-item"
+                    style={{
+                      opacity: counter1Opacity,
+                      y: counter1Y
+                    }}
+                  >
+                    <Counter targetValue={10000} className="block text-5xl font-bold text-gold mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">m² Production Area</span>
-                  </div>
-                  <div className="fact-item">
-                    <span className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2">
-                      <Counter targetValue={450} className="inline !text-[#E9C883]" />+
+                  </motion.div>
+                  <motion.div 
+                    className="fact-item"
+                    style={{
+                      opacity: counter2Opacity,
+                      y: counter2Y
+                    }}
+                  >
+                    <span className="block text-5xl font-bold text-gold mb-2">
+                      <Counter targetValue={450} className="inline text-gold" />+
                     </span>
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Specialist Team</span>
-                  </div>
-                  <div className="fact-item">
-                    <Counter targetValue={120000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
+                  </motion.div>
+                  <motion.div 
+                    className="fact-item"
+                    style={{
+                      opacity: counter3Opacity,
+                      y: counter3Y
+                    }}
+                  >
+                    <Counter targetValue={120000} className="block text-5xl font-bold text-gold mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Printing</span>
-                  </div>
-                  <div className="fact-item">
-                    <Counter targetValue={150000} className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2" />
+                  </motion.div>
+                  <motion.div 
+                    className="fact-item"
+                    style={{
+                      opacity: counter4Opacity,
+                      y: counter4Y
+                    }}
+                  >
+                    <Counter targetValue={150000} className="block text-5xl font-bold text-gold mb-2" />
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Painting</span>
-                  </div>
-                  <div className="fact-item">
-                    <span className="block text-5xl font-bold text-[#E9C883] !text-[#E9C883] mb-2 text-amber-300">1950</span>
+                  </motion.div>
+                  <motion.div 
+                    className="fact-item"
+                    style={{
+                      opacity: counter5Opacity,
+                      y: counter5Y
+                    }}
+                  >
+                    <span className="block text-5xl font-bold text-gold mb-2">1950</span>
                     <span className="block text-base text-gray-300 uppercase tracking-wider">Since</span>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
-            </div>
-
-            {/* Background overlay for better visibility */}
-            <div className="absolute inset-0 bg-black/30 z-10"></div>
-
-            {/* Parallax elements - only these move */}
+            
+            {/* Parallax Bottles */}
             <motion.div 
-              className="absolute z-20" 
+              className="absolute pointer-events-none"
               style={{ 
-                left: isMobile ? '-50%' : '-25%',
-                top: isMobile ? '70%' : '33%',
-                width: isMobile ? '100%' : '900px',
-                height: isMobile ? '100vw' : '720px',
-                backgroundImage: `url(/images/silver.png)`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
+                left: isMobile ? '-40%' : '-25%',
+                top: '50%',
+                width: isMobile ? '500px' : '900px',
+                height: isMobile ? '400px' : '720px',
                 y: silverImageY,
-                rotate: 30, 
-                opacity: 1,
-                willChange: 'transform',
-                transformStyle: 'preserve-3d'
+                opacity: bottlesOpacity,
+                transform: `translateY(-50%)`
               }}
-            />
+            >
+              <Image
+                src="/images/silver.png"
+                alt="Silver bottle"
+                fill
+                style={{ objectFit: 'contain', transform: 'rotate(30deg)' }}
+              />
+            </motion.div>
             
             <motion.div 
-              className="absolute z-20" 
+              className="absolute pointer-events-none"
               style={{ 
-                right: isMobile ? '-50%' : '-25%',
-                top: isMobile ? '90%' : '67%',
-                width: isMobile ? '100%' : '900px',
-                height: isMobile ? '100vw' : '720px',
-                backgroundImage: `url(/images/yeni-raki-taste-of-turkey.webp)`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                y: rakiImageY, 
-                rotate: -30, 
-                opacity: 1,
-                willChange: 'transform',
-                transformStyle: 'preserve-3d'
+                right: isMobile ? '-40%' : '-25%',
+                top: '50%',
+                width: isMobile ? '500px' : '900px',
+                height: isMobile ? '400px' : '720px',
+                y: rakiImageY,
+                opacity: bottlesOpacity,
+                transform: `translateY(-50%)`
               }}
-            />
+            >
+              <Image
+                src="/images/yeni-raki-taste-of-turkey.webp"
+                alt="Raki bottle"
+                fill
+                style={{ objectFit: 'contain', transform: 'rotate(-30deg)' }}
+              />
+            </motion.div>
             
-            <motion.div 
-              className="absolute z-25"
-              style={{
-                left: isMobile ? '-20%' : '10%',
-                top: isMobile ? '85%' : '33%',
-                width: isMobile ? '8rem' : '12rem',
-                height: isMobile ? '8rem' : '12rem',
-                backgroundImage: `url(/images/floating-objects/glass-bottle-3.png)`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                opacity: 0.9,
-                y: glassBottleY,
-                rotate: 15,
-                willChange: 'transform',
-                transformStyle: 'preserve-3d'
-              }}
-            />
           </div>
-        </motion.div>
-      </AnimatedElement>
+        </div>
+      </section>
 
       {/* === Our Clients Section === */}
       <AnimatedElement>
-        <section className="py-20 bg-[#f8f8f8]">
+        <section ref={clientsRef} className="flex items-center justify-center" style={{ backgroundColor: '#f8f8f8', minHeight: '100vh' }}>
           <div className="container mx-auto px-6">
             <div className="text-center mb-14">
               <motion.h2 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
                 className="text-3xl md:text-5xl font-bold mb-4" 
-                style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                style={{ 
+                  fontFamily: 'HaboroContrastNormRegular, sans-serif', 
+                  color: '#111827',
+                  opacity: clientsTitleOpacity,
+                  y: clientsTitleY,
+                  scale: clientsTitleScale
+                }}
               >
                 Trusted by Leading Brands
               </motion.h2>
               <motion.div 
-                initial={{ width: 0, opacity: 0 }}
-                whileInView={{ width: "5rem", opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="h-1 bg-[#E9C883] mx-auto"
+                style={{
+                  opacity: clientsTitleOpacity
+                }}
+                className="h-1 bg-[#E9C883] mx-auto w-20"
               ></motion.div>
             </div>
             
             <div className="clients-slider overflow-hidden">
-              <motion.div 
-                className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 gap-5 md:gap-10 mx-auto max-w-4xl"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.1
-                    }
-                  },
-                  hidden: {}
-                }}
-              >
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10 mx-auto max-w-4xl">
                 {/* Logos - First row (4 logos) */}
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow1Opacity,
+                    y: clientsRow1Y,
+                    scale: clientsRow1Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/next.png" 
@@ -388,11 +431,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow1Opacity,
+                    y: clientsRow1Y,
+                    scale: clientsRow1Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/atelier rebul.png" 
@@ -405,11 +448,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow1Opacity,
+                    y: clientsRow1Y,
+                    scale: clientsRow1Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/defacto.png" 
@@ -422,11 +465,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow1Opacity,
+                    y: clientsRow1Y,
+                    scale: clientsRow1Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/lc waikiki.png" 
@@ -440,11 +483,11 @@ export default function Home() {
                 {/* Second row (4 logos) */}
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow2Opacity,
+                    y: clientsRow2Y,
+                    scale: clientsRow2Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/river island.png" 
@@ -457,11 +500,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow2Opacity,
+                    y: clientsRow2Y,
+                    scale: clientsRow2Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/mey.png" 
@@ -474,11 +517,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow2Opacity,
+                    y: clientsRow2Y,
+                    scale: clientsRow2Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/nishane.png" 
@@ -491,11 +534,11 @@ export default function Home() {
                 
                 <motion.div 
                   className="grayscale hover:grayscale-0 transition-all duration-300"
-                  variants={{
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                    hidden: { opacity: 0, y: 20, scale: 0.9 }
+                  style={{
+                    opacity: clientsRow2Opacity,
+                    y: clientsRow2Y,
+                    scale: clientsRow2Scale
                   }}
-                  transition={{ duration: 0.5 }}
                 >
                   <Image 
                     src="/images/clients/mad.png" 
@@ -505,7 +548,7 @@ export default function Home() {
                     style={{objectFit: "contain"}} 
                   />
                 </motion.div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </section>

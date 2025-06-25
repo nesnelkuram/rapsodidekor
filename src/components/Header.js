@@ -53,7 +53,7 @@ const HamburgerIcon = ({ isOpen }) => (
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  // Removed isScrolled state - header no longer changes
   const [servicesOpen, setServicesOpen] = useState(false);
 
   // Toggle mobile menu
@@ -83,47 +83,35 @@ export default function Header() {
       }
     };
 
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-        document.querySelector('header').classList.add('scrolled-header');
-      } else {
-        setIsScrolled(false);
-        document.querySelector('header').classList.remove('scrolled-header');
-      }
-    };
+    // Scroll handler removed - header no longer changes on scroll
 
     // Initial check
     handleResize();
-    handleScroll();
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
     <header style={{
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 9999999,
         background: 'transparent',
         color: 'white',
         padding: '0',
-        transition: 'all 0.3s ease',
         display: 'block',
         width: '100%',
-        margin: 0
+        margin: 0,
+        zIndex: 50
       }}
       className="w-full header-main"
     >
-      <nav className="w-full flex justify-between items-center" style={{position: 'relative', zIndex: 999999, background: (isScrolled || isMenuOpen) ? 'rgba(0, 0, 0, 0.95)' : 'transparent', borderRadius: '0px', padding: '20px 0px', margin: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+      <nav className="w-full flex justify-between items-center" style={{position: 'relative', background: 'transparent', borderRadius: '0px', padding: '20px 0px', margin: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
         <div className="logo z-50 ml-4 md:ml-[5%]">
           <Link href="/" className="flex items-center" aria-label="Rapsodi Dekor Homepage">
             <Image
