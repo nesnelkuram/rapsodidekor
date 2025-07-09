@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "services": "Hizmetler",
+    "contact": "İletişim",
+    "menu": "Menü"
+  },
+  "services": {
+    "silkScreen": "Serigrafi Baskı",
+    "hotFoil": "Sıcak Yaldız",
+    "preciousMetals": "Değerli Metaller",
+    "organicPainting": "Organik Boyama",
+    "metalizedPrinting": "Metalize Baskı",
+    "masking": "Maskeleme",
+    "silkScreenDesc": "Markanızı öne çıkaran canlı ve kalıcı tasarımlar.",
+    "hotFoilDesc": "Ambalajınıza prestij katan metalik dokunuşlar.",
+    "preciousMetalsDesc": "Altın ve platin ile sınırsız lüks.",
+    "organicPaintingDesc": "Doğaya saygılı, göz alıcı renkler.",
+    "metalizedPrintingDesc": "Işıltılı yüzeyler, unutulmaz ilk izlenim.",
+    "maskingDesc": "Detaylarda mükemmellik, renklerde harmoni.",
+    "learnMore": "Detaylı Bilgi",
+    "ourServices": "Hizmetlerimiz",
+    "premiumServices": "Markanızı zirveye taşıyan özel çözümler"
+  },
+  "hero": {
+    "title": "Camda Sanatın Zirvesi",
+    "subtitle": "Her şişe bir sanat eseri, her detay bir tutku.",
+    "cta": "Farkı Keşfedin"
+  },
+  "tradition": {
+    "title": "70 Yıllık Ustalık, Sonsuz Yenilik",
+    "description": "1950'den bugüne, RAPSODİ DEKOR olarak cam dekorasyonunda Türkiye'nin öncüsüyüz. Geleneksel el sanatlarımızı modern teknoloji ile harmanlayarak, dünyanın en prestijli markalarına hayat veriyoruz.",
+    "stats": {
+      "productionArea": "m² Modern Tesis",
+      "specialistTeam": "Uzman Sanatçı",
+      "dailyPrinting": "Günlük Üretim",
+      "dailyPainting": "Günlük Kaplama",
+      "since": "'den Beri"
+    }
+  },
+  "clients": {
+    "title": "Fark Yaratan Markaların Tercihi: Rapsodi Dekor"
+  },
+  "elevate": {
+    "title": "Markanızı Zirveye Taşıyın",
+    "subtitle": "Özel tasarım, kusursuz işçilik",
+    "description": "Hayalinizdeki ambalajı birlikte tasarlayalım. Uzman ekibimiz, markanızın hikayesini cam üzerinde sanata dönüştürüyor.",
+    "cta": "Hemen İletişime Geçin"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "intro": "1950'li yıllardan bu yana cam dekorasyonunda öncü olan Rapsodi Dekor, üç neslin birikimi ve tecrübesiyle sektörde fark yaratmaya devam ediyor. Modern teknoloji ve geleneksel ustalığı harmanlayarak, dünyanın dört bir yanındaki prestijli markalar için özel çözümler üretiyoruz.",
+    "activityAreas": {
+      "title": "Faaliyet Alanlarımız",
+      "content": "Cam ve plastik ambalajlar üzerine uyguladığımız serigrafi baskı, sıcak yaldız, değerli metal kaplama, organik boyama ve metalize baskı teknikleriyle markaların görsel kimliğini güçlendiriyoruz. 10.000 m²'lik modern tesisimizde, 450 uzman personelimizle günde 300.000'den fazla ürüne dekorasyon uyguluyoruz."
+    },
+    "sectoralServices": {
+      "title": "Sektörel Hizmetler",
+      "content": "Kozmetik sektöründen gıda ve içecek endüstrisine, cam eşyadan ev dekorasyonuna kadar geniş bir yelpazede hizmet veriyoruz. Her sektörün kendine özgü ihtiyaçlarına özel çözümler geliştirerek, müşterilerimizin ürünlerini rakiplerinden ayrıştırıyoruz."
+    },
+    "qualityApproach": {
+      "title": "Kalite Anlayışımız",
+      "content": "ISO 9001:2015 kalite yönetim sistemi sertifikasına sahip tesisimizde, üretimin her aşamasında titiz kalite kontrollerimizi uyguluyoruz. Hammadde seçiminden son ürüne kadar tüm süreçlerimiz, uluslararası standartlara uygun olarak gerçekleştirilmektedir."
+    },
+    "sustainability": {
+      "title": "Sürdürülebilirlik Yaklaşımımız",
+      "content": "Çevreye duyarlı üretim anlayışımız doğrultusunda, su bazlı organik boyalar ve geri dönüştürülebilir malzemeler kullanıyoruz. Enerji verimliliği yüksek makinelerimiz ve atık yönetim sistemlerimizle, gelecek nesillere daha temiz bir dünya bırakma hedefindeyiz."
+    },
+    "exportGlobal": {
+      "title": "İhracat ve Global Hizmet",
+      "paragraph1": "Türkiye'nin yanı sıra Avrupa, Orta Doğu, Afrika ve Amerika kıtalarında 40'tan fazla ülkeye ihracat yapıyoruz. Global müşteri portföyümüz, kalitemizin ve güvenilirliğimizin en büyük kanıtıdır.",
+      "paragraph2": "Uluslararası lojistik ağımız ve deneyimli ihracat ekibimizle, dünyanın her noktasına zamanında ve güvenli teslimat garantisi sunuyoruz."
+    },
+    "corporateValues": {
+      "title": "Kurumsal Değerlerimiz",
+      "content": "Müşteri memnuniyetini önceliğimiz kabul ederek, güven, kalite, yenilikçilik ve sürdürülebilirlik ilkeleriyle hareket ediyoruz. Çalışanlarımızın gelişimine yatırım yaparak, sektörümüzün geleceğini şekillendiren profesyoneller yetiştiriyoruz."
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "Tel",
+    "fax": "Faks",
+    "mobile": "Cep",
+    "email": "e-posta",
+    "copyright": "© {year} Rapsodi Dekor. Tüm hakları saklıdır."
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "Serigrafi Baskı",
+      "subtitle": "Serigrafi Sanatında Ustalık",
+      "glassProductLabel": "Cam Ürün:",
+      "glassProduct": "RAPSODİ DEKOR, ilk ve en önemli üretim hattı olan serigrafi baskı tekniğini 1997 yılında kullanmaya başlamıştır. Her türlü cam ambalaj üzerine organik, termoplastik ve UV baskılar uygulayarak müşterilerine farklılık sunmaktadır. Ayrıca, CMYK baskı tekniği ile bir resmin gölge kopyasını cam yüzeye aktarabilmekteyiz.",
+      "plasticProductLabel": "Plastik Ürün:",
+      "plasticProduct": "Firmamızın serigrafi baskı ünitesi, çok renkli ve tek renkli tam ve yarı otomatik makinelerin yanı sıra manuel baskı sistemleri ile her sipariş miktarında çalışmaya yeterince donanımlıdır.",
+      "capabilities": "Baskı makinelerimiz, 2 cm ile 40 cm yükseklik aralığındaki ürünlere tek renkli ve çok renkli baskılar yapabilmektedir. Müşterilerimizin PANTONE renk taleplerine bağlı olarak; firmamız tüm ana ve vurgu baskı renklerinde hizmet verebilmektedir."
+    },
+    "hotFoil": {
+      "title": "Sıcak Varak Yaldız",
+      "subtitle": "Sıcak Varak ile Parlaklık Katma",
+      "description": "RAPSODİ DEKOR cam yüzeyler üzerine sıcak varak yaldız baskısı uygulamaktadır. Ayrıca, tam otomatik sıcak varak makine hatları ile her boyut ve şekildeki cam ürünlere yüksek miktarda baskı yapabilmekte, aynı zamanda varak ve çok renkli baskıyı bir arada uygulayabilmektedir."
+    },
+    "preciousMetals": {
+      "title": "Değerli Metal Uygulaması",
+      "subtitle": "Değerli Metallerle Üstün Lüks",
+      "description": "RAPSODİ DEKOR, ürünlerin daha parlak, yüksek kaliteli ve canlı görünmesini sağlayan değerli metal baskısı uygulamaktadır. Altın, platin ve bakır (rose) çeşitlerini 600 derecelik fırınlarda pişirerek geniş bir Değerli Ürün çeşitliliği sunmaktadır."
+    },
+    "organicPainting": {
+      "title": "Organik Boyama",
+      "subtitle": "Canlı ve Çevre Dostu Boyama",
+      "description": "Otomatik konveyör boyama hatları ile RAPSODİ DEKOR, günlük 150.000 adet boyama kapasitesine sahiptir. PANTONE renk taleplerine bağlı olarak, çevre dostu su bazlı boyalarla tüm ana ve vurgu renklerinde boyama yapılabilmekte ve farklı efektlerle (şeffaf, opak, mat, metalik, gümüşlü ve soft touch) boyama uygulanabilmektedir. Cam ürünlerin yanı sıra; firmamız plastik ürünlere (PP, PE, Pet) de boya uygulayabilmektedir."
+    },
+    "metalizedPrinting": {
+      "title": "Metalize Baskı",
+      "subtitle": "Etkileyici Metalik Ayna Efektleri",
+      "description1": "RAPSODİ DEKOR, boyama hatlarında ürünün parlamasını ve ayna gibi yansımasını sağlayan, ayna efekti olarak da adlandırılan Metalize baskılar uygulamaktadır.",
+      "description2": "Özellikle günümüzde kozmetik ve ev dekorasyon sektörlerinde aranan metalize baskı işlemleri için yüksek kapasitemiz, müşteri firmalarımıza geniş bir ürün çeşitliliği sağlamaktadır."
+    },
+    "masking": {
+      "title": "Maskeleme",
+      "subtitle": "Hassas Maskeleme Teknikleri",
+      "description": "RAPSODİ DEKOR; müşterilerinin taleplerine bağlı olarak bölgesel dekorasyonlar yapmaktadır. Bu, şeffaf kalması istenen bölgelerin maksimum yapıştırma yöntemi ile maskelenmesiyle uygulanan bir dekorasyon tekniğidir."
+    }
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Sizden haber almaktan mutluluk duyarız",
+    "ourContactDetails": "İletişim Bilgilerimiz",
+    "address": "Adres",
+    "phoneAndFax": "Telefon & Faks",
+    "email": "E-posta",
+    "sendUsMessage": "Bize Mesaj Gönderin",
+    "findUsHere": "Bizi Burada Bulun",
+    "form": {
+      "name": "İsim",
+      "email": "E-posta",
+      "subject": "Konu",
+      "message": "Mesaj",
+      "send": "Mesaj Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Mesajınız başarıyla gönderildi!",
+      "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "unexpectedError": "Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "Serigrafi Sanatında Ustalık",
+      "description": "Serigrafi baskının hassasiyetini ve canlılığını keşfedin. İleri teknoloji tekniklerimiz, cam, plastik ve metal dahil çeşitli yüzeylerde tasarımlarınıza hayat veriyor, her ürün için dayanıklılık ve benzersiz görsel çekicilik sunuyor. Markanızı öne çıkaran özel dekorasyonlarla yükseltin."
+    }
+  }
+}

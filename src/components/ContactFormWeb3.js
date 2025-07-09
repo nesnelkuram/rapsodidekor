@@ -1,17 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useLanguage } from '@/i18n/LanguageContext';
 
-export default function ContactForm() {
-  const { t } = useLanguage();
+export default function ContactFormWeb3() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
-  const [status, setStatus] = useState(''); // '', 'loading', 'success', 'error'
+  const [status, setStatus] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
 
   const handleChange = (e) => {
@@ -28,23 +26,24 @@ export default function ContactForm() {
     setResponseMessage('');
 
     try {
-      // Formspree endpoint
-      const response = await fetch('https://formspree.io/f/mrbkwnpy', {
+      // Web3Forms API - Get your access key from https://web3forms.com/
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          _replyto: formData.email,
-          _subject: `New contact from ${formData.name}`,
+          access_key: 'YOUR_ACCESS_KEY_HERE', // Replace with your Web3Forms access key
+          to_email: 'rapsodi@rapsodidekor.com',
+          subject: `New Contact Form Message from ${formData.name}`,
+          from_name: formData.name,
+          ...formData,
         }),
       });
 
-      if (response.ok) {
+      const data = await response.json();
+
+      if (data.success) {
         setStatus('success');
         setResponseMessage('Message sent successfully!');
         setFormData({ name: '', email: '', phone: '', message: '' });

@@ -2,15 +2,15 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 // Hedef e-posta adresini tanımla
-const targetEmail = 'nesnelkuram@gmail.com';
+const targetEmail = 'rapsodi@rapsodidekor.com';
 
 export async function POST(request) {
   try {
     // Parse the request body to get form data
-    const { name, email, subject, message } = await request.json();
+    const { name, email, phone, message } = await request.json();
 
     // Basic validation
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
@@ -31,15 +31,15 @@ export async function POST(request) {
       from: 'Rapsodi Dekor <onboarding@resend.dev>', // Replace with your verified domain later
       to: [targetEmail], // Send to the specified target email
       reply_to: email, // Set the reply-to address to the sender's email
-      subject: `Yeni İletişim Formu Mesajı: ${subject}`,
+      subject: `New Contact Form Message from ${name}`,
       html: `
-        <h1>Yeni İletişim Formu Mesajı</h1>
-        <p><strong>Gönderen Adı:</strong> ${name}</p>
-        <p><strong>Gönderen E-posta:</strong> ${email}</p>
-        <p><strong>Konu:</strong> ${subject}</p>
+        <h1>New Contact Form Submission</h1>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
         <hr>
-        <p><strong>Mesaj:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p> // Preserve line breaks
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
       `,
     });
 

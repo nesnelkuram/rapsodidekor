@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "contact": "Contactez-nous",
+    "menu": "Menu"
+  },
+  "services": {
+    "silkScreen": "Sérigraphie",
+    "hotFoil": "Dorure à chaud",
+    "preciousMetals": "Métaux précieux",
+    "organicPainting": "Peinture organique",
+    "metalizedPrinting": "Impression métallisée",
+    "masking": "Masquage",
+    "silkScreenDesc": "Techniques de précision pour des designs vibrants.",
+    "hotFoilDesc": "Ajout de feuilles métalliques ou colorées pour un aspect premium.",
+    "preciousMetalsDesc": "Détails en or et platine pour un luxe ultime.",
+    "organicPaintingDesc": "Finitions écologiques et vibrantes.",
+    "metalizedPrintingDesc": "Effets métalliques époustouflants.",
+    "maskingDesc": "Designs multicolores de précision.",
+    "learnMore": "En savoir plus",
+    "ourServices": "Nos services",
+    "premiumServices": "Services de décoration premium adaptés à vos besoins"
+  },
+  "hero": {
+    "title": "L'Art du Verre au Service du Luxe",
+    "subtitle": "Sublimez votre marque avec l'excellence artisanale turque.",
+    "cta": "Découvrez Notre Savoir-Faire"
+  },
+  "tradition": {
+    "title": "L'Excellence depuis 1950",
+    "description": "RAPSODI DEKOR, maître verrier de Turquie, perpétue un héritage d'excellence depuis sept décennies. Notre passion pour la perfection transforme chaque flacon en œuvre d'art pour les maisons les plus prestigieuses.",
+    "stats": {
+      "productionArea": "m² d'Atelier Moderne",
+      "specialistTeam": "Maîtres Artisans",
+      "dailyPrinting": "Production Quotidienne",
+      "dailyPainting": "Finitions par Jour",
+      "since": "Fondé en"
+    }
+  },
+  "clients": {
+    "title": "Les Plus Grandes Maisons Nous Font Confiance"
+  },
+  "elevate": {
+    "title": "Sublimez Votre Image",
+    "subtitle": "Création sur mesure, excellence garantie",
+    "description": "Donnons vie à vos ambitions. Nos maîtres verriers transforment votre vision en réalité luxueuse qui séduira vos clients les plus exigeants.",
+    "cta": "Créons Ensemble"
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "intro": "Depuis les années 1950, Rapsodi Dekor est pionnier dans la décoration du verre, continuant à faire la différence dans l'industrie avec les connaissances et l'expérience accumulées de trois générations. En alliant technologie moderne et artisanat traditionnel, nous produisons des solutions exclusives pour des marques prestigieuses du monde entier.",
+    "activityAreas": {
+      "title": "Nos Domaines d'Activité",
+      "content": "Nous renforçons l'identité visuelle des marques grâce à la sérigraphie, le marquage à chaud, le revêtement de métaux précieux, la peinture organique et les techniques d'impression métallisée appliquées aux emballages en verre et en plastique. Dans notre installation moderne de 10 000 m², notre équipe de 450 professionnels experts décore plus de 300 000 produits par jour."
+    },
+    "sectoralServices": {
+      "title": "Services Sectoriels",
+      "content": "Nous servons un large éventail d'industries, des cosmétiques aux aliments et boissons, de la verrerie à la décoration intérieure. En développant des solutions spécialisées pour les besoins uniques de chaque secteur, nous différencions les produits de nos clients de leurs concurrents."
+    },
+    "qualityApproach": {
+      "title": "Notre Approche Qualité",
+      "content": "Dans notre installation certifiée ISO 9001:2015, nous appliquons des contrôles qualité méticuleux à chaque étape de la production. Tous nos processus, de la sélection des matières premières au produit final, sont réalisés conformément aux normes internationales."
+    },
+    "sustainability": {
+      "title": "Notre Approche de Durabilité",
+      "content": "Conformément à notre philosophie de production respectueuse de l'environnement, nous utilisons des peintures organiques à base d'eau et des matériaux recyclables. Avec nos machines écoénergétiques et nos systèmes de gestion des déchets, nous visons à laisser un monde plus propre aux générations futures."
+    },
+    "exportGlobal": {
+      "title": "Export et Service Global",
+      "paragraph1": "En plus de la Turquie, nous exportons vers plus de 40 pays en Europe, au Moyen-Orient, en Afrique et dans les Amériques. Notre portefeuille de clients international est la plus grande preuve de notre qualité et de notre fiabilité.",
+      "paragraph2": "Avec notre réseau logistique international et notre équipe d'exportation expérimentée, nous garantissons une livraison ponctuelle et sécurisée partout dans le monde."
+    },
+    "corporateValues": {
+      "title": "Nos Valeurs d'Entreprise",
+      "content": "En priorisant la satisfaction client, nous opérons selon les principes de confiance, qualité, innovation et durabilité. En investissant dans le développement de nos employés, nous formons des professionnels qui façonnent l'avenir de notre industrie."
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "Tél",
+    "fax": "Fax",
+    "mobile": "Mobile",
+    "email": "e-mail",
+    "copyright": "© {year} Rapsodi Dekor. Tous droits réservés."
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "Sérigraphie",
+      "subtitle": "Maîtriser l'Art de la Sérigraphie",
+      "glassProductLabel": "Produit en Verre :",
+      "glassProduct": "RAPSODI DEKOR a commencé à utiliser la technique d'impression sérigraphique, qui est la première et la plus importante ligne de production, en 1997. En appliquant des impressions organiques, thermoplastiques et UV sur tous types d'emballages en verre, notre entreprise offre de la distinction à ses clients. De plus, nous sommes également capables de transférer la copie ombrée d'une image sur une surface en verre avec la technique d'impression CMJN.",
+      "plasticProductLabel": "Produit en Plastique :",
+      "plasticProduct": "L'unité de sérigraphie de notre entreprise est suffisamment qualifiée pour travailler dans toutes les quantités de commande grâce à des machines automatiques et semi-automatiques multicolores et monochromes ainsi qu'à des systèmes d'impression manuels.",
+      "capabilities": "Nos machines d'impression sont capables de réaliser des impressions monochromes et multicolores sur des produits ayant une hauteur comprise entre 2 cm et 40 cm. En fonction des demandes de couleurs PANTONE de nos clients, notre entreprise est en mesure de fournir des services dans toutes les couleurs d'impression principales et d'accent."
+    },
+    "hotFoil": {
+      "title": "Dorure à Chaud",
+      "subtitle": "Ajouter de l'Éclat avec la Dorure à Chaud",
+      "description": "RAPSODI DEKOR applique l'impression de dorure à chaud sur les surfaces en verre. De plus, avec ses lignes de machines de dorure à chaud entièrement automatiques, elle peut imprimer sur des produits en verre de toutes tailles et formes en grande quantité, ainsi que réaliser simultanément des impressions de feuilles et multicolores."
+    },
+    "preciousMetals": {
+      "title": "Application de Métaux Précieux",
+      "subtitle": "Luxe Ultime avec les Métaux Précieux",
+      "description": "RAPSODI DEKOR applique l'impression de métaux précieux, qui permet aux produits d'avoir un aspect plus brillant, de meilleure qualité et plus vif. En cuisant les variétés d'or, de platine et de cuivre (rose) dans des fours à 600 degrés, elle offre une large gamme de variétés de produits précieux."
+    },
+    "organicPainting": {
+      "title": "Peinture Organique",
+      "subtitle": "Peinture Vibrante et Écologique",
+      "description": "Avec des lignes de peinture à convoyeur automatique, RAPSODI DEKOR a une capacité quotidienne de peinture de 150 000 pièces. En fonction des demandes de couleurs PANTONE, la coloration peut être réalisée dans toutes les couleurs principales et d'accent avec des peintures à base d'eau respectueuses de l'environnement et des peintures avec différents effets (transparent, opaque, mat, métallique, argenté et toucher doux). En plus des produits en verre, notre entreprise peut également appliquer de la peinture sur des produits en plastique (PP, PE, PET)."
+    },
+    "metalizedPrinting": {
+      "title": "Impression Métallisée",
+      "subtitle": "Effets Miroir Métalliques Époustouflants",
+      "description1": "RAPSODI DEKOR applique dans ses lignes de peinture des impressions métallisées qui permettent au produit de briller et de refléter comme un miroir, ce qu'on appelle également l'effet miroir.",
+      "description2": "Notre haute capacité pour les travaux d'impression métallisée, particulièrement recherchés dans les secteurs de la cosmétique et de la décoration intérieure aujourd'hui, offre une grande diversité de produits à nos entreprises clientes."
+    },
+    "masking": {
+      "title": "Masquage",
+      "subtitle": "Techniques de Masquage de Précision",
+      "description": "RAPSODI DEKOR, en fonction des demandes de ses clients, réalise des décorations zonales. Il s'agit d'une technique de décoration appliquée en masquant les zones qui doivent rester transparentes avec la méthode d'affixation maximale."
+    }
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous serions ravis de vous entendre",
+    "ourContactDetails": "Nos Coordonnées",
+    "address": "Adresse",
+    "phoneAndFax": "Téléphone & Fax",
+    "email": "E-mail",
+    "sendUsMessage": "Envoyez-nous un Message",
+    "findUsHere": "Nous Trouver",
+    "form": {
+      "name": "Nom",
+      "email": "E-mail",
+      "subject": "Objet",
+      "message": "Message",
+      "send": "Envoyer le Message",
+      "sending": "Envoi en cours...",
+      "success": "Votre message a été envoyé avec succès !",
+      "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "unexpectedError": "Une erreur inattendue s'est produite. Veuillez réessayer plus tard."
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "Maîtriser l'Art de la Sérigraphie",
+      "description": "Découvrez la précision et la vivacité de l'impression sérigraphique. Nos techniques avancées donnent vie à vos designs sur une variété de surfaces incluant le verre, le plastique et le métal, offrant durabilité et attrait visuel incomparable pour chaque produit. Élevez votre marque avec une décoration sur mesure qui se démarque."
+    }
+  }
+}

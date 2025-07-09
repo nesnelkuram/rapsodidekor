@@ -1,8 +1,10 @@
 "use client";
 
 import ContactForm from '@/components/ContactForm';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export default function ClientContact() {
+  const { t } = useLanguage();
   return (
     <>
       {/* Hero Section with Video Background */}
@@ -28,9 +30,9 @@ export default function ClientContact() {
             className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg" 
             style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
           >
-            Contact Us
+            {t('contact.title')}
           </h1>
-          <p className="mt-2 text-xl text-white max-w-xl mx-auto drop-shadow-lg">We&apos;d love to hear from you</p>
+          <p className="mt-2 text-xl text-white max-w-xl mx-auto drop-shadow-lg">{t('contact.subtitle')}</p>
         </div>
       </section>
 
@@ -41,9 +43,9 @@ export default function ClientContact() {
             
             {/* Contact Information Column */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Contact Details</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t('contact.ourContactDetails')}</h2>
               <div>
-                <h3 className="text-lg font-semibold text-gray-700">Address</h3>
+                <h3 className="text-lg font-semibold text-gray-700">{t('contact.address')}</h3>
                 <p className="text-gray-600 mt-1">
                   RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.<br />
                   Subaşı Mah., Fatma Sultan Cad., No:7/1,<br />
@@ -51,7 +53,7 @@ export default function ClientContact() {
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-700">Phone & Fax</h3>
+                <h3 className="text-lg font-semibold text-gray-700">{t('contact.phoneAndFax')}</h3>
                 <p className="text-gray-600 mt-1">
                   Tel: <a href="tel:+902126830390" className="hover:text-blue-700">(212) 683.03.90 (pbx)</a><br />
                   Fax: (212) 683.03.91<br />
@@ -59,7 +61,7 @@ export default function ClientContact() {
                 </p>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-700">Email</h3>
+                <h3 className="text-lg font-semibold text-gray-700">{t('contact.email')}</h3>
                 <p className="text-gray-600 mt-1">
                   <a href="mailto:rapsodi@rapsodidekor.com" className="hover:text-blue-700">rapsodi@rapsodidekor.com</a>
                 </p>
@@ -68,7 +70,7 @@ export default function ClientContact() {
 
             {/* Contact Form Column */}
             <div>
-              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Send Us a Message</h2>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">{t('contact.sendUsMessage')}</h2>
               <ContactForm />
             </div>
           </div>
@@ -78,7 +80,7 @@ export default function ClientContact() {
       {/* Google Map Section */}
       <section className="pb-16 md:pb-24">
          <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-gray-800">Find Us Here</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-center mb-8 text-gray-800">{t('contact.findUsHere')}</h2>
              <div className="aspect-w-16 aspect-h-9"> {/* Responsive map container */}
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001.600164476501!2d28.47097317658642!3d41.20921010705741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b510f798c42751%3A0xc3f4f5b3b8e762f4!2sRapsodi%20Dekorasyon%20Ambalaj%20Sanayi%20A.%C5%9E.!5e0!3m2!1sen!2str!4v1714848877509!5m2!1sen!2str"

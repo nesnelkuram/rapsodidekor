@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "contact": "Contattaci",
+    "menu": "Menu"
+  },
+  "services": {
+    "silkScreen": "Serigrafia",
+    "hotFoil": "Stampa a caldo",
+    "preciousMetals": "Metalli preziosi",
+    "organicPainting": "Verniciatura organica",
+    "metalizedPrinting": "Stampa metallizzata",
+    "masking": "Mascheratura",
+    "silkScreenDesc": "Tecniche di precisione per design vibranti.",
+    "hotFoilDesc": "Aggiunta di lamine metalliche o colorate per un aspetto premium.",
+    "preciousMetalsDesc": "Dettagli in oro e platino per il massimo lusso.",
+    "organicPaintingDesc": "Finiture ecologiche e vibranti.",
+    "metalizedPrintingDesc": "Effetti metallici straordinari.",
+    "maskingDesc": "Design multicolore di precisione.",
+    "learnMore": "Scopri di più",
+    "ourServices": "I nostri servizi",
+    "premiumServices": "Servizi di decorazione premium su misura per le tue esigenze"
+  },
+  "hero": {
+    "title": "L'Arte Sublime del Vetro alla Maniera dei Maestri",
+    "subtitle": "Dove l'eleganza italiana incontra la raffinatezza ottomana in un abbraccio di bellezza senza tempo.",
+    "cta": "Esplora l'Eccellenza"
+  },
+  "tradition": {
+    "title": "L'Eredità dei Maestri Vetrai del Bosforo",
+    "description": "Dal 1950, RAPSODİ DEKOR è l'incontro perfetto tra la maestria artigianale del Levante e il gusto raffinato italiano. Come i grandi maestri del Rinascimento, ogni nostra creazione è un capolavoro che eleva il vostro prodotto a opera d'arte, unendo la sapienza millenaria turca alla ricerca della perfezione che contraddistingue il Made in Italy.",
+    "stats": {
+      "productionArea": "m² Area di produzione",
+      "specialistTeam": "Team specializzato",
+      "dailyPrinting": "Stampa giornaliera",
+      "dailyPainting": "Verniciatura giornaliera",
+      "since": "Dal"
+    }
+  },
+  "clients": {
+    "title": "Scelti da Chi Fa della Bellezza una Filosofia"
+  },
+  "elevate": {
+    "title": "Vesti il Tuo Prodotto con l'Eleganza dei Sultani",
+    "subtitle": "Il lusso che parla il linguaggio della bellezza",
+    "description": "Come un abito di alta moda firmato dai più grandi sarti, le nostre decorazioni vestono il vostro prodotto con un'eleganza senza tempo. Ogni dettaglio è studiato per creare quell'emozione unica che solo il vero artigianato sa regalare, trasformando ogni bottiglia in un gioiello prezioso.",
+    "cta": "Inizia il Tuo Percorso"
+  },
+  "about": {
+    "title": "Chi Siamo",
+    "intro": "Dagli anni '50, Rapsodi Dekor è pioniere nella decorazione del vetro, continuando a fare la differenza nel settore con le conoscenze e l'esperienza accumulate da tre generazioni. Fondendo tecnologia moderna e artigianato tradizionale, produciamo soluzioni esclusive per marchi prestigiosi in tutto il mondo.",
+    "activityAreas": {
+      "title": "Le Nostre Aree di Attività",
+      "content": "Rafforziamo l'identità visiva dei marchi attraverso serigrafia, stampa a caldo, rivestimento di metalli preziosi, verniciatura organica e tecniche di stampa metallizzata applicate a imballaggi in vetro e plastica. Nel nostro moderno stabilimento di 10.000 m², il nostro team di 450 professionisti esperti decora oltre 300.000 prodotti al giorno."
+    },
+    "sectoralServices": {
+      "title": "Servizi Settoriali",
+      "content": "Serviamo un'ampia gamma di industrie, dalla cosmesi agli alimenti e bevande, dalla cristalleria alla decorazione domestica. Sviluppando soluzioni specializzate per le esigenze uniche di ogni settore, differenziamo i prodotti dei nostri clienti dai loro concorrenti."
+    },
+    "qualityApproach": {
+      "title": "Il Nostro Approccio alla Qualità",
+      "content": "Nel nostro stabilimento certificato con sistema di gestione qualità ISO 9001:2015, applichiamo meticolosi controlli di qualità in ogni fase della produzione. Tutti i nostri processi, dalla selezione delle materie prime al prodotto finale, sono realizzati in conformità con gli standard internazionali."
+    },
+    "sustainability": {
+      "title": "Il Nostro Approccio alla Sostenibilità",
+      "content": "In linea con la nostra filosofia di produzione rispettosa dell'ambiente, utilizziamo vernici organiche a base acqua e materiali riciclabili. Con i nostri macchinari ad alta efficienza energetica e i sistemi di gestione dei rifiuti, miriamo a lasciare un mondo più pulito alle generazioni future."
+    },
+    "exportGlobal": {
+      "title": "Export e Servizio Globale",
+      "paragraph1": "Oltre alla Turchia, esportiamo in più di 40 paesi in Europa, Medio Oriente, Africa e Americhe. Il nostro portafoglio clienti globale è la massima prova della nostra qualità e affidabilità.",
+      "paragraph2": "Con la nostra rete logistica internazionale e il nostro esperto team di esportazione, garantiamo consegne puntuali e sicure in qualsiasi parte del mondo."
+    },
+    "corporateValues": {
+      "title": "I Nostri Valori Aziendali",
+      "content": "Dando priorità alla soddisfazione del cliente, operiamo con principi di fiducia, qualità, innovazione e sostenibilità. Investendo nello sviluppo dei nostri dipendenti, formiamo professionisti che plasmano il futuro del nostro settore."
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "Tel",
+    "fax": "Fax",
+    "mobile": "Cell",
+    "email": "e-mail",
+    "copyright": "© {year} Rapsodi Dekor. Tutti i diritti riservati."
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "Serigrafia",
+      "subtitle": "Padroneggiare l'Arte della Serigrafia",
+      "glassProductLabel": "Prodotto in Vetro:",
+      "glassProduct": "RAPSODI DEKOR ha iniziato ad utilizzare la tecnica di stampa serigrafica, che è la prima e più importante linea di produzione, nel 1997. Applicando stampe organiche, termoplastiche e UV su tutti i tipi di imballaggi in vetro, la nostra azienda offre distinzione ai suoi clienti. Inoltre, siamo anche in grado di trasferire la copia in ombra di un'immagine su una superficie di vetro con la tecnica di stampa CMYK.",
+      "plasticProductLabel": "Prodotto in Plastica:",
+      "plasticProduct": "L'unità serigrafica della nostra azienda è sufficientemente qualificata per lavorare in tutte le quantità di ordini mediante macchine automatiche e semiautomatiche multicolori e monocolore, nonché sistemi di stampa manuali.",
+      "capabilities": "Le nostre macchine da stampa sono in grado di realizzare stampe monocolore e multicolore su prodotti che hanno un'altezza compresa tra 2 cm e 40 cm. A seconda delle richieste di colore PANTONE dei nostri clienti, la nostra azienda è in grado di fornire servizi in tutti i colori di stampa principali e di accento."
+    },
+    "hotFoil": {
+      "title": "Stampa a Caldo",
+      "subtitle": "Aggiungere Brillantezza con la Stampa a Caldo",
+      "description": "RAPSODI DEKOR applica la stampa a caldo dorata su superfici di vetro. Inoltre, con le sue linee di macchine per lamina a caldo completamente automatiche, può stampare su prodotti in vetro di tutte le dimensioni e forme in grandi quantità, nonché eseguire contemporaneamente stampe di lamina e multicolore."
+    },
+    "preciousMetals": {
+      "title": "Applicazione di Metalli Preziosi",
+      "subtitle": "Lusso Supremo con Metalli Preziosi",
+      "description": "RAPSODI DEKOR applica la stampa di metalli preziosi, che consente ai prodotti di apparire più lucenti, di qualità superiore e vivaci. Cuocendo varietà di oro, platino e rame (rosa) in forni a 600 gradi, offre una vasta gamma di varietà di prodotti preziosi."
+    },
+    "organicPainting": {
+      "title": "Verniciatura Organica",
+      "subtitle": "Verniciatura Vibrante ed Ecologica",
+      "description": "Con linee di verniciatura a trasportatore automatico, RAPSODI DEKOR ha una capacità giornaliera di verniciatura di 150.000 pezzi. A seconda delle richieste di colore PANTONE, la colorazione può essere realizzata in tutti i colori principali e di accento con vernici a base d'acqua rispettose dell'ambiente e verniciatura con diversi effetti (trasparente, opaco, opaco, metallico, argentato e soft touch). Oltre ai prodotti in vetro, la nostra azienda può anche applicare vernice su prodotti in plastica (PP, PE, PET)."
+    },
+    "metalizedPrinting": {
+      "title": "Stampa Metallizzata",
+      "subtitle": "Stupefacenti Effetti Specchio Metallici",
+      "description1": "RAPSODI DEKOR applica nelle sue linee di verniciatura stampe metallizzate che consentono al prodotto di brillare e riflettere come uno specchio, chiamato anche effetto specchio.",
+      "description2": "La nostra alta capacità per i lavori di stampa metallizzata, particolarmente ricercati nei settori della cosmesi e della decorazione domestica oggi, fornisce un'ampia diversità di prodotti alle nostre aziende clienti."
+    },
+    "masking": {
+      "title": "Mascheratura",
+      "subtitle": "Tecniche di Mascheratura di Precisione",
+      "description": "RAPSODI DEKOR, a seconda delle richieste dei suoi clienti, realizza decorazioni zonali. Questa è una tecnica di decorazione applicata mascherando le zone che si richiede rimangano trasparenti con il metodo di massima affissione."
+    }
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Ci piacerebbe sentire la tua voce",
+    "ourContactDetails": "I Nostri Contatti",
+    "address": "Indirizzo",
+    "phoneAndFax": "Telefono e Fax",
+    "email": "Email",
+    "sendUsMessage": "Inviaci un Messaggio",
+    "findUsHere": "Trovaci Qui",
+    "form": {
+      "name": "Nome",
+      "email": "Email",
+      "subject": "Oggetto",
+      "message": "Messaggio",
+      "send": "Invia Messaggio",
+      "sending": "Invio in corso...",
+      "success": "Il tuo messaggio è stato inviato con successo!",
+      "error": "Si è verificato un errore. Riprova.",
+      "unexpectedError": "Si è verificato un errore inaspettato. Riprova più tardi."
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "Padroneggiare l'Arte della Serigrafia",
+      "description": "Scopri la precisione e la vivacità della stampa serigrafica. Le nostre tecniche avanzate danno vita ai tuoi design su una varietà di superfici tra cui vetro, plastica e metallo, offrendo durabilità e un fascino visivo senza pari per ogni prodotto. Eleva il tuo marchio con decorazioni personalizzate che si distinguono."
+    }
+  }
+}

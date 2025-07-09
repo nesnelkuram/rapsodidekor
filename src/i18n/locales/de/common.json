@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "services": "Dienstleistungen",
+    "contact": "Kontakt",
+    "menu": "Menü"
+  },
+  "services": {
+    "silkScreen": "Siebdruck",
+    "hotFoil": "Heißfolienprägung",
+    "preciousMetals": "Edelmetalle",
+    "organicPainting": "Organische Lackierung",
+    "metalizedPrinting": "Metallisierter Druck",
+    "masking": "Maskierung",
+    "silkScreenDesc": "Präzisionstechniken für lebendige Designs.",
+    "hotFoilDesc": "Hinzufügen von metallischen oder farbigen Folien für Premium-Optik.",
+    "preciousMetalsDesc": "Gold- und Platindetails für ultimativen Luxus.",
+    "organicPaintingDesc": "Umweltfreundliche, lebendige Oberflächen.",
+    "metalizedPrintingDesc": "Atemberaubende Metalleffekte.",
+    "maskingDesc": "Präzise mehrfarbige Designs.",
+    "learnMore": "Mehr erfahren",
+    "ourServices": "Unsere Dienstleistungen",
+    "premiumServices": "Premium-Dekorationsdienstleistungen auf Ihre Bedürfnisse zugeschnitten"
+  },
+  "hero": {
+    "title": "Präzision trifft Poesie - Glaskunst aus Meisterhand",
+    "subtitle": "Wo deutsche Ingenieurskunst auf orientalische Handwerkstradition trifft.",
+    "cta": "Erleben Sie Perfektion"
+  },
+  "tradition": {
+    "title": "Seit 1950: Meisterliche Präzision aus Istanbul",
+    "description": "Seit 1950 vereint RAPSODİ DEKOR die legendäre Handwerkskunst der osmanischen Glasmeister mit deutscher Präzision und Zuverlässigkeit. Wie ein Schweizer Uhrwerk arbeiten wir mit höchster Genauigkeit, während wir die künstlerische Seele des Orients bewahren. Jedes Stück ist ein Beweis dafür, dass wahre Qualität keine Kompromisse kennt.",
+    "stats": {
+      "productionArea": "m² Produktionsfläche",
+      "specialistTeam": "Spezialistenteam",
+      "dailyPrinting": "Täglicher Druck",
+      "dailyPainting": "Tägliche Lackierung",
+      "since": "Seit"
+    }
+  },
+  "clients": {
+    "title": "Die Wahl der Marken, die Exzellenz verstehen"
+  },
+  "elevate": {
+    "title": "Perfektion bis ins kleinste Detail",
+    "subtitle": "Wo Qualität zur Kunst wird",
+    "description": "Mit der Akribie eines deutschen Ingenieurs und der Kreativität eines orientalischen Künstlers erschaffen wir Verpackungen, die Ihre höchsten Ansprüche übertreffen. Jede Flasche wird zum Meisterwerk - präzise, zuverlässig und von zeitloser Eleganz. Das ist unser Versprechen an Sie.",
+    "cta": "Starten Sie Ihr Projekt"
+  },
+  "about": {
+    "title": "Über uns",
+    "intro": "Seit den 1950er Jahren ist Rapsodi Dekor Pionier in der Glasdekoration und setzt mit dem Wissen und der Erfahrung von drei Generationen weiterhin Maßstäbe in der Branche. Durch die Verbindung modernster Technologie mit traditioneller Handwerkskunst produzieren wir exklusive Lösungen für renommierte Marken weltweit.",
+    "activityAreas": {
+      "title": "Unsere Tätigkeitsbereiche",
+      "content": "Wir stärken die visuelle Identität von Marken durch Siebdruck, Heißfolienprägung, Edelmetallbeschichtung, organische Lackierung und metallisierten Druck auf Glas- und Kunststoffverpackungen. In unserer 10.000 m² großen modernen Anlage veredelt unser Team von 450 Fachkräften täglich über 300.000 Produkte."
+    },
+    "sectoralServices": {
+      "title": "Branchenspezifische Dienstleistungen",
+      "content": "Wir bedienen ein breites Spektrum von Branchen - von Kosmetik bis Lebensmittel und Getränke, von Glaswaren bis zur Heimdekoration. Durch die Entwicklung spezialisierter Lösungen für die einzigartigen Bedürfnisse jeder Branche differenzieren wir die Produkte unserer Kunden von ihren Wettbewerbern."
+    },
+    "qualityApproach": {
+      "title": "Unser Qualitätsansatz",
+      "content": "In unserer nach ISO 9001:2015 zertifizierten Anlage wenden wir in jeder Produktionsphase sorgfältige Qualitätskontrollen an. Alle unsere Prozesse, von der Rohstoffauswahl bis zum Endprodukt, werden in Übereinstimmung mit internationalen Standards durchgeführt."
+    },
+    "sustainability": {
+      "title": "Unser Nachhaltigkeitsansatz",
+      "content": "Im Einklang mit unserer umweltbewussten Produktionsphilosophie verwenden wir wasserbasierte organische Farben und recycelbare Materialien. Mit unseren energieeffizienten Maschinen und Abfallmanagementsystemen streben wir danach, eine sauberere Welt für zukünftige Generationen zu hinterlassen."
+    },
+    "exportGlobal": {
+      "title": "Export und globaler Service",
+      "paragraph1": "Neben der Türkei exportieren wir in über 40 Länder in Europa, dem Nahen Osten, Afrika und Amerika. Unser globales Kundenportfolio ist der beste Beweis für unsere Qualität und Zuverlässigkeit.",
+      "paragraph2": "Mit unserem internationalen Logistiknetzwerk und unserem erfahrenen Exportteam garantieren wir eine pünktliche und sichere Lieferung an jeden Ort der Welt."
+    },
+    "corporateValues": {
+      "title": "Unsere Unternehmenswerte",
+      "content": "Mit dem Fokus auf Kundenzufriedenheit agieren wir nach den Prinzipien von Vertrauen, Qualität, Innovation und Nachhaltigkeit. Durch Investitionen in die Entwicklung unserer Mitarbeiter fördern wir Fachkräfte, die die Zukunft unserer Branche gestalten."
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "Tel",
+    "fax": "Fax",
+    "mobile": "Mobil",
+    "email": "E-Mail",
+    "copyright": "© {year} Rapsodi Dekor. Alle Rechte vorbehalten."
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "Siebdruck",
+      "subtitle": "Meisterschaft in der Kunst des Siebdrucks",
+      "glassProductLabel": "Glasprodukt:",
+      "glassProduct": "RAPSODI DEKOR begann 1997 mit der Anwendung der Siebdrucktechnik, die die erste und wichtigste Produktionslinie ist. Durch die Anwendung von organischen, thermoplastischen und UV-Drucken auf alle Arten von Glasverpackungen bietet unser Unternehmen seinen Kunden Einzigartigkeit. Darüber hinaus können wir auch die Schattenkopie eines Bildes mit der CMYK-Drucktechnik auf eine Glasoberfläche übertragen.",
+      "plasticProductLabel": "Kunststoffprodukt:",
+      "plasticProduct": "Die Siebdruckeinheit unseres Unternehmens ist ausreichend qualifiziert, um in allen Bestellmengen mit mehrfarbigen und einfarbigen Voll- und Halbautomaten sowie manuellen Drucksystemen zu arbeiten.",
+      "capabilities": "Unsere Druckmaschinen sind in der Lage, einfarbige und mehrfarbige Drucke auf Produkten mit einer Höhe von 2 cm bis 40 cm zu erstellen. Abhängig von den PANTONE-Farbanforderungen unserer Kunden ist unser Unternehmen in der Lage, Dienstleistungen in allen Haupt- und Akzentdruckfarben anzubieten."
+    },
+    "hotFoil": {
+      "title": "Heißfolienprägung",
+      "subtitle": "Glanz mit Heißfolie hinzufügen",
+      "description": "RAPSODI DEKOR wendet Heißfolienvergoldungsdruck auf Glasoberflächen an. Darüber hinaus kann es mit seinen vollautomatischen Heißfolienmaschinenlinien auf Glasprodukte aller Größen und Formen in großen Mengen drucken sowie gleichzeitig Folien- und Mehrfarbendruck durchführen."
+    },
+    "preciousMetals": {
+      "title": "Edelmetallanwendung",
+      "subtitle": "Ultimativer Luxus mit Edelmetallen",
+      "description": "RAPSODI DEKOR wendet Edelmetalldruck an, der es den Produkten ermöglicht, glänzender, hochwertiger und lebendiger auszusehen. Durch das Brennen von Gold-, Platin- und Kupfer-(Rose-)Sorten in 600-Grad-Öfen bietet es eine breite Palette von Edelprodukt-Varianten."
+    },
+    "organicPainting": {
+      "title": "Organische Lackierung",
+      "subtitle": "Lebendige und umweltfreundliche Lackierung",
+      "description": "Mit automatischen Förderlackierlinien hat RAPSODI DEKOR eine tägliche Lackierkapazität von 150.000 Stück. Abhängig von den PANTONE-Farbanforderungen kann die Färbung in allen Haupt- und Akzentfarben mit umweltfreundlichen Farben auf Wasserbasis und Lackierungen mit verschiedenen Effekten (transparent, deckend, matt, metallisch, silbrig und Soft-Touch) durchgeführt werden. Neben Glasprodukten kann unser Unternehmen auch Kunststoffprodukte (PP, PE, PET) lackieren."
+    },
+    "metalizedPrinting": {
+      "title": "Metallisierter Druck",
+      "subtitle": "Atemberaubende metallische Spiegeleffekte",
+      "description1": "RAPSODI DEKOR wendet in seinen Lackierlinien metallisierte Drucke an, die es dem Produkt ermöglichen, wie ein Spiegel zu glänzen und zu reflektieren, was auch als Spiegeleffekt bezeichnet wird.",
+      "description2": "Unsere hohe Kapazität für metallisierte Druckarbeiten, die heute besonders in der Kosmetik- und Wohndekorationsbranche gefragt sind, bietet unseren Kundenunternehmen eine große Produktvielfalt."
+    },
+    "masking": {
+      "title": "Maskierung",
+      "subtitle": "Präzise Maskierungstechniken",
+      "description": "RAPSODI DEKOR führt je nach Kundenwunsch zonale Dekorationen durch. Dies ist eine Dekorationstechnik, die durch Maskierung der Bereiche angewendet wird, die mit der maximalen Befestigungsmethode transparent bleiben sollen."
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie uns",
+    "subtitle": "Wir würden gerne von Ihnen hören",
+    "ourContactDetails": "Unsere Kontaktdaten",
+    "address": "Adresse",
+    "phoneAndFax": "Telefon & Fax",
+    "email": "E-Mail",
+    "sendUsMessage": "Schicken Sie uns eine Nachricht",
+    "findUsHere": "Sie finden uns hier",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Ihre Nachricht wurde erfolgreich gesendet!",
+      "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+      "unexpectedError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal."
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "Meisterschaft in der Siebdruckkunst",
+      "description": "Entdecken Sie die Präzision und Lebendigkeit des Siebdrucks. Unsere fortschrittlichen Techniken erwecken Ihre Designs auf verschiedenen Oberflächen wie Glas, Kunststoff und Metall zum Leben und bieten Langlebigkeit und unvergleichliche visuelle Attraktivität für jedes Produkt. Erheben Sie Ihre Marke mit maßgeschneiderter Dekoration, die hervorsticht."
+    }
+  }
+}

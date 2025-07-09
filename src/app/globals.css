@@ -189,6 +189,28 @@ html.lenis {
   pointer-events: none;
 }
 
+/* Language-specific text adjustments */
+[lang="tr"] .hero-title {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+[lang="fr"] .hero-title,
+[lang="es"] .hero-title,
+[lang="it"] .hero-title {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+[lang="de"] .hero-title,
+[lang="ru"] .hero-title {
+  @apply text-3xl md:text-5xl lg:text-6xl;
+}
+
+/* Tradition section title adjustments */
+[lang="tr"] .tradition-title,
+[lang="fr"] .tradition-title {
+  @apply text-2xl sm:text-3xl md:text-4xl;
+}
+
 /* Tradition section responsive tweaks */
 .tradition-section {
   position: relative;

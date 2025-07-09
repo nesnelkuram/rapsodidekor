@@ -1,12 +1,11 @@
-import Image from 'next/image';
+'use client';
 
-// Define metadata for SEO
-export const metadata = {
-  title: 'Precious Metals Application | Rapsodi Dekor',
-  description: 'Enhance your products with genuine gold, platinum, or copper details for ultimate luxury and a vivid look.',
-};
+import Image from 'next/image';
+import { useLanguage } from '@/i18n/LanguageContext';
 
 export default function PreciousMetalsPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* Hero Section */}
@@ -23,7 +22,7 @@ export default function PreciousMetalsPage() {
         {/* <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div> */} {/* Dark overlay REMOVED */}
         <div className="relative z-20 text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold" style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}>
-            Precious Metals Application
+            {t('serviceDetails.preciousMetals.title')}
           </h1>
         </div>
       </section>
@@ -31,9 +30,9 @@ export default function PreciousMetalsPage() {
       {/* Content Section */}
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-semibold mb-6 text-gray-800">Ultimate Luxury with Precious Metals</h2>
+          <h2 className="text-3xl font-semibold mb-6 text-gray-800">{t('serviceDetails.preciousMetals.subtitle')}</h2>
           <div className="prose lg:prose-lg max-w-none text-gray-700 space-y-4">
-             <p>RAPSODI DEKOR applies precious metal printing, which enables the products to look shinier, higher quality and vivid. By firing gold, platinum and copper (rose) varieties in 600-degree furnaces; it offers a wide range of Precious Product variety.</p>
+            <p>{t('serviceDetails.preciousMetals.description')}</p>
           </div>
         </div>
       </section>

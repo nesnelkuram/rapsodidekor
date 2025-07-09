@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "主页",
+    "about": "关于我们",
+    "services": "服务",
+    "contact": "联系我们",
+    "menu": "菜单"
+  },
+  "services": {
+    "silkScreen": "丝网印刷",
+    "hotFoil": "烫金工艺",
+    "preciousMetals": "贵金属装饰",
+    "organicPainting": "有机涂装",
+    "metalizedPrinting": "金属化印刷",
+    "masking": "遮蔽工艺",
+    "silkScreenDesc": "精密技术打造生动设计。",
+    "hotFoilDesc": "添加金属或彩色箔片，呈现高端外观。",
+    "preciousMetalsDesc": "黄金和铂金细节，极致奢华。",
+    "organicPaintingDesc": "环保且色彩鲜艳的涂装。",
+    "metalizedPrintingDesc": "令人惊叹的金属效果。",
+    "maskingDesc": "精密的多色设计。",
+    "learnMore": "了解更多",
+    "ourServices": "我们的服务",
+    "premiumServices": "为您量身定制的高端装饰服务"
+  },
+  "hero": {
+    "title": "丝路传承，匠心雕琢",
+    "subtitle": "融合东方美学与奥斯曼工艺，成就每一件传世佳作。",
+    "cta": "品鉴匠心之作"
+  },
+  "tradition": {
+    "title": "传承七十载，匠心铸辉煌",
+    "description": "自1950年起，RAPSODİ DEKOR 传承丝绸之路上的工匠精神，将奥斯曼帝国的精湛技艺与现代创新完美融合。正如古代景德镇瓷器之于中国，我们的每一件作品都是对匠人精神的致敬，为您的品牌赋予文化底蕴与艺术价值。",
+    "stats": {
+      "productionArea": "平方米生产面积",
+      "specialistTeam": "专业团队",
+      "dailyPrinting": "日印刷量",
+      "dailyPainting": "日涂装量",
+      "since": "始于"
+    }
+  },
+  "clients": {
+    "title": "众望所归，品质选择"
+  },
+  "elevate": {
+    "title": "以玉为质，以心为工",
+    "subtitle": "东西方美学的完美融合",
+    "description": "正如中国人对玉石的珍视，我们将每一件玻璃器皿视为珍宝。融合东方的含蓄内敛与土耳其的华丽精细，以工匠之心雕琢每一个细节，让您的产品如同传世珍宝，彰显非凡品格。",
+    "cta": "开启匠心之旅"
+  },
+  "about": {
+    "title": "关于我们",
+    "intro": "自1950年代以来，Rapsodi Dekor一直是玻璃装饰领域的先驱，凭借三代人积累的知识和经验继续在行业中创造差异。通过将现代技术与传统工艺相结合，我们为世界各地的知名品牌生产独家解决方案。",
+    "activityAreas": {
+      "title": "我们的业务领域",
+      "content": "我们通过丝网印刷、烫金、贵金属涂层、有机涂装和金属化印刷技术来加强品牌的视觉识别，这些技术应用于玻璃和塑料包装。在我们10,000平方米的现代化设施中，我们450名专业人员的团队每天装饰超过300,000件产品。"
+    },
+    "sectoralServices": {
+      "title": "行业服务",
+      "content": "我们服务于广泛的行业，从化妆品到食品饮料，从玻璃器皿到家居装饰。通过为每个行业的独特需求开发专门的解决方案，我们使客户的产品与竞争对手区分开来。"
+    },
+    "qualityApproach": {
+      "title": "我们的质量理念",
+      "content": "在我们获得ISO 9001:2015质量管理体系认证的设施中，我们在生产的每个阶段都进行细致的质量控制。我们所有的流程，从原材料选择到成品，都按照国际标准进行。"
+    },
+    "sustainability": {
+      "title": "我们的可持续发展理念",
+      "content": "秉承环保生产理念，我们使用水性有机涂料和可回收材料。通过我们的高能效机械和废物管理系统，我们致力于为子孙后代留下一个更清洁的世界。"
+    },
+    "exportGlobal": {
+      "title": "出口和全球服务",
+      "paragraph1": "除土耳其外，我们还向欧洲、中东、非洲和美洲的40多个国家出口。我们的全球客户组合是我们质量和可靠性的最佳证明。",
+      "paragraph2": "凭借我们的国际物流网络和经验丰富的出口团队，我们保证准时、安全地送达世界任何地方。"
+    },
+    "corporateValues": {
+      "title": "我们的企业价值观",
+      "content": "以客户满意度为优先，我们以信任、质量、创新和可持续发展的原则运营。通过投资于员工的发展，我们培养塑造行业未来的专业人才。"
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "电话",
+    "fax": "传真",
+    "mobile": "手机",
+    "email": "电子邮件",
+    "copyright": "© {year} Rapsodi Dekor. 版权所有。"
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "丝网印刷",
+      "subtitle": "精通丝网印刷艺术",
+      "glassProductLabel": "玻璃产品：",
+      "glassProduct": "RAPSODI DEKOR于1997年开始使用丝网印刷技术，这是第一条也是最重要的生产线。通过在各种玻璃包装上应用有机、热塑性和UV印刷，我们公司为客户提供独特性。此外，我们还能够使用CMYK印刷技术将图像的阴影复制转移到玻璃表面。",
+      "plasticProductLabel": "塑料产品：",
+      "plasticProduct": "我们公司的丝网印刷部门通过多色和单色全自动和半自动机器以及手动印刷系统，具备处理所有订单量的充分资质。",
+      "capabilities": "我们的印刷机能够在高度范围为2厘米至40厘米的产品上进行单色和多色印刷。根据客户的PANTONE颜色需求，我们公司能够提供所有主要和重点印刷颜色的服务。"
+    },
+    "hotFoil": {
+      "title": "烫金工艺",
+      "subtitle": "用烫金增添光泽",
+      "description": "RAPSODI DEKOR在玻璃表面应用烫金印刷。此外，凭借其全自动烫金机生产线，可以大批量地在各种尺寸和形状的玻璃产品上印刷，同时进行箔印和多色印刷。"
+    },
+    "preciousMetals": {
+      "title": "贵金属应用",
+      "subtitle": "贵金属带来的极致奢华",
+      "description": "RAPSODI DEKOR应用贵金属印刷，使产品看起来更闪亮、更高质量和更生动。通过在600度熔炉中烧制金、铂和铜（玫瑰色）品种，提供广泛的贵金属产品种类。"
+    },
+    "organicPainting": {
+      "title": "有机涂装",
+      "subtitle": "生动环保的涂装",
+      "description": "凭借自动传送带涂装线，RAPSODI DEKOR的日涂装能力达15万件。根据PANTONE颜色需求，可以使用环保水性涂料进行所有主要和重点颜色的着色，并可进行不同效果的涂装（透明、不透明、哑光、金属、银色和柔软触感）。除玻璃产品外，我们公司还可以在塑料产品（PP、PE、PET）上涂漆。"
+    },
+    "metalizedPrinting": {
+      "title": "金属化印刷",
+      "subtitle": "惊艳的金属镜面效果",
+      "description1": "RAPSODI DEKOR在其涂装线中应用金属化印刷，使产品能够像镜子一样发光和反射，这也被称为镜面效果。",
+      "description2": "我们在金属化印刷工作方面的高产能，特别是在当今化妆品和家居装饰行业中备受追捧，为我们的客户公司提供了广泛的产品多样性。"
+    },
+    "masking": {
+      "title": "遮蔽技术",
+      "subtitle": "精密遮蔽技术",
+      "description": "RAPSODI DEKOR根据客户的需求进行区域装饰。这是一种通过最大粘贴方法遮蔽要求保持透明的区域来应用的装饰技术。"
+    }
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "期待您的来信",
+    "ourContactDetails": "我们的联系方式",
+    "address": "地址",
+    "phoneAndFax": "电话和传真",
+    "email": "电子邮件",
+    "sendUsMessage": "给我们留言",
+    "findUsHere": "在此找到我们",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "subject": "主题",
+      "message": "留言",
+      "send": "发送消息",
+      "sending": "发送中...",
+      "success": "您的消息已成功发送！",
+      "error": "发生错误。请重试。",
+      "unexpectedError": "发生意外错误。请稍后重试。"
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "精通丝网印刷艺术",
+      "description": "探索丝网印刷的精准与活力。我们的先进技术让您的设计在玻璃、塑料和金属等多种表面上栩栩如生，为每件产品提供持久性和无与伦比的视觉吸引力。用定制装饰提升您的品牌，让其脱颖而出。"
+    }
+  }
+}

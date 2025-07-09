@@ -4,10 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/i18n/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 // Simple Chevron Down Icon
-const ChevronDownIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 inline-block ml-1">
+const ChevronDownIcon = ({ className = "w-4 h-4 inline-block ml-1" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
     <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
   </svg>
 );
@@ -55,6 +57,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // Removed isScrolled state - header no longer changes
   const [servicesOpen, setServicesOpen] = useState(false);
+  const { t } = useLanguage();
 
   // Toggle mobile menu
   const toggleMenu = () => {
@@ -139,125 +142,299 @@ export default function Header() {
         </div>
         
         {/* Desktop Navigation */}
-        <div className="nav-right hidden lg:flex items-center gap-8 mr-0 pr-6 xl:pr-12" style={{visibility: 'visible', opacity: 1}}>
+        <div className="nav-right hidden lg:flex items-center gap-6 mr-4 lg:mr-[5%]" style={{visibility: 'visible', opacity: 1}}>
 
-          <ul className="flex list-none p-0 items-center gap-8 xl:gap-10" style={{gap: '2rem', display: 'flex', visibility: 'visible'}}>
+          <ul className="flex list-none p-0 items-center gap-6 xl:gap-8" style={{gap: '1.5rem', display: 'flex', visibility: 'visible'}}>
 
-            <li style={{display: 'block'}}><Link href="/" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>Homepage</Link></li>
-            <li style={{display: 'block'}}><Link href="/about" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>About</Link></li>
+            <li style={{display: 'block'}}>
+              <Link href="/" className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 group inline-block" style={{color: 'white', textDecoration: 'none'}}>
+                {t('nav.home')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </li>
+            <li style={{display: 'block'}}>
+              <Link href="/about" className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 group inline-block" style={{color: 'white', textDecoration: 'none'}}>
+                {t('nav.about')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </li>
             {/* Services Dropdown */}
             <li className="relative group" style={{display: 'block'}}>
-              <Link href="/services" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white flex items-center" style={{color: 'white', textDecoration: 'none', display: 'flex'}}>
-                Services <ChevronDownIcon />
+              <Link href="/services" className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 flex items-center gap-1 group/link inline-block" style={{color: 'white', textDecoration: 'none', display: 'flex'}}>
+                {t('nav.services')} 
+                <ChevronDownIcon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover/link:w-[calc(100%-20px)]"></span>
               </Link>
-              {/* Improved Dropdown Styling */}
-              <ul className="absolute left-0 mt-2 w-56 bg-gray-900 bg-opacity-90 rounded-md shadow-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out transform group-hover:translate-y-1">
-                <li><Link href="/services/silk-screen-printing" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Silk Screen Printing</Link></li>
-                <li><Link href="/services/hot-foil-stamping" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Hot-Foil Stamping</Link></li>
-                <li><Link href="/services/precious-metals" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Precious Metals</Link></li>
-                <li><Link href="/services/organic-painting" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Organic Painting</Link></li>
-                <li><Link href="/services/metalized-printing" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Metalized Printing</Link></li>
-                <li><Link href="/services/masking" className="block px-4 py-2 text-sm hover:bg-gray-700 rounded transition-colors">Masking</Link></li>
-              </ul>
+              {/* Ultra Modern Dropdown with Enhanced Glass Effect */}
+              <div className="absolute left-0 lg:left-auto lg:-right-12 xl:-right-20 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out transform translate-y-2 group-hover:translate-y-0 z-50">
+                <div className="relative">
+                  {/* Arrow indicator */}
+                  <div className="absolute -top-2 left-6 lg:left-auto lg:right-6 w-4 h-4 bg-gradient-to-br from-gray-900/95 to-black/95 rotate-45 border-l border-t border-white/10"></div>
+                  
+                  {/* Modern gradient dropdown */}
+                  <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-2 min-w-[280px] md:min-w-[320px] overflow-hidden">
+                    {/* Subtle gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#E9C883]/5 to-transparent pointer-events-none"></div>
+                    
+                    <ul className="relative z-10 py-2 space-y-1">
+                      <li>
+                        <Link 
+                          href="/services/silk-screen-printing" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          {/* Hover effect background */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          
+                          {/* Content */}
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">
+                              {t('services.silkScreen')}
+                            </span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">
+                              {t('services.silkScreenDesc')}
+                            </span>
+                          </div>
+                          
+                          {/* Arrow on hover */}
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/services/hot-foil-stamping" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">{t('services.hotFoil')}</span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">{t('services.hotFoilDesc')}</span>
+                          </div>
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/services/precious-metals" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">{t('services.preciousMetals')}</span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">{t('services.preciousMetalsDesc')}</span>
+                          </div>
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/services/organic-painting" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">{t('services.organicPainting')}</span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">{t('services.organicPaintingDesc')}</span>
+                          </div>
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/services/metalized-printing" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">{t('services.metalizedPrinting')}</span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">{t('services.metalizedPrintingDesc')}</span>
+                          </div>
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/services/masking" 
+                          className="group/item flex items-center gap-3 px-4 py-3.5 hover:bg-gradient-to-r hover:from-[#E9C883]/20 hover:to-[#E9C883]/10 rounded-xl transition-all duration-300 relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-700"></div>
+                          <div className="flex-1 relative z-10">
+                            <span className="text-white/90 group-hover/item:text-white text-sm font-medium block">{t('services.masking')}</span>
+                            <span className="text-white/50 group-hover/item:text-white/70 text-xs mt-0.5 block">{t('services.maskingDesc')}</span>
+                          </div>
+                          <svg className="w-4 h-4 text-[#E9C883]/0 group-hover/item:text-[#E9C883]/60 transition-all duration-300 transform translate-x-0 group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
-            <li style={{display: 'block'}}><Link href="/contact-us" className="no-underline hover:text-gray-300 transition-colors py-2 border-b-2 border-transparent hover:border-white" style={{color: 'white', textDecoration: 'none'}}>Contact Us</Link></li>
+            <li style={{display: 'block'}}>
+              <Link href="/contact-us" className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 group inline-block" style={{color: 'white', textDecoration: 'none'}}>
+                {t('nav.contact')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
+              </Link>
+            </li>
           </ul>
+          
+          {/* Language Selector */}
+          <LanguageSelector />
         </div>
       </nav>
       
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-95 z-40 flex items-center justify-center md:hidden">
-          <div className="container mx-auto px-6 text-center">
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold mb-2 text-[#E9C883]">Menu</h2>
-              <div className="w-12 h-1 bg-white mx-auto"></div>
-            </div>
+      {/* Mobile Navigation Menu with Modern Effects */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-gradient-to-br from-black/95 to-gray-900/95 backdrop-blur-xl z-40 flex items-center justify-center md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div 
+              className="container mx-auto px-6 text-center"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              <div className="mb-12">
+                <h2 className="text-3xl font-bold mb-2 text-[#E9C883]">{t('nav.menu')}</h2>
+                <div className="w-12 h-1 bg-gradient-to-r from-transparent via-[#E9C883] to-transparent mx-auto"></div>
+              </div>
             
             <ul className="space-y-6 mb-12">
-              <li>
+              <motion.li
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 <Link 
                   href="/" 
-                  className="text-2xl font-bold hover:text-[#E9C883] transition-colors"
+                  className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 relative inline-block group"
                   onClick={toggleMenu}
                 >
-                  Homepage
+                  {t('nav.home')}
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 }}
+              >
                 <Link 
                   href="/about" 
-                  className="text-2xl font-bold hover:text-[#E9C883] transition-colors"
+                  className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 relative inline-block group"
                   onClick={toggleMenu}
                 >
-                  About
+                  {t('nav.about')}
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-              </li>
+              </motion.li>
               
-              <li className="relative">
+              <motion.li 
+                className="relative"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
                 <button 
-                  className="text-2xl font-bold hover:text-[#E9C883] transition-colors flex items-center justify-center mx-auto"
+                  className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 flex items-center justify-center mx-auto group"
                   onClick={toggleServices}
                 >
-                  Services
-                  <span className={`ml-2 transform transition-transform duration-300 ${servicesOpen ? 'rotate-180' : 'rotate-0'}`}>
-                    <ChevronDownIcon />
-                  </span>
+                  {t('nav.services')}
+                  <ChevronDownIcon className={`ml-2 w-5 h-5 transform transition-transform duration-300 ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
                 </button>
                 
-                {servicesOpen && (
-                  <ul className="mt-4 space-y-3">
-                    <li>
-                      <Link href="/services/silk-screen-printing" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Silk Screen Printing
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/hot-foil-stamping" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Hot-Foil Stamping
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/precious-metals" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Precious Metals
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/organic-painting" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Organic Painting
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/metalized-printing" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Metalized Printing
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/masking" className="text-xl text-gray-300 hover:text-white transition-colors" onClick={toggleMenu}>
-                        Masking
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </li>
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.ul 
+                      className="mt-6 space-y-4 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-6 backdrop-blur-sm"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {[
+                        { href: '/services/silk-screen-printing', key: 'silkScreen' },
+                        { href: '/services/hot-foil-stamping', key: 'hotFoil' },
+                        { href: '/services/precious-metals', key: 'preciousMetals' },
+                        { href: '/services/organic-painting', key: 'organicPainting' },
+                        { href: '/services/metalized-printing', key: 'metalizedPrinting' },
+                        { href: '/services/masking', key: 'masking' }
+                      ].map((service, index) => (
+                        <motion.li
+                          key={service.key}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
+                        >
+                          <Link 
+                            href={service.href} 
+                            className="text-lg text-white/80 hover:text-[#E9C883] transition-all duration-300 block py-2 px-4 hover:bg-white/5 rounded-lg" 
+                            onClick={toggleMenu}
+                          >
+                            {t(`services.${service.key}`)}
+                          </Link>
+                        </motion.li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </motion.li>
               
-              <li>
+              <motion.li
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.35 }}
+              >
                 <Link 
                   href="/contact-us" 
-                  className="text-2xl font-bold hover:text-[#E9C883] transition-colors"
+                  className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 relative inline-block group"
                   onClick={toggleMenu}
                 >
-                  Contact Us
+                  {t('nav.contact')}
+                  <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
-              </li>
+              </motion.li>
             </ul>
             
-            <div className="absolute bottom-8 left-0 right-0 text-center">
-              <p className="text-sm text-gray-400"> 2023 RapsodiDekor. All rights reserved.</p>
-            </div>
-          </div>
-        </div>
+            {/* Language Selector for Mobile */}
+            <motion.div 
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <LanguageSelector />
+            </motion.div>
+            
+            <motion.div 
+              className="absolute bottom-8 left-0 right-0 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <p className="text-sm text-gray-400">© 2023 RapsodiDekor. All rights reserved.</p>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </header>
   );
 }

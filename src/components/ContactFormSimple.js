@@ -1,18 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useLanguage } from '@/i18n/LanguageContext';
 
-export default function ContactForm() {
-  const { t } = useLanguage();
+export default function ContactFormSimple() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: '',
   });
-  const [status, setStatus] = useState(''); // '', 'loading', 'success', 'error'
-  const [responseMessage, setResponseMessage] = useState('');
+  const [status, setStatus] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,11 +22,10 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    setResponseMessage('');
 
     try {
-      // Formspree endpoint
-      const response = await fetch('https://formspree.io/f/mrbkwnpy', {
+      // Formspree endpoint - replace with your own
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,16 +42,12 @@ export default function ContactForm() {
 
       if (response.ok) {
         setStatus('success');
-        setResponseMessage('Message sent successfully!');
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
         setStatus('error');
-        setResponseMessage('Failed to send message. Please try again.');
       }
     } catch (error) {
-      console.error('Form submission error:', error);
       setStatus('error');
-      setResponseMessage('An error occurred. Please try again later.');
     }
   };
 
@@ -83,7 +75,7 @@ export default function ContactForm() {
             id="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="Enter your phone number*"
+            placeholder="Enter your phone number"
             className="block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#E9C883] focus:border-[#E9C883] placeholder-gray-400"
           />
         </div>
@@ -118,15 +110,18 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className={`w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-bold rounded uppercase text-white ${status === 'loading' ? 'bg-gray-400' : 'bg-[#E9C883] hover:bg-[#d4b571]'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E9C883] disabled:opacity-50 transition-colors`}
+          className={`w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-bold rounded uppercase text-white ${
+            status === 'loading' ? 'bg-gray-400' : 'bg-[#E9C883] hover:bg-[#d4b571]'
+          } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#E9C883] disabled:opacity-50 transition-colors`}
         >
           {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE'}
         </button>
       </div>
-      {responseMessage && (
-        <p className={`mt-2 text-sm ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}>
-          {responseMessage}
-        </p>
+      {status === 'success' && (
+        <p className="mt-2 text-sm text-green-600">Message sent successfully!</p>
+      )}
+      {status === 'error' && (
+        <p className="mt-2 text-sm text-red-600">Failed to send message. Please try again.</p>
       )}
     </form>
   );

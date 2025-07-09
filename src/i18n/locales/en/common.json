@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Homepage",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact Us",
+    "menu": "Menu"
+  },
+  "services": {
+    "silkScreen": "Silk Screen Printing",
+    "hotFoil": "Hot-Foil Stamping",
+    "preciousMetals": "Precious Metals",
+    "organicPainting": "Organic Painting",
+    "metalizedPrinting": "Metalized Printing",
+    "masking": "Masking",
+    "silkScreenDesc": "Precision techniques for vibrant designs.",
+    "hotFoilDesc": "Adding metallic or colored foils for premium looks.",
+    "preciousMetalsDesc": "Gold and platinum details for ultimate luxury.",
+    "organicPaintingDesc": "Eco-friendly vibrant finishes.",
+    "metalizedPrintingDesc": "Stunning metallic effects.",
+    "maskingDesc": "Precision multi-color designs.",
+    "learnMore": "Learn More",
+    "ourServices": "Our Services",
+    "premiumServices": "Premium decoration services tailored to your needs"
+  },
+  "hero": {
+    "title": "Where Glass Becomes Art",
+    "subtitle": "Crafting premium packaging that tells your brand's story.",
+    "cta": "Explore Our Craft"
+  },
+  "tradition": {
+    "title": "Seven Decades of Excellence",
+    "description": "Since 1950, RAPSODI DEKOR has been Turkey's pioneer in glass decoration. We blend time-honored artistry with innovative technology to create packaging that defines luxury for the world's most prestigious brands.",
+    "stats": {
+      "productionArea": "m² State-of-the-Art Facility",
+      "specialistTeam": "Master Craftsmen",
+      "dailyPrinting": "Daily Production",
+      "dailyPainting": "Daily Finishing",
+      "since": "Established"
+    }
+  },
+  "clients": {
+    "title": "The Choice of Iconic Brands Worldwide"
+  },
+  "elevate": {
+    "title": "Transform Your Vision",
+    "subtitle": "Bespoke designs, flawless execution",
+    "description": "Let's create packaging that speaks volumes. Our master artisans turn your brand's essence into tangible luxury that resonates with your audience.",
+    "cta": "Start Your Journey"
+  },
+  "about": {
+    "title": "About Us",
+    "intro": "Since the 1950s, Rapsodi Dekor has been pioneering glass decoration, continuing to make a difference in the industry with three generations of accumulated knowledge and experience. By blending modern technology with traditional craftsmanship, we produce exclusive solutions for prestigious brands around the world.",
+    "activityAreas": {
+      "title": "Our Areas of Activity",
+      "content": "We strengthen brands' visual identity through silk screen printing, hot foil stamping, precious metal coating, organic painting, and metalized printing techniques applied to glass and plastic packaging. In our 10,000 m² modern facility, our team of 450 expert personnel decorates over 300,000 products daily."
+    },
+    "sectoralServices": {
+      "title": "Sectoral Services",
+      "content": "We serve a wide range of industries from cosmetics to food and beverage, from glassware to home decoration. By developing specialized solutions for each sector's unique needs, we differentiate our customers' products from their competitors."
+    },
+    "qualityApproach": {
+      "title": "Our Quality Approach",
+      "content": "In our facility certified with ISO 9001:2015 quality management system, we apply meticulous quality controls at every stage of production. All our processes, from raw material selection to the final product, are carried out in accordance with international standards."
+    },
+    "sustainability": {
+      "title": "Our Sustainability Approach",
+      "content": "In line with our environmentally conscious production philosophy, we use water-based organic paints and recyclable materials. With our energy-efficient machinery and waste management systems, we aim to leave a cleaner world for future generations."
+    },
+    "exportGlobal": {
+      "title": "Export and Global Service",
+      "paragraph1": "In addition to Turkey, we export to more than 40 countries across Europe, Middle East, Africa, and the Americas. Our global customer portfolio is the greatest proof of our quality and reliability.",
+      "paragraph2": "With our international logistics network and experienced export team, we guarantee timely and secure delivery to any point in the world."
+    },
+    "corporateValues": {
+      "title": "Our Corporate Values",
+      "content": "Prioritizing customer satisfaction, we operate with principles of trust, quality, innovation, and sustainability. By investing in our employees' development, we nurture professionals who shape the future of our industry."
+    }
+  },
+  "footer": {
+    "companyName": "RAPSODİ DEKORASYON AMBALAJ SAN. A.Ş.",
+    "address": "Subaşı, Fatma Sultan Cad., No:7/1, Posta Kodu: 34540 Çatalca – İSTANBUL",
+    "phone": "Tel",
+    "fax": "Fax",
+    "mobile": "Gsm",
+    "email": "e-mail",
+    "copyright": "© {year} Rapsodi Dekor. All rights reserved."
+  },
+  "serviceDetails": {
+    "silkScreen": {
+      "title": "Silk Screen Printing",
+      "subtitle": "Mastering the Art of Silk Screen",
+      "glassProductLabel": "Glass Product:",
+      "glassProduct": "RAPSODI DEKOR, started to use the serigraph printing technique, which is the first and the most important line of production, in 1997. Applying organic, thermoplastic, and UV prints on all kinds of glass packaging; our company offers distinctness to its customers. Additionally, we are also able to transfer the shadow copy of a picture on a glass surface with CMYK printing technique.",
+      "plasticProductLabel": "Plastic Product:",
+      "plasticProduct": "Our company's serigraph printing unit is sufficiently qualified to work in all order quantities by means of multi-color and single-color full- and semi-automatic machines as well as manual printing systems.",
+      "capabilities": "Our printing machines are capable of making single-color and multi-color prints on products that has a height range of 2 cm and 40 cm. Depending on our customers' PANTONE color demands; our company is able to give service in all main and accent print colors."
+    },
+    "hotFoil": {
+      "title": "Hot-Foil Stamping",
+      "subtitle": "Adding Shine with Hot Foil",
+      "description": "RAPSODİ DEKOR applies hot foil gilding printing on glass surfaces. In addition, with its fully automatic hot foil machine lines, it can print on cam products of all sizes and shapes in high quantity, as well as foil and multi-color printing at the same time."
+    },
+    "preciousMetals": {
+      "title": "Precious Metals Application",
+      "subtitle": "Ultimate Luxury with Precious Metals",
+      "description": "RAPSODI DEKOR applies precious metal printing, which enables the products to look shinier, higher quality and vivid. By firing gold, platinum and copper (rose) varieties in 600-degree furnaces; it offers a wide range of Precious Product variety."
+    },
+    "organicPainting": {
+      "title": "Organic Painting",
+      "subtitle": "Vibrant and Eco-Friendly Painting",
+      "description": "With automatic conveyor painting lines, RAPSODI DEKOR has a daily capacity of painting 150,000 pieces. Depending on PANTONE color demands, coloring can be made in all main and access colors with environment-friendly water-based paints and painting with different effects (transparent, opaque, matt, metallic, silvery, and soft touch). In addition to glass products; our company can also apply paint on plastic products (PP, PE, Pet)."
+    },
+    "metalizedPrinting": {
+      "title": "Metalized Printing",
+      "subtitle": "Stunning Metallic Mirror Effects",
+      "description1": "RAPSODI DEKOR applies in its painting lines Metalized printings that enable the product to shine and reflect like a mirror, which is also called the mirror effect.",
+      "description2": "Our high capacity for metalized printing works, which are especially sought for in cosmetics and home decoration sectors today, provide a wide product diversity to our customer companies."
+    },
+    "masking": {
+      "title": "Masking",
+      "subtitle": "Precision Masking Techniques",
+      "description": "RAPSODI DEKOR; depending on its customers' demands, makes zonal decorations. This is a decorating technique applied by masking the zones that are requested to remain transparent with max affixation method."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "ourContactDetails": "Our Contact Details",
+    "address": "Address",
+    "phoneAndFax": "Phone & Fax",
+    "email": "Email",
+    "sendUsMessage": "Send Us a Message",
+    "findUsHere": "Find Us Here",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Your message has been sent successfully!",
+      "error": "An error occurred. Please try again.",
+      "unexpectedError": "An unexpected error occurred. Please try again later."
+    }
+  },
+  "serviceShowcase": {
+    "silkScreen": {
+      "title": "Mastering the Art of Silk Screen",
+      "description": "Discover the precision and vibrancy of silk screen printing. Our advanced techniques bring your designs to life on a variety of surfaces including glass, plastic, and metal, offering durability and unparalleled visual appeal for every product. Elevate your brand with bespoke decoration that stands out."
+    }
+  }
+}

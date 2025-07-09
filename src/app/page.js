@@ -11,6 +11,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import FloatingObjects from '@/components/FloatingObjects';
 import StickyScrollSection from '@/components/StickyScrollSection';
 import Lenis from '@studio-freight/lenis';
+import { useLanguage } from '@/i18n/LanguageContext';
+import { getAdaptiveTextSize } from '@/hooks/useResponsiveText';
 
 // Placeholder Play Icon SVG
 const PlayIcon = () => (
@@ -53,6 +55,7 @@ export default function Home() {
   const clientsRef = useRef(null); // Ref for Clients section
   const [isMobile, setIsMobile] = useState(false);
   const { height } = useDimensions();
+  const { t } = useLanguage();
   
   // Initialize Lenis smooth scroll
   useEffect(() => {
@@ -133,8 +136,8 @@ export default function Home() {
   // Parallax effects for text content - more dramatic for title
   const titleOpacity = useTransform(traditionScrollYProgress, [0.05, 0.25], [0, 1]);
   const titleY = useTransform(traditionScrollYProgress, [0.05, 0.25], [100, 0]);
-  const titleScale = useTransform(traditionScrollYProgress, [0.05, 0.3], [0.5, 1.1]); // Grows from 50% to 110%
-  const titleLetterSpacing = useTransform(traditionScrollYProgress, [0.05, 0.3], ['-0.1em', '0.02em']); // Letter spacing effect
+  const titleScale = useTransform(traditionScrollYProgress, [0.05, 0.3], [0.7, 1]); // Grows from 70% to 100% - reduced for long titles
+  const titleLetterSpacing = useTransform(traditionScrollYProgress, [0.05, 0.3], ['-0.05em', '0.01em']); // Letter spacing effect - reduced for long titles
   const titleBlur = useTransform(traditionScrollYProgress, [0.05, 0.2], ['8px', '0px']); // Blur effect
   
   const descriptionOpacity = useTransform(traditionScrollYProgress, [0.15, 0.25], [0, 1]);
@@ -214,10 +217,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-4xl md:text-6xl font-bold mb-4" 
+              className={`font-bold mb-4 ${
+                isMobile 
+                  ? 'text-3xl sm:text-4xl'
+                  : 'text-5xl md:text-6xl lg:text-7xl'
+              }`}
               style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
             >
-              Exquisite Glass Decoration for Your Packaging
+              {t('hero.title')}
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
@@ -226,7 +233,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg md:text-xl mb-8"
             >
-              Transforming glass into captivating packaging solutions.
+              {t('hero.subtitle')}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -238,7 +245,7 @@ export default function Home() {
                 onClick={handleScrollToServices}
                 className="border border-white text-white font-bold py-3 px-6 rounded transition duration-300 no-underline hover:bg-white hover:text-black cursor-pointer"
               >
-                Discover Our Services
+                {t('hero.cta')}
               </button>
             </motion.div>
           </div>
@@ -250,11 +257,11 @@ export default function Home() {
         <div className="sticky top-0 w-full h-screen bg-gray-900">
           <div className="relative h-full w-full flex items-center justify-center overflow-hidden">
               <div className="container mx-auto px-4 text-center relative z-30">
-                <div className="max-w-3xl mx-auto mb-12">
+                <div className="max-w-4xl mx-auto mb-12">
                   <RotatingIcon />
-                  <div className="relative overflow-hidden" style={{ paddingBottom: '20px' }}>
+                  <div className="relative overflow-hidden px-4 md:px-8" style={{ paddingBottom: '20px' }}>
                     <motion.h2 
-                      className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gold leading-tight"
+                      className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gold leading-tight text-center"
                       style={{ 
                         fontFamily: 'HaboroContrastNormRegular, sans-serif',
                         opacity: titleOpacity,
@@ -268,8 +275,7 @@ export default function Home() {
                         perspective: '1000px'
                       }}
                     >
-                      A Tradition of Innovation<br className="hidden lg:block" />
-                      in Glass Decoration
+                      {t('tradition.title')}
                     </motion.h2>
                   </div>
                   <motion.p 
@@ -279,7 +285,7 @@ export default function Home() {
                       y: descriptionY
                     }}
                   >
-                    Since 1950, RAPSODİ DEKOR has been at the forefront of glass decoration techniques, combining traditional craftsmanship with cutting-edge technology to create stunning packaging solutions for premium brands across diverse industries.
+                    {t('tradition.description')}
                   </motion.p>
                 </div>
                 
@@ -292,7 +298,7 @@ export default function Home() {
                     }}
                   >
                     <Counter targetValue={10000} className="block text-5xl font-bold text-gold mb-2" />
-                    <span className="block text-base text-gray-300 uppercase tracking-wider">m² Production Area</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">{t('tradition.stats.productionArea')}</span>
                   </motion.div>
                   <motion.div 
                     className="fact-item"
@@ -304,7 +310,7 @@ export default function Home() {
                     <span className="block text-5xl font-bold text-gold mb-2">
                       <Counter targetValue={450} className="inline text-gold" />+
                     </span>
-                    <span className="block text-base text-gray-300 uppercase tracking-wider">Specialist Team</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">{t('tradition.stats.specialistTeam')}</span>
                   </motion.div>
                   <motion.div 
                     className="fact-item"
@@ -314,7 +320,7 @@ export default function Home() {
                     }}
                   >
                     <Counter targetValue={120000} className="block text-5xl font-bold text-gold mb-2" />
-                    <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Printing</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">{t('tradition.stats.dailyPrinting')}</span>
                   </motion.div>
                   <motion.div 
                     className="fact-item"
@@ -324,7 +330,7 @@ export default function Home() {
                     }}
                   >
                     <Counter targetValue={150000} className="block text-5xl font-bold text-gold mb-2" />
-                    <span className="block text-base text-gray-300 uppercase tracking-wider">Daily Painting</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">{t('tradition.stats.dailyPainting')}</span>
                   </motion.div>
                   <motion.div 
                     className="fact-item"
@@ -334,7 +340,7 @@ export default function Home() {
                     }}
                   >
                     <span className="block text-5xl font-bold text-gold mb-2">1950</span>
-                    <span className="block text-base text-gray-300 uppercase tracking-wider">Since</span>
+                    <span className="block text-base text-gray-300 uppercase tracking-wider">{t('tradition.stats.since')}</span>
                   </motion.div>
                 </div>
               </div>
@@ -390,7 +396,7 @@ export default function Home() {
           <div className="container mx-auto px-6">
             <div className="text-center mb-14">
               <motion.h2 
-                className="text-3xl md:text-5xl font-bold mb-4" 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4" 
                 style={{ 
                   fontFamily: 'HaboroContrastNormRegular, sans-serif', 
                   color: '#111827',
@@ -399,7 +405,7 @@ export default function Home() {
                   scale: clientsTitleScale
                 }}
               >
-                Trusted by Leading Brands
+                {t('clients.title')}
               </motion.h2>
               <motion.div 
                 style={{
@@ -578,7 +584,7 @@ export default function Home() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="block text-[#E9C883]"
                   >
-                    ELEVATE
+                    {t('elevate.title').split(' ')[0]}
                   </motion.span>
                   <motion.span
                     initial={{ opacity: 0, y: 30 }}
@@ -587,7 +593,7 @@ export default function Home() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="block text-[#E9C883]"
                   >
-                    YOUR PACKAGING
+                    {t('elevate.title').split(' ').slice(1).join(' ')}
                   </motion.span>
                 </motion.h2>
               </div>
@@ -599,7 +605,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                   className="text-xl mb-8 text-gray-300"
                 >
-                  Bring your packaging to life with our premium decoration solutions. Get in touch today for a personalized consultation.
+                  {t('elevate.description')}
                 </motion.p>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -611,7 +617,7 @@ export default function Home() {
                     href="/contact-us"
                     className="inline-block px-10 py-3 border border-white text-white font-semibold tracking-wider hover:bg-white hover:text-gray-900 transition duration-300"
                   >
-                    REQUEST A QUOTE
+                    {t('nav.contact').toUpperCase()}
                   </Link>
                 </motion.div>
               </div>
@@ -644,7 +650,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Silk Screen
+                      {t('services.silkScreen')}
                     </motion.h3>
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
@@ -653,7 +659,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Precision techniques for vibrant designs.
+                      {t('services.silkScreenDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -665,7 +671,7 @@ export default function Home() {
                         href="/services/silk-screen-printing"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -688,7 +694,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Hot-Foil Stamping
+                      {t('services.hotFoil')}
                     </motion.h3>
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
@@ -697,7 +703,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Adding metallic or colored foils for premium looks.
+                      {t('services.hotFoilDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -709,7 +715,7 @@ export default function Home() {
                         href="/services/hot-foil-stamping"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -732,7 +738,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Precious Metals
+                      {t('services.preciousMetals')}
                     </motion.h3>
                     <motion.p
                       initial={{ opacity: 0, y: 20 }}
@@ -741,7 +747,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Gold and platinum details for ultimate luxury.
+                      {t('services.preciousMetalsDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -753,7 +759,7 @@ export default function Home() {
                         href="/services/precious-metals"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -776,7 +782,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Organic Painting
+                      {t('services.organicPainting')}
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0, y: 20 }}
@@ -785,7 +791,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Eco-friendly vibrant finishes.
+                      {t('services.organicPaintingDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -797,7 +803,7 @@ export default function Home() {
                         href="/services/organic-painting"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -820,7 +826,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Metalized Printing
+                      {t('services.metalizedPrinting')}
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0, y: 20 }}
@@ -829,7 +835,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Stunning metallic effects.
+                      {t('services.metalizedPrintingDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -841,7 +847,7 @@ export default function Home() {
                         href="/services/metalized-printing"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -864,7 +870,7 @@ export default function Home() {
                       className="text-2xl font-bold mb-2" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Masking
+                      {t('services.masking')}
                     </motion.h3>
                     <motion.p 
                       initial={{ opacity: 0, y: 20 }}
@@ -873,7 +879,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.1 }}
                       className="mb-4 text-gray-200 text-sm"
                     >
-                      Precision multi-color designs.
+                      {t('services.maskingDesc')}
                     </motion.p>
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -885,7 +891,7 @@ export default function Home() {
                         href="/services/masking"
                         className="inline-block px-4 py-1 border border-white text-white text-sm rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -909,7 +915,7 @@ export default function Home() {
                       className="text-5xl font-bold mb-4 text-white" 
                       style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                     >
-                      Mastering the Art of Silk Screen
+                      {t('serviceShowcase.silkScreen.title')}
                     </motion.h2>
                     <motion.p 
                       initial={{ opacity: 0, y: 30 }}
@@ -918,7 +924,7 @@ export default function Home() {
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="text-lg text-white"
                     >
-                      Discover the precision and vibrancy of silk screen printing. Our advanced techniques bring your designs to life on a variety of surfaces including glass, plastic, and metal, offering durability and unparalleled visual appeal for every product. Elevate your brand with bespoke decoration that stands out.
+                      {t('serviceShowcase.silkScreen.description')}
                     </motion.p>
 
                     <motion.div
@@ -932,7 +938,7 @@ export default function Home() {
                         href="/services/silk-screen-printing"
                         className="inline-block px-6 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                       >
-                        Learn More
+                        {t('services.learnMore')}
                       </Link>
                     </motion.div>
                   </div>
@@ -960,7 +966,7 @@ export default function Home() {
                           className="text-3xl font-bold mb-3" 
                           style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                         >
-                          Hot-Foil Stamping
+                          {t('services.hotFoil')}
                         </motion.h3>
                         <motion.p
                           initial={{ opacity: 0, y: 20 }}
@@ -969,7 +975,7 @@ export default function Home() {
                           transition={{ duration: 0.5, delay: 0.1 }}
                           className="mb-5 text-gray-200"
                         >
-                          Adding metallic or colored foils for premium looks.
+                          {t('services.hotFoilDesc')}
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -981,7 +987,7 @@ export default function Home() {
                             href="/services/hot-foil-stamping"
                             className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                           >
-                            Learn More
+                            {t('services.learnMore')}
                           </Link>
                         </motion.div>
                       </div>
@@ -1004,7 +1010,7 @@ export default function Home() {
                           className="text-3xl font-bold mb-3" 
                           style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                         >
-                          Precious Metals
+                          {t('services.preciousMetals')}
                         </motion.h3>
                         <motion.p
                           initial={{ opacity: 0, y: 20 }}
@@ -1013,7 +1019,7 @@ export default function Home() {
                           transition={{ duration: 0.5, delay: 0.1 }}
                           className="mb-5 text-gray-200"
                         >
-                          Gold and platinum details for ultimate luxury.
+                          {t('services.preciousMetalsDesc')}
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1025,7 +1031,7 @@ export default function Home() {
                             href="/services/precious-metals"
                             className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                           >
-                            Learn More
+                            {t('services.learnMore')}
                           </Link>
                         </motion.div>
                       </div>
@@ -1054,7 +1060,7 @@ export default function Home() {
                           className="text-3xl font-bold mb-3" 
                           style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                         >
-                          Organic Painting
+                          {t('services.organicPainting')}
                         </motion.h3>
                         <motion.p 
                           initial={{ opacity: 0, y: 20 }}
@@ -1063,7 +1069,7 @@ export default function Home() {
                           transition={{ duration: 0.5, delay: 0.1 }}
                           className="mb-5 text-gray-200"
                         >
-                          Eco-friendly vibrant finishes.
+                          {t('services.organicPaintingDesc')}
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1075,7 +1081,7 @@ export default function Home() {
                             href="/services/organic-painting"
                             className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                           >
-                            Learn More
+                            {t('services.learnMore')}
                           </Link>
                         </motion.div>
                       </div>
@@ -1098,7 +1104,7 @@ export default function Home() {
                           className="text-3xl font-bold mb-3" 
                           style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                         >
-                          Metalized Printing
+                          {t('services.metalizedPrinting')}
                         </motion.h3>
                         <motion.p 
                           initial={{ opacity: 0, y: 20 }}
@@ -1107,7 +1113,7 @@ export default function Home() {
                           transition={{ duration: 0.5, delay: 0.1 }}
                           className="mb-5 text-gray-200"
                         >
-                          Stunning metallic effects.
+                          {t('services.metalizedPrintingDesc')}
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1119,7 +1125,7 @@ export default function Home() {
                             href="/services/metalized-printing"
                             className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                           >
-                            Learn More
+                            {t('services.learnMore')}
                           </Link>
                         </motion.div>
                       </div>
@@ -1142,7 +1148,7 @@ export default function Home() {
                           className="text-3xl font-bold mb-3" 
                           style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
                         >
-                          Masking
+                          {t('services.masking')}
                         </motion.h3>
                         <motion.p 
                           initial={{ opacity: 0, y: 20 }}
@@ -1151,7 +1157,7 @@ export default function Home() {
                           transition={{ duration: 0.5, delay: 0.1 }}
                           className="mb-5 text-gray-200"
                         >
-                          Precision multi-color designs.
+                          {t('services.maskingDesc')}
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1163,7 +1169,7 @@ export default function Home() {
                             href="/services/masking"
                             className="inline-block px-5 py-2 border border-white text-white rounded hover:bg-white hover:text-black transition-colors duration-300 font-semibold"
                           >
-                            Learn More
+                            {t('services.learnMore')}
                           </Link>
                         </motion.div>
                       </div>
