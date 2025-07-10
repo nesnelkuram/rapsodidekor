@@ -1,5 +1,21 @@
 # Contact Form Setup Guide
 
+## Bot Protection Added! 🤖🚫
+
+The contact form now has TWO levels of bot protection:
+
+### 1. Honeypot Field (Already Active)
+- Invisible field that only bots will fill
+- No setup needed - it's working now!
+
+### 2. Google reCAPTCHA (Optional - Stronger Protection)
+If you want even stronger protection:
+1. Go to https://www.google.com/recaptcha/admin
+2. Register your site (rapsodidekor.com)
+3. Get your Site Key
+4. Replace YOUR_RECAPTCHA_SITE_KEY in ContactFormWithCaptcha.js
+5. Add the Secret Key to Formspree settings
+
 ## Quick Setup with Formspree (Recommended - 2 minutes)
 
 1. Go to https://formspree.io/

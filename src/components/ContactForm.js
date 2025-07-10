@@ -10,6 +10,7 @@ export default function ContactForm() {
     email: '',
     phone: '',
     message: '',
+    _gotcha: '', // Honeypot field
   });
   const [status, setStatus] = useState(''); // '', 'loading', 'success', 'error'
   const [responseMessage, setResponseMessage] = useState('');
@@ -24,6 +25,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Check honeypot field - if filled, it's likely a bot
+    if (formData._gotcha) {
+      setStatus('success');
+      setResponseMessage('Message sent successfully!');
+      return; // Silently reject but show success to confuse bots
+    }
+
     setStatus('loading');
     setResponseMessage('');
 
@@ -47,7 +56,7 @@ export default function ContactForm() {
       if (response.ok) {
         setStatus('success');
         setResponseMessage('Message sent successfully!');
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', message: '', _gotcha: '' });
       } else {
         setStatus('error');
         setResponseMessage('Failed to send message. Please try again.');
@@ -123,6 +132,16 @@ export default function ContactForm() {
           {status === 'loading' ? 'SENDING...' : 'SEND MESSAGE'}
         </button>
       </div>
+      {/* Honeypot field - hidden from users, visible to bots */}
+      <input
+        type="text"
+        name="_gotcha"
+        value={formData._gotcha}
+        onChange={handleChange}
+        style={{ display: 'none' }}
+        tabIndex="-1"
+        autoComplete="off"
+      />
       {responseMessage && (
         <p className={`mt-2 text-sm ${status === 'success' ? 'text-green-600' : 'text-red-600'}`}>
           {responseMessage}
