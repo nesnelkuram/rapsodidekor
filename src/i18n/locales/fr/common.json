@@ -149,5 +149,16 @@
       "title": "Maîtriser l'Art de la Sérigraphie",
       "description": "Découvrez la précision et la vivacité de l'impression sérigraphique. Nos techniques avancées donnent vie à vos designs sur une variété de surfaces incluant le verre, le plastique et le métal, offrant durabilité et attrait visuel incomparable pour chaque produit. Élevez votre marque avec une décoration sur mesure qui se démarque."
     }
+  },
+  "greenEnergy": {
+    "badge": "100% Énergie Verte",
+    "title": "Production Durable",
+    "titleHighlight": "Certificat",
+    "description": "100% de l'énergie électrique utilisée dans notre usine d'Akpınar est générée à partir d'énergie solaire et d'éoliennes sans nuire à l'environnement. Avec notre approche de production durable, nous laissons un héritage responsable pour l'avenir.",
+    "viewCertificate": "Voir le Certificat",
+    "carbonNeutral": "Production Neutre en Carbone",
+    "solarEnergy": "Énergie Solaire",
+    "windEnergy": "Énergie Éolienne",
+    "altText": "Énergie Solaire et Éoliennes - Énergie Durable"
   }
 }

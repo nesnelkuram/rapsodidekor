@@ -149,5 +149,16 @@
       "title": "Maestría en el Arte de la Serigrafía",
       "description": "Descubra la precisión y vivacidad de la impresión serigráfica. Nuestras técnicas avanzadas dan vida a sus diseños en una variedad de superficies, incluyendo vidrio, plástico y metal, ofreciendo durabilidad y un atractivo visual incomparable para cada producto. Eleve su marca con decoración personalizada que destaca."
     }
+  },
+  "greenEnergy": {
+    "badge": "100% Energía Verde",
+    "title": "Producción Sostenible",
+    "titleHighlight": "Certificado",
+    "description": "El 100% de la energía eléctrica utilizada en nuestra fábrica de Akpınar se genera a partir de energía solar y turbinas eólicas sin dañar el medio ambiente. Con nuestro enfoque de producción sostenible, dejamos un legado responsable para el futuro.",
+    "viewCertificate": "Ver Certificado",
+    "carbonNeutral": "Producción Carbono Neutral",
+    "solarEnergy": "Energía Solar",
+    "windEnergy": "Energía Eólica",
+    "altText": "Energía Solar y Turbinas Eólicas - Energía Sostenible"
   }
 }

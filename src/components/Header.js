@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/i18n/LanguageContext';
+import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
 // Simple Chevron Down Icon
@@ -75,6 +75,23 @@ export default function Header() {
   // Toggle services submenu
   const toggleServices = () => {
     setServicesOpen(!servicesOpen);
+  };
+
+  // Function to handle smooth scroll to services section
+  const handleScrollToServices = () => {
+    const servicesSection = document.getElementById('services-section');
+    if (servicesSection && window.lenis) {
+      window.lenis.scrollTo(servicesSection, {
+        offset: -50,
+        duration: 1.5
+      });
+    } else if (servicesSection) {
+      // Fallback for if lenis is not available
+      servicesSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   // Close mobile menu if window resizes to desktop size
@@ -160,11 +177,15 @@ export default function Header() {
             </li>
             {/* Services Dropdown */}
             <li className="relative group" style={{display: 'block'}}>
-              <Link href="/services" className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 flex items-center gap-1 group/link inline-block" style={{color: 'white', textDecoration: 'none', display: 'flex'}}>
+              <button 
+                onClick={handleScrollToServices}
+                className="relative no-underline hover:text-[#E9C883] transition-all duration-300 py-2 flex items-center gap-1 group/link inline-block cursor-pointer bg-transparent border-none" 
+                style={{color: 'white', textDecoration: 'none', display: 'flex'}}
+              >
                 {t('nav.services')} 
                 <ChevronDownIcon className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover/link:w-[calc(100%-20px)]"></span>
-              </Link>
+              </button>
               {/* Ultra Modern Dropdown with Enhanced Glass Effect */}
               <div className="absolute left-0 lg:left-auto lg:-right-12 xl:-right-20 top-full pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out transform translate-y-2 group-hover:translate-y-0 z-50">
                 <div className="relative">
@@ -352,13 +373,26 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <button 
-                  className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 flex items-center justify-center mx-auto group"
-                  onClick={toggleServices}
-                >
-                  {t('nav.services')}
-                  <ChevronDownIcon className={`ml-2 w-5 h-5 transform transition-transform duration-300 ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
-                </button>
+                <div className="flex flex-col items-center space-y-4">
+                  <button 
+                    className="text-2xl font-bold hover:text-[#E9C883] transition-all duration-300 relative inline-block group"
+                    onClick={() => {
+                      toggleMenu(); // Close mobile menu first
+                      setTimeout(() => handleScrollToServices(), 300); // Then scroll to services
+                    }}
+                  >
+                    {t('nav.services')}
+                    <span className="absolute -bottom-2 left-0 w-0 h-0.5 bg-[#E9C883] transition-all duration-300 group-hover:w-full"></span>
+                  </button>
+                  
+                  <button 
+                    className="text-sm text-white/70 hover:text-[#E9C883] transition-all duration-300 flex items-center"
+                    onClick={toggleServices}
+                  >
+                    Detaylı Hizmetler
+                    <ChevronDownIcon className={`ml-1 w-4 h-4 transform transition-transform duration-300 ${servicesOpen ? 'rotate-180' : 'rotate-0'}`} />
+                  </button>
+                </div>
                 
                 <AnimatePresence>
                   {servicesOpen && (

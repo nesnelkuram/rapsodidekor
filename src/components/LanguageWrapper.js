@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/i18n/LanguageContext';
+import { useLanguage } from '../i18n/LanguageContext';
 import { useEffect } from 'react';
 
 export default function LanguageWrapper({ children }) {

@@ -149,5 +149,16 @@
       "title": "Serigrafi Sanatında Ustalık",
       "description": "Serigrafi baskının hassasiyetini ve canlılığını keşfedin. İleri teknoloji tekniklerimiz, cam, plastik ve metal dahil çeşitli yüzeylerde tasarımlarınıza hayat veriyor, her ürün için dayanıklılık ve benzersiz görsel çekicilik sunuyor. Markanızı öne çıkaran özel dekorasyonlarla yükseltin."
     }
+  },
+  "greenEnergy": {
+    "badge": "%100 Çevre Dostu Enerji",
+    "title": "Sürdürülebilir Üretim",
+    "titleHighlight": "Sertifikamız",
+    "description": "Akpınar fabrikamızda kullandığımız elektrik enerjisinin %100'ü güneş enerjisi ve rüzgar türbinleri ile çevreye zarar vermeden üretilmektedir. Sürdürülebilir üretim anlayışımızla geleceğe sorumlu bir miras bırakıyoruz.",
+    "viewCertificate": "Sertifikayı İncele",
+    "carbonNeutral": "Karbon Nötr Üretim",
+    "solarEnergy": "Güneş Enerjisi",
+    "windEnergy": "Rüzgar Enerjisi",
+    "altText": "Güneş Enerjisi ve Rüzgar Türbinleri - Sürdürülebilir Enerji"
   }
 }

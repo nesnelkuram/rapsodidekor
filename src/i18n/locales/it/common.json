@@ -149,5 +149,16 @@
       "title": "Padroneggiare l'Arte della Serigrafia",
       "description": "Scopri la precisione e la vivacità della stampa serigrafica. Le nostre tecniche avanzate danno vita ai tuoi design su una varietà di superfici tra cui vetro, plastica e metallo, offrendo durabilità e un fascino visivo senza pari per ogni prodotto. Eleva il tuo marchio con decorazioni personalizzate che si distinguono."
     }
+  },
+  "greenEnergy": {
+    "badge": "100% Energia Verde",
+    "title": "Produzione Sostenibile",
+    "titleHighlight": "Certificato",
+    "description": "Il 100% dell'energia elettrica utilizzata nella nostra fabbrica di Akpınar è generata da energia solare e turbine eoliche senza danneggiare l'ambiente. Con il nostro approccio di produzione sostenibile, lasciamo un'eredità responsabile per il futuro.",
+    "viewCertificate": "Visualizza Certificato",
+    "carbonNeutral": "Produzione Carbon Neutral",
+    "solarEnergy": "Energia Solare",
+    "windEnergy": "Energia Eolica",
+    "altText": "Energia Solare e Turbine Eoliche - Energia Sostenibile"
   }
 }

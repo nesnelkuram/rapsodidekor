@@ -149,5 +149,16 @@
       "title": "Mastering the Art of Silk Screen",
       "description": "Discover the precision and vibrancy of silk screen printing. Our advanced techniques bring your designs to life on a variety of surfaces including glass, plastic, and metal, offering durability and unparalleled visual appeal for every product. Elevate your brand with bespoke decoration that stands out."
     }
+  },
+  "greenEnergy": {
+    "badge": "100% Green Energy",
+    "title": "Sustainable Production",
+    "titleHighlight": "Certificate",
+    "description": "100% of the electrical energy used in our Akpınar factory is generated from solar energy and wind turbines without harming the environment. With our sustainable production approach, we leave a responsible legacy for the future.",
+    "viewCertificate": "View Certificate",
+    "carbonNeutral": "Carbon Neutral Production",
+    "solarEnergy": "Solar Energy",
+    "windEnergy": "Wind Energy",
+    "altText": "Solar Energy and Wind Turbines - Sustainable Energy"
   }
 }

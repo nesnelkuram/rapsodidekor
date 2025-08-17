@@ -3,16 +3,17 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link"; 
-import AnimatedElement from "@/components/AnimatedElement"; 
-import RotatingIcon from '@/components/RotatingIcon'; 
-import Counter from '@/components/Counter'; 
-import FactsCounter from '@/components/FactsCounter';
+import AnimatedElement from "../components/AnimatedElement"; 
+import RotatingIcon from '../components/RotatingIcon'; 
+import Counter from '../components/Counter'; 
+import FactsCounter from '../components/FactsCounter';
+import StructuredData from '../components/StructuredData';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import FloatingObjects from '@/components/FloatingObjects';
-import StickyScrollSection from '@/components/StickyScrollSection';
+import FloatingObjects from '../components/FloatingObjects';
+import StickyScrollSection from '../components/StickyScrollSection';
 import Lenis from '@studio-freight/lenis';
-import { useLanguage } from '@/i18n/LanguageContext';
-import { getAdaptiveTextSize } from '@/hooks/useResponsiveText';
+import { useLanguage } from '../i18n/LanguageContext';
+import { getAdaptiveTextSize } from '../hooks/useResponsiveText';
 
 // Placeholder Play Icon SVG
 const PlayIcon = () => (
@@ -195,6 +196,11 @@ export default function Home() {
 
   return (
     <>
+      {/* Structured Data */}
+      <StructuredData type="organization" />
+      <StructuredData type="website" />
+      <StructuredData type="manufacturer" />
+      
       {/* === Hero Section === */}
       <AnimatedElement>
         <section className="relative h-screen flex items-center overflow-hidden" style={{marginTop: 0, paddingTop: 0}}>
@@ -560,10 +566,119 @@ export default function Home() {
         </section>
       </AnimatedElement>
 
+      {/* === Green Energy Certificate Section === */}
+      <AnimatedElement>
+        <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Content */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-6"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  {t('greenEnergy.badge')}
+                </motion.div>
+                
+                <motion.h2
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+                  style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}
+                >
+                  {t('greenEnergy.title')}
+                  <span className="block text-green-600">{t('greenEnergy.titleHighlight')}</span>
+                </motion.h2>
+                
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-lg text-gray-700 mb-8 leading-relaxed"
+                >
+                  {t('greenEnergy.description')}
+                </motion.p>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <a
+                    href="/renewal.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition duration-300"
+                  >
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    </svg>
+                    {t('greenEnergy.viewCertificate')}
+                  </a>
+                  
+                  <div className="flex items-center text-gray-600">
+                    <svg className="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {t('greenEnergy.carbonNeutral')}
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                  <Image
+                    src="/images/renewable-energy-certificate.jpg"
+                    alt={t('greenEnergy.altText')}
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  
+                  {/* Floating Stats */}
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-green-600">75%</div>
+                        <div className="text-xs text-gray-600">{t('greenEnergy.solarEnergy')}</div>
+                      </div>
+                      <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-blue-600">25%</div>
+                        <div className="text-xs text-gray-600">{t('greenEnergy.windEnergy')}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </AnimatedElement>
+
       {/* === Elevate Your Packaging Section === */}
       <motion.section 
         ref={elevateRef} 
-        className="pt-32 pb-16 sm:pb-0 bg-gray-900"
+        className="bg-gray-900 flex items-center justify-center"
+        style={{ minHeight: '80vh' }}
       >
         <motion.div style={{ y: elevateContentTranslateY }}> 
           <div className="container mx-auto px-6 md:px-16">

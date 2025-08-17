@@ -149,5 +149,16 @@
       "title": "Meisterschaft in der Siebdruckkunst",
       "description": "Entdecken Sie die Präzision und Lebendigkeit des Siebdrucks. Unsere fortschrittlichen Techniken erwecken Ihre Designs auf verschiedenen Oberflächen wie Glas, Kunststoff und Metall zum Leben und bieten Langlebigkeit und unvergleichliche visuelle Attraktivität für jedes Produkt. Erheben Sie Ihre Marke mit maßgeschneiderter Dekoration, die hervorsticht."
     }
+  },
+  "greenEnergy": {
+    "badge": "100% Grüne Energie",
+    "title": "Nachhaltige Produktion",
+    "titleHighlight": "Zertifikat",
+    "description": "100% der in unserer Akpınar-Fabrik verwendeten elektrischen Energie wird aus Solarenergie und Windturbinen ohne Umweltschäden erzeugt. Mit unserem nachhaltigen Produktionsansatz hinterlassen wir ein verantwortungsvolles Erbe für die Zukunft.",
+    "viewCertificate": "Zertifikat anzeigen",
+    "carbonNeutral": "Klimaneutrale Produktion",
+    "solarEnergy": "Solarenergie",
+    "windEnergy": "Windenergie",
+    "altText": "Solarenergie und Windturbinen - Nachhaltige Energie"
   }
 }

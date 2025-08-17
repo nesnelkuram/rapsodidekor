@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useLanguage } from '@/i18n/LanguageContext';
-import { languages } from '@/i18n/config';
+import { useLanguage } from '../i18n/LanguageContext';
+import { languages } from '../i18n/config';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LanguageSelector() {
