@@ -8,9 +8,9 @@ export default function AboutUsPage() {
   return (
     <>
       {/* Simple Header Section */}
-      <section className="bg-gray-100 py-12 md:py-16">
+      <section className="bg-gray-900 py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-800" style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}>
+          <h1 className="text-3xl md:text-5xl font-bold text-white" style={{ fontFamily: 'HaboroContrastNormRegular, sans-serif' }}>
             {t('about.title')}
           </h1>
         </div>
