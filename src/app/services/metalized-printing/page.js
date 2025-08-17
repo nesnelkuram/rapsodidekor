@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useLanguage } from '@/i18n/LanguageContext';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 export default function MetalizedPrintingPage() {
   const { t } = useLanguage();

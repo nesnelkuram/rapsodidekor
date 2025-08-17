@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useLanguage } from '@/i18n/LanguageContext';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ContactForm() {
   const { t } = useLanguage();
