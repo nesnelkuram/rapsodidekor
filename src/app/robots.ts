@@ -15,6 +15,14 @@ export default function robots(): MetadataRoute.Robots {
           '/*.pdf$',
           '/out/',
           '/node_modules/',
+          '/_next/',
+          '/not-found',
+          '/**/not-found',
+          '/tr/', // Turkish prefix not needed since it's default
+          '/tr/*',
+          '/*.bak$',
+          '/*.backup$',
+          '/*.tmp$',
         ],
       },
       {
@@ -23,6 +31,20 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/private/',
           '/admin/',
+          '/api/',
+          '/not-found',
+          '/**/not-found',
+        ],
+      },
+      {
+        userAgent: 'Bingbot',
+        allow: '/',
+        disallow: [
+          '/private/',
+          '/admin/',
+          '/api/',
+          '/not-found',
+          '/**/not-found',
         ],
       },
     ],

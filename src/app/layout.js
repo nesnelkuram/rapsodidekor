@@ -3,6 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import HreflangTags from "../components/HreflangTags";
+import CanonicalTag from "../components/CanonicalTag";
 import WebVitals from "../components/WebVitals";
 import { LanguageProvider } from "../i18n/LanguageContext";
 import LanguageWrapper from "../components/LanguageWrapper";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
         <LanguageProvider>
           <LanguageWrapper>
             <HreflangTags />
+            <CanonicalTag />
             <Header />
             <main style={{margin: 0, padding: 0, overflow: 'visible'}}>{children}</main>
             <Footer />

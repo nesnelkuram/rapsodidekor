@@ -24,6 +24,16 @@ const HreflangTags = () => {
     const existingTags = document.querySelectorAll('link[rel="alternate"]');
     existingTags.forEach(tag => tag.remove());
 
+    // Clean pathname - remove language prefix if present for proper URL construction
+    let cleanPathname = pathname;
+    languages.forEach(({ code }) => {
+      if (pathname.startsWith(`/${code}/`)) {
+        cleanPathname = pathname.substring(`/${code}`.length);
+      } else if (pathname === `/${code}`) {
+        cleanPathname = '/';
+      }
+    });
+
     // Add new hreflang tags
     languages.forEach(({ code, region }) => {
       const link = document.createElement('link');
@@ -34,10 +44,10 @@ const HreflangTags = () => {
       const baseUrl = 'https://rapsodidekor.com';
       if (code === 'tr') {
         // Turkish is default language, no language prefix
-        link.href = `${baseUrl}${pathname}`;
+        link.href = `${baseUrl}${cleanPathname}`;
       } else {
         // Other languages have language prefix
-        link.href = `${baseUrl}/${code}${pathname}`;
+        link.href = `${baseUrl}/${code}${cleanPathname}`;
       }
       
       document.head.appendChild(link);
@@ -47,7 +57,7 @@ const HreflangTags = () => {
     const defaultLink = document.createElement('link');
     defaultLink.rel = 'alternate';
     defaultLink.hreflang = 'x-default';
-    defaultLink.href = `https://rapsodidekor.com${pathname}`;
+    defaultLink.href = `https://rapsodidekor.com${cleanPathname}`;
     document.head.appendChild(defaultLink);
 
     // Cleanup function
