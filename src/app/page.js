@@ -422,9 +422,9 @@ export default function Home() {
             </div>
             
             <div className="clients-slider overflow-hidden">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-10 mx-auto max-w-4xl">
-                {/* Logos - First row (4 logos) */}
-                <motion.div 
+              {/* First row - 5 logos */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-5 md:gap-8 mx-auto max-w-5xl mb-8">
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow1Opacity,
@@ -432,16 +432,16 @@ export default function Home() {
                     scale: clientsRow1Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/next.png" 
-                    alt="Next" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/next.png"
+                    alt="Next"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow1Opacity,
@@ -449,16 +449,16 @@ export default function Home() {
                     scale: clientsRow1Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/atelier rebul.png" 
-                    alt="Atelier Rebul" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/atelier rebul.png"
+                    alt="Atelier Rebul"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow1Opacity,
@@ -466,16 +466,16 @@ export default function Home() {
                     scale: clientsRow1Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/defacto.png" 
-                    alt="Defacto" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/defacto.png"
+                    alt="Defacto"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow1Opacity,
@@ -483,17 +483,36 @@ export default function Home() {
                     scale: clientsRow1Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/lc waikiki.png" 
-                    alt="LCW" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/lc waikiki.png"
+                    alt="LCW"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                {/* Second row (4 logos) */}
-                <motion.div 
+
+                <motion.div
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                  style={{
+                    opacity: clientsRow1Opacity,
+                    y: clientsRow1Y,
+                    scale: clientsRow1Scale
+                  }}
+                >
+                  <Image
+                    src="/images/clients/karaca.png"
+                    alt="Karaca"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
+                  />
+                </motion.div>
+              </div>
+
+              {/* Second row - 4 logos centered */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8 mx-auto max-w-4xl">
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow2Opacity,
@@ -501,16 +520,16 @@ export default function Home() {
                     scale: clientsRow2Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/river island.png" 
-                    alt="River Island" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/river island.png"
+                    alt="River Island"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow2Opacity,
@@ -518,16 +537,16 @@ export default function Home() {
                     scale: clientsRow2Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/mey.png" 
-                    alt="Diageo (Mey Alkol)" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/mey.png"
+                    alt="Diageo (Mey Alkol)"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow2Opacity,
@@ -535,16 +554,16 @@ export default function Home() {
                     scale: clientsRow2Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/nishane.png" 
-                    alt="Nishane" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/nishane.png"
+                    alt="Nishane"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="grayscale hover:grayscale-0 transition-all duration-300"
                   style={{
                     opacity: clientsRow2Opacity,
@@ -552,12 +571,12 @@ export default function Home() {
                     scale: clientsRow2Scale
                   }}
                 >
-                  <Image 
-                    src="/images/clients/mad.png" 
-                    alt="Mad Parfum" 
-                    width={280} 
-                    height={140} 
-                    style={{objectFit: "contain"}} 
+                  <Image
+                    src="/images/clients/mad.png"
+                    alt="Mad Parfum"
+                    width={220}
+                    height={110}
+                    style={{objectFit: "contain"}}
                   />
                 </motion.div>
               </div>
