@@ -25,7 +25,18 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className="text-xs">{t('footer.copyright').replace('{year}', currentYear)}</p>
+        <p className="text-xs">
+          {t('footer.copyright').replace('{year}', currentYear)}
+          {' · '}
+          <a
+            href="https://intiba.co.uk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-white"
+          >
+            Intiba Media
+          </a>
+        </p>
         {/* Example links (optional) */}
         {/* <div className="mt-4">
           <Link href="/privacy-policy" className="text-gray-400 hover:text-white mx-2">Privacy Policy</Link>
